@@ -1,0 +1,59 @@
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import PostApi from '../packages/Post/services/PostService';
+
+import Layout from '../components/Layouts/MainLayout/MainLayout';
+import HomePageTemplate from '../components/Templates/HomePageTemplate';
+
+const Page = (props) => {
+  if( !props.data || props.data.length <= 0 ){
+    return(
+      <Layout>
+        <div>Data not found</div>
+      </Layout>
+    );
+  }
+
+  switch( props.data.template ){
+    case 'home':
+      return(
+        <HomePageTemplate {...props}/>
+      )
+
+  }
+
+  // return(
+  //   <Layout>
+  //     <div>
+  //       <h3>[PAGE] Template</h3>
+  //       <h2>{props.data.title.it}</h2>
+  //       <p>
+  //         id: {props.data.id}
+  //       </p>
+  //       <p>
+  //         {props.data.content.it}
+  //       </p>
+  //     </div>
+  //   </Layout>
+  // )
+}
+
+Page.getInitialProps = async (params) => {
+  // console.log('Slug', params);
+  let data = null;
+  try {
+    let postService = new PostService();
+    data = await postService.getBySlug(params.query.page);
+  }
+  catch(e) {
+    data = null;
+  }
+
+  return {
+    data: data
+  }
+}
+
+export default Page;

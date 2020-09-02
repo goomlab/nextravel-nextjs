@@ -1,0 +1,203 @@
+body
+    font-family: $font-1
+    font-weight: 400
+    font-size: $font-size-14
+    color: $color-10
+
+a, a:hover, a:visited
+    color: $color-20
+    
+.z-index-1
+    z-index: 1
+.z-index-2
+    z-index: 2
+
+@media screen and (max-width: 991px)
+    .no-mobile
+        display: none !important
+    .mobile-order-0
+        order: 0
+    .mobile-order-1
+        order: 1
+    .mobile-order-2
+        order: 2
+@media screen and (min-width: 992px)
+    .no-desktop
+        display: none !important
+
+.position-relative
+    position: relative
+
+.row15
+    margin-left: -7.5px
+    margin-right: -7.5px
+    [class*="col-"]
+        padding-right: 7.5px
+        padding-left: 7.5px
+
+.bold
+    font-weight: 700
+    
+.btn
+    white-space: pre-wrap
+    -webkit-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+
+.btn-yellow
+    @extend %font-1-bold
+    background-color: $color-30
+    color: $color-10
+    &:hover
+        opacity: 0.9
+.btn-green
+    @extend %font-1-bold
+    background-color: $color-20
+    color: $color-10
+    &:hover
+        opacity: 0.9
+.btn-more, .btn-more:visited
+    @extend %font-1-bold
+    font-size: $font-size-18
+    background-color: $color-10
+    color: $color-20
+    text-transform: uppercase
+    padding: 10px 50px
+    &:hover
+        opacity: 0.9
+.btn-transparent, .btn-transparent:visited
+    @extend %font-1-regular
+    background-color: transparent
+    font-size: $font-size-18
+    color: $color-ff
+    border: solid 1px $color-ff
+    text-transform: uppercase
+    &:hover
+        background-color: $color-ff
+        color: $color-10
+
+
+.section-main
+    padding: 65px 0
+    &.only-padding-top
+        padding: 0 65 0 0 0
+    &.only-padding-bottom
+        padding: 0 0 65px 0
+
+.section-first
+    &.home
+        background: rgb(245,185,55)
+        background: linear-gradient(45deg, rgba(245,185,55,1) 0%, rgba(224,100,145,1) 100%)
+        padding: 65px 0 130px 0
+
+.primary-title
+    @extend %font-1-bold
+    font-size: $font-size-48
+    h1, h2, h3, h4
+        @extend %font-1-bold
+    h1
+        font-size: $font-size-48
+    h2
+        font-size: $font-size-24
+
+.primary-description
+    @extend %font-1-regular
+    font-size: $font-size-16
+
+.section-first.home
+    .primary-title
+        h1
+            font-size: $font-size-46
+
+    .primary-title, .primary-description
+        color: $color-ff
+
+
+.section-home-primopiano
+    background-attachment: fixed
+    background-image: url(../images/examples/Depositphotos_12854305_original.jpg)
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+.box-home-primopiano
+    background: rgb(98,183,174)
+    background: linear-gradient(90deg, rgba(98,183,174,0.7) 0%, rgba(34,179,224,0.7) 100%)
+    padding: 15px
+    color: $color-ff
+.home-primopiano-item
+    position: relative
+    color: $color-ff
+    .title
+        @extend %font-1-bold
+        font-size: $font-size-48
+        line-height: 1em
+        margin-bottom: 30px
+    .description
+        font-size: $font-size-18
+        margin-bottom: 30px
+    .note
+        font-size: $font-size-12
+        margin-bottom: 30px
+    @media screen and (max-width: 574px)
+        .btn
+            margin-bottom: 30px
+        i
+            width: 150px
+    @media screen and (min-width: 575px)
+        i
+            width: 100%
+    @media screen and (max-width: 991px)
+        margin-bottom: 60px
+
+@media screen and (max-width: 991px)
+    .box-home-primopiano
+        [class*="col-"]:nth-child(2)
+            .home-primopiano-item
+                &::after,
+                &::before
+                    content: ""
+                    display: block
+                    position: absolute
+                    left: 0
+                    right: 0
+                    height: 1px
+                    width: 100%
+                    background-color: $color-ff
+                &::before
+                    top: -30px
+                &::after
+                    bottom: -30px 
+@media screen and (min-width: 992px)
+    .box-home-primopiano
+        [class*="col-"]:nth-child(2)
+            .home-primopiano-item
+                &::after,
+                &::before
+                    content: ""
+                    display: block
+                    position: absolute
+                    top: 0
+                    height: 100%
+                    width: 1px
+                    background-color: $color-ff
+                &::before
+                   left: -15px
+                &::after
+                   right: -15px 
+                // border-left: solid 1px $color-ff
+                // border-right: solid 1px $color-ff
+
+
+.section-newsletter
+    .description
+        font-size: $font-size-24
+    form 
+        font-size: $font-size-12
+        .btn
+            font-size: $font-size-12
+            text-transform: uppercase
+            height: calc(2.25rem + 2px)
+            padding: .375rem .75rem
+            width: 100%
+        .form-control
+            font-size: $font-size-12

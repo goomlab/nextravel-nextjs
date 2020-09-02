@@ -1,0 +1,107 @@
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder
+    color: $color-10 !important
+input::-moz-input-placeholder,
+textarea::-moz-input-placeholder
+    color: $color-10 !important
+input:-ms-input-placeholder,
+textarea::-ms-input-placeholder
+    color: $color-10 !important
+input::placeholder,
+textarea::placeholder
+    color: $color-10 !important
+
+.form-control,
+.custom-select
+    -webkit-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+
+.form-control:focus,
+.custom-select:focus
+    -webkit-box-shadow: none
+    -moz-box-shadow: none
+    box-shadow: none
+
+.form-control
+    background-clip: border-box
+
+.form-template-1
+    .form-control,
+    .custom-select
+        color: $color-10
+        font-size: $font-size-16
+        padding: .375rem .75rem .375rem 0
+        border: none
+        border-bottom: solid 1px $color-10
+        &:focus
+            font-size: $font-size-18
+            border-bottom: solid 2px $color-10
+    .form-control
+        background: transparent
+    .custom-select
+        background: transparent url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center
+        background-size: 8px 8px
+        option
+            font-size: $font-size-16
+
+.form-template-2
+    .form-control,
+    .custom-select
+        color: $color-10
+        font-size: $font-size-16
+        background-color: $color-01
+        border: solid 1px $color-01
+        &:focus
+            font-size: $font-size-18
+            border-bottom: solid 2px $color-10
+    textarea
+        height: calc((2.25rem + 2px + 1rem) * 4 - 1rem)
+    .btn-submit
+        padding: 5px 15px 5px
+        background-color: $color-10
+        border: solid 1px $color-10
+        color: $color-20
+        font-weight: 700
+        font-size: $font-size-18
+        text-transform: uppercase
+        &:hover
+            opacity: 0.9
+
+.custom-checkbox .custom-control-label
+    font-size: $font-size-12
+.custom-checkbox .custom-control-label::before
+    -webkit-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+.custom-control-label::before
+    background-color: $color-ff
+    border: solid 1px $color-10
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%234fbaad' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E")
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before
+    background-color: $color-10
+
+
+
+
+
+/* form-group-2 */
+.form-group-2
+    position: relative
+    height: calc(2.25rem + 2px)
+    label.placeholder
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        color: $color-10
+        font-size: $font-size-16
+        padding: .375rem .75rem .375rem 0
+    .form-control
+        position: absolute
+        width: 100%
+        height: 100%
+    &.focus
+        label.placeholder
+            top: -5px
+            font-size: 12px

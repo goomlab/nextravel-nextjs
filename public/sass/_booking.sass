@@ -1,0 +1,178 @@
+.booking-box
+    position: relative
+
+    .booking-form,
+    .booking-months,
+    .booking-holidays
+        position: relative
+        min-height: 70px
+        padding: 15px
+    
+    .booking-form
+        background-color: $color-11
+        transition: all .35s
+        &.hide
+            display: none
+
+        .form-control,
+        .custom-select
+            padding: 6px 5px
+            border: solid 1px $color-ff
+            height: calc(2rem + 2px)
+            
+            -webkit-border-radius: 0
+            -moz-border-radius: 0
+            border-radius: 0
+        .btn
+            padding: .445rem .75rem
+        .form-control,
+        .custom-select,
+        .btn
+            @extend %font-1-regular
+            font-size: $font-size-12
+            font-size: $font-size-12
+    
+    .booking-months
+        // background-color: $color-20
+        background: rgb(98,183,174)
+        background: linear-gradient(90deg, rgba(98,183,174,0.38559173669467783) 0%, rgba(34,179,224,0.37718837535014005) 100%)
+    .booking-holidays
+        // background-color: $color-11
+        background: rgb(245,185,55)
+        background: linear-gradient(90deg, rgba(245,185,55,0.3799894957983193) 0%, rgba(98,183,174,0.37718837535014005) 100%)
+
+    .booking-months,
+    .booking-holidays
+        // padding-left: calc(8.333333% + 15px)
+        // padding-right: calc(8.333333% + 15px)
+        @media screen and (max-width: 767px)
+            padding: 15px 50px
+        @media screen and (min-width: 768px)
+            padding: 15px 8.333333%
+
+        .swiper-container,
+        .swiper-wrapper
+            height: 100%
+            // .swiper-slide
+            //     display: flex
+            //     align-items: center
+            //     min-height: 70px
+
+        // .swiper-container
+        //     overflow: visible
+        // .swiper-wrapper
+        //     overflow: hidden
+
+        a, a:visited, a:hover
+            position: relative
+            display: block
+            padding-top: 10px
+            @extend %font-1-regular
+            font-size: $font-size-12
+            color: $color-10
+            text-decoration: none
+            line-height: 1.2em
+            &::after
+                @extend %figure-after
+                top: 5px
+                left: 0
+                width: 15px
+                height: 1px
+                background-color: $color-10
+        .swiper-button-next,
+        .swiper-button-prev
+            width: 20px
+            height: 20px
+            background-size: 20px 20px
+            margin-top: -10px
+        .swiper-button-next, .swiper-container-rtl .swiper-button-prev
+            right: 15px
+            // left: -8.33%
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23384044'%2F%3E%3C%2Fsvg%3E")
+        .swiper-button-prev, .swiper-container-rtl .swiper-button-next
+            left: 15px
+            // left: -8.33%
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23384044'%2F%3E%3C%2Fsvg%3E")
+                
+
+@media screen and (max-width: 991px)
+    .booking-box 
+        .booking-form
+            .form-control,
+            .custom-select
+                margin-bottom: 15px
+
+
+.front-page .booking-box
+    margin-top: -70px
+                
+// .booking-box
+//     position: fixed
+//     left: 15px
+//     bottom: 15px
+//     z-index: 1030
+//     padding: 15px
+//     background-color: $color-30
+//     .booking-form
+//         display: flex
+//         margin-left: -15px
+//         margin-right: -15px
+//     .booking-form-input
+//         padding-left: 15px
+//         padding-right: 15px
+//     .input-group-text,
+//     .form-control,
+//     .btn-booking
+//         @extend %font-2-bold
+//         font-size: $font-size-12
+//         color: $color-ff
+//         padding: 0
+//         border: none
+//         background-color: transparent
+//         text-transform: uppercase
+//         -webkit-border-radius: 0
+//         -moz-border-radius: 0
+//         border-radius: 0
+//     .input-group-text
+//         padding: 0 15px 0 0
+//         margin: 0
+//     .form-control
+//         height: auto
+//         max-width: 80px
+//     .btn-booking
+//         color: $color-20
+//         border-bottom: solid 2px $color-20
+
+//     .select2-container
+//         width: 80px !important
+//     .select2-container .select2-selection--single
+//         height: 18px
+//     .select2-container--default .select2-selection--single .select2-selection__rendered
+//         line-height: 18px
+//     .select2-container--default .select2-selection--single .select2-selection__arrow
+//         height: 15px
+
+//     .select2-container--default .select2-selection--single .select2-selection__placeholder,
+//     .select2-container--default .select2-selection--single .select2-selection__rendered
+//         @extend %font-2-bold
+//         font-size: $font-size-12
+//         text-transform: uppercase
+//         color: $color-ff
+//     .select2-container--default .select2-selection--single .select2-selection__arrow b
+//         border-color: $color-ff transparent transparent transparent
+
+//     .select2-container--default .select2-selection--single
+//         background-color: transparent
+//         border: none
+//         -webkit-border-radius: 0
+//         -moz-border-radius: 0
+//         border-radius: 0
+//     .select2-dropdown
+//         border: solid 1px $color-20
+//         -webkit-border-radius: 0
+//         -moz-border-radius: 0
+//         border-radius: 0
+//     .select2-container--default .select2-results__option[aria-selected=true]
+//         background-color: $color-20 !important
+//     .select2-container--default .select2-results__option--highlighted[aria-selected]
+//         background-color: $color-20 !important

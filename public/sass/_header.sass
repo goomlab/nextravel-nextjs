@@ -1,0 +1,219 @@
+header
+    .navbar-toggler
+        position: relative
+        width: 30px
+        height: 33px
+        padding: 0
+        span
+            display: block
+            background-color: $color-ff
+            height: 2px
+            width: 100%
+            margin-bottom: 8px
+            position: relative
+            right: 0
+            opacity: 1
+
+            -webkit-transform: rotate(0deg)
+            -moz-transform: rotate(0deg)
+            -o-transform: rotate(0deg)
+            transform: rotate(0deg)
+
+            &:last-child
+                margin-bottom: 0
+
+            &:nth-child(2)
+                width: 70%
+            // &:nth-child(3)
+            //     width: 80%
+
+            &:nth-child(1),
+            &:nth-child(3)
+                -webkit-transition: transform .35s ease-in-out
+                -moz-transition: transform .35s ease-in-out
+                -o-transition: transform .35s ease-in-out
+                transition: transform .35s ease-in-out
+
+        &:not(.collapsed)
+            span:nth-child(1)
+                position: absolute
+                right: 0
+                top: 15px
+                -webkit-transform: rotate(135deg)
+                -moz-transform: rotate(135deg)
+                -o-transform: rotate(135deg)
+                transform: rotate(135deg)
+                opacity: 0.9
+
+        &:not(.collapsed)
+            span:nth-child(2)
+                height: 8px
+                visibility: hidden
+                background-color: transparent
+
+        &:not(.collapsed)
+            span:nth-child(3)
+                position: absolute
+                right: 0
+                top: 15px
+                -webkit-transform: rotate(-135deg)
+                -moz-transform: rotate(-135deg)
+                -o-transform: rotate(-135deg)
+                transform: rotate(-135deg)
+                opacity: 0.9
+    
+    .navbar .separator
+        font-size: $font-size-12
+        color: $color-20
+        padding: .5rem
+
+    #nav-0
+        background-color: $color-11
+        font-size: $font-size-10
+        color: $color-10
+        height: 31px
+        ul
+            display: flex
+            flex-direction: row
+            justify-content: flex-end
+            width: 100%
+            li
+                display: inline-block
+                padding: 0
+                .nav-link
+                    display: flex
+                    align-items: center
+                    font-size: $font-size-10
+                    padding: 0 .4rem
+                .nav-link, .nav-link:hover
+                    color: $color-10
+                i
+                    font-size: 15px
+                span
+                    padding-left: 5px
+
+    #nav-1.navbar
+        background-color: $color-10
+        color: $color-ff
+        -webkit-transition: background-color .35s
+        -moz-transition: background-color .35s
+        -o-transition: background-color .35s
+        transition: background-color .35s
+        .navbar-brand
+            .navbar-logo
+                // width: 250px
+                // height: 30px
+                // background-image: url(../images/logo.png)
+                // background-repeat: no-repeat
+                // background-position: center
+                // background-size: contain
+                img
+                    @media screen and (max-width: 574px)
+                        width: 180px
+                    @media screen and (min-width: 575px)
+                        width: 250px
+                    -webkit-transition: all .35s ease-in-out
+                    -moz-transition: all .35s ease-in-out
+                    -o-transition: all .35s ease-in-out
+                    transition: all .35s ease-in-out
+        .nav-link, .nav-link:visited, .nav-link:hover
+            position: relative
+            @extend %font-1-regular
+            font-size: $font-size-12
+            text-transform: uppercase
+            color: $color-ff
+        .nav-link:hover, .nav-item.show .nav-link
+            color: $color-20
+        
+        .nav-link::before
+            display: none
+            @extend %figure-after
+            left: 0
+            background-color: $color-20
+        .nav-link:hover::before,
+        .nav-item.show .nav-link::before
+            display: block
+
+        .nav-callto, .nav-callto:visited, .nav-callto:hover
+            @extend %font-1-bold
+            font-size: $font-size-18
+            color: $color-30
+            text-transform: lowercase
+        .nav-callto::before
+            background-color: $color-30
+            bottom: -8px
+        .dropdown-menu
+            border: none
+            background-color: $color-10
+            -webkit-border-radius: 0
+            -moz-border-radius: 0
+            border-radius: 0
+            .dropdown-item, .dropdown-item:visited, .dropdown-item:hover
+                @extend %font-1-regular
+                font-size: $font-size-12
+                text-transform: uppercase
+                color: $color-ff
+                background-color: transparent
+                padding: .25rem .5rem
+            .dropdown-item:hover
+                color: $color-20
+                
+        .navbar-collapse.show,
+        .navbar-collapse.collapsing,
+                position: relative
+                top: 80px
+                background-color: $color-10
+                margin-left: -15px
+                margin-right: -15px
+                padding: 15px
+                .separator
+                    display: none
+
+        &.navbar-scroll
+            padding: 0rem 1rem
+            .navbar-brand
+                .navbar-logo
+                    img
+                        width: 160px
+            // background-color: $color-ff
+            // .navbar-toggler
+            //     span
+            //         background-color: $color-10
+            // .navbar-brand
+            //     top: 5px
+            //     left: calc(50% - 46px)
+            //     .navbar-logo
+            //         width: 93px
+            //         height: 40px
+            //         background-image: url(../images/logo-blue.svg)
+            // .nav-link, .nav-link:visited, .nav-link:hover
+            //     color: $color-10
+            // .dropdown-menu
+            //     background-color: $color-ff
+            //     .dropdown-item, .dropdown-item:visited, .dropdown-item:hover
+            //         color: $color-10
+
+
+@media screen and (max-width: 1199px)
+    header
+        #nav-1.navbar
+            .nav-link::before
+                bottom: 0
+                width: 160px
+                height: 2px
+@media screen and (min-width: 1200px)
+    header
+        #nav-1.navbar
+            .nav-link::before
+                bottom: -12px
+                width: 100%
+                height: 10px
+            .nav-callto::before
+                bottom: -8px
+            .dropdown-menu
+                top: 44px
+            &.navbar-scroll
+                .nav-link::before
+                    bottom: -4px
+                .dropdown-menu
+                    top: 36px
