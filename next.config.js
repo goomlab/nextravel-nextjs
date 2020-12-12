@@ -30,7 +30,48 @@ module.exports = {
         // "X-Requested-With": "XMLHttpRequest"
       }
     },
-    // ga_tracking_id: 'GTM-5HSTK76'
+    // ga_tracking_id: 'GTM-5HSTK76',
+    socials: {
+      'facebook': {
+        'label': 'Facebook',
+        'url': '',
+        'ico': '<i class="fab fa-facebook"></i>'
+      },
+      'instagram': {
+        'label' : 'Instagram',
+        'url' : '',
+        'ico' : '<i class="fab fa-instagram"></i>'
+      },
+    },
+    contacts: {
+      'email': {
+        'prelabel': '',
+        'label': 'info@nextravel.it',
+        'url': 'mailto:info@nextravel.it',
+        'ico': '<i class="ico ico-mail"></i>'
+      },
+      'phone': {
+        'prelabel': '',
+        'label' : '347 512 3030',
+        'url' : 'tel:393475123030',
+        'ico' : '<i class="fas fa-phone-alt"></i>'
+      },
+      // 'mobile': {
+      //   'prelabel': '',
+      //   'label' : '347 512 3030',
+      //   'url' : '',
+      //   'ico' : '<i class="ico ico-instagram"></i>'
+      // },
+    },
+    address: [
+      {
+        'company' : 'Nextravel',
+        'label' : 'via Giovan Battista Vico 183<br/>80077 Ischia (Na)',
+        'url' : 'javascript:void(0)',
+        'ico' : '<i class="map-marker"></i>',
+        'piva' : 'IT09640631215'
+      }
+    ]
   }
 
   // async redirects() {

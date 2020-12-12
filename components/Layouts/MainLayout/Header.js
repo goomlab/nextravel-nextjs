@@ -8,10 +8,17 @@ const Header = (props) => {
         <div className="container">
           <ul>
             <li>
-              <a className="nav-link" href="#"><i className="ico ico-mail"></i> <span>info@nexttravel.it</span></a>
+              <a className="nav-link" href={process.env.contacts.email.url}><span dangerouslySetInnerHTML={{ __html: process.env.contacts.email.ico }} /> <span>{process.env.contacts.email.label}</span></a>
             </li>
             <li>|</li>
-            <li>
+            {Object.entries(process.env.socials).map(([key, obj], index) => 
+                <li key={key}>
+                  <a className="nav-link" href={obj.url}>
+                    <span dangerouslySetInnerHTML={{ __html: (`${obj.ico}`) }} />
+                  </a>
+                </li>
+              )}
+            {/* <li>
               <a className="nav-link" href="#"><i className="fab fa-facebook"></i></a>
             </li>
             <li>
@@ -19,7 +26,7 @@ const Header = (props) => {
             </li>
             <li>
               <a className="nav-link" href="#"><i className="fab fa-twitter"></i></a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
@@ -82,7 +89,7 @@ const Header = (props) => {
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link nav-callto" href="#">chiama! 0810000000</a>
+                <a className="nav-link nav-callto" href={process.env.contacts.phone.url}>chiama! {process.env.contacts.phone.label}</a>
               </li>
             </ul>
           </div>

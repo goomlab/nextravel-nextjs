@@ -142,7 +142,8 @@ const HotelArchiveItem = props => {
                 {hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map( (obj, index) => 
                 <li key={index}>
                   <span>
-                    <i className="ico ico-childrens"></i>
+                    {/* ico */}
+                    {/* <i className="ico ico-childrens"></i> */}
                     {obj.name}
                   </span>
                 </li>

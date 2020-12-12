@@ -53,7 +53,7 @@ const HotelPage = props => {
               </div>
             </div>
             <div className="single-hotel-call ml-auto">
-              chiama!&nbsp;<span className="bold">081 0000000</span>
+              chiama!&nbsp;<span className="bold">{process.env.contacts.phone.label}</span>
             </div>
           </div>
         </div>
@@ -87,7 +87,8 @@ const HotelPage = props => {
                   {hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map( (obj, index) => 
                     <li key={index}>
                       <span>
-                        <i className="ico ico-childrens"></i>
+                        {/* ico */}
+                        {/* <i className="ico ico-childrens"></i> */}
                         {obj.name}
                       </span>
                     </li>

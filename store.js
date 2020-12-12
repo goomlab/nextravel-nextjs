@@ -1,20 +1,22 @@
-import React, {createContext, useReducer} from "react"
-import InitReducer from './packages/TravelgoOne/reducers/InitReducer'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import {MakeStore, createWrapper, Context, HYDRATE} from 'next-redux-wrapper';
 
-const initialState = {
-    posts: [],
-    error: null
-};
+import alertMessage from './packages/Base/reducers/AlertMessageReducer'
+import pageLoader from './packages/Base/reducers/PageLoaderReducer'
+import practiceByGuest from './packages/TravelgoOne/reducers/PracticeByGuestReducer'
 
-const Store = ({children}) => {
-    const [state, dispatch] = useReducer(Reducer, initialState);
-    
-    return (
-        <Context.Provider value={[state, dispatch]}>
-            {children}
-        </Context.Provider>
-    )
-};
+// create a makeStore function
+export const makeStore = context => createStore(
+    combineReducers({
+    alertMessage: alertMessage,
+    pageLoader: pageLoader,
+    practiceByGuest: practiceByGuest
+  }),
+  {},
+  composeWithDevTools(applyMiddleware(reduxThunk))
+);
 
-export const Context = createContext(initialState);
-export default Store;
+// export an assembled wrapper
+export const wrapper = createWrapper(makeStore, {debug: true});

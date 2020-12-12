@@ -6,15 +6,15 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-5">
-            <span className="green">sede legale</span><br/>
-            via nome cognome, 00<br/>
-            80077 Ischia (Na)<br/>
-            —<br/>
+            <span className="green">sede</span><br/>
+            <span dangerouslySetInnerHTML={{ __html: process.env.address[0].label }} />
+            <br/>
+            {/* —<br/>
             <span className="green">sede operativa</span><br/>
             via nome cognome, 00<br/>
-            80077 Ischia (Na)<br/>
+            80077 Ischia (Na)<br/> */}
             <br/><br/>
-            P.IVA 123456789
+            P.IVA {process.env.address[0].piva}
           </div>
           <div className="col-md-7">
               
@@ -28,17 +28,32 @@ const Footer = () => {
           </div>
           <div className="col-md-5">
             <ul className="menu-social">
-              <li>
-                <a href="#"><i className="fas fa-phone-alt"></i> 081000000</a>
+              {console.log('socials',process.env.socials)}
+              {Object.entries(process.env.contacts).map(([key, obj], index) => 
+                <li key={key}>
+                  <a href={obj.url}>
+                    <div dangerouslySetInnerHTML={{ __html: (`${obj.ico} ${obj.label}`) }} />
+                  </a>
+                </li>
+              )}
+              {/* <li>
+                <a href="tel:393475123030"><i className="fas fa-phone-alt"></i> 347 512 3030</a>
               </li>
               <li>
-                <a href="#"><i className="fas fa-envelope"></i> info@nextravel.it</a>
-              </li>
+                <a href="mailto:info@nextravel.it"><i className="fas fa-envelope"></i> info@nextravel.it</a>
+              </li> */}
             </ul>
           </div>
           <div className="col-md-2">
             <ul className="menu-social">
-              <li>
+              {Object.entries(process.env.socials).map(([key, obj], index) => 
+                <li key={key}>
+                  <a href={obj.url}>
+                    <div dangerouslySetInnerHTML={{ __html: (`${obj.ico}`) }} />
+                  </a>
+                </li>
+              )}
+              {/* <li>
                 <a href="#"><i className="fab fa-facebook"></i></a>
               </li>
               <li>
@@ -46,7 +61,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#"><i className="fab fa-twitter"></i></a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

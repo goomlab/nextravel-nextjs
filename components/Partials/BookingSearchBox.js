@@ -9,15 +9,40 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-const BookingSearchBox = props => {
+const BookingSearchBox = props => {console.log('booking search props', props)
   const swiperBookingMonths = React.useRef(null)
   const swiperBookingHolidays = React.useRef(null)
+
+  const defaultCheckin = moment().add(1, 'days').format('YYYY-MM-DD');
+  const defaultCheckout = moment().add(7, 'days').format('YYYY-MM-DD');
+  const defaultCheckinFormatted = moment().add(1, 'days').format('DD/MM/YYYY');
+  const defaultCheckoutFormatted = moment().add(7, 'days').format('DD/MM/YYYY');
+
+  const initCheckin = () => {
+    if( props.query && props.query.checkin != undefined && props.query.checkin != "" ){
+      return props.query.checkin
+    }
+    if( props.searchParams && props.searchParams.checkin != undefined && props.searchParams.checkin != "" ){
+      return props.searchParams.checkin
+    }
+    return defaultCheckin;
+  }
+
+  const initCheckout = () => {
+    if( props.query && props.query.checkout != undefined && props.query.checkout != "" ){
+      return props.query.checkout
+    }
+    if( props.searchParams && props.searchParams.checkout != undefined && props.searchParams.checkout != "" ){
+      return props.searchParams.checkout
+    }
+    return defaultCheckout;
+  }
 
   const [state, setState] = React.useState({
     loc_id: (props.query && props.query.loc_id) || '',
     category_id: (props.query && props.query.category_id) || '',
-    checkin: (props.query && props.query.checkin != "") ? props.query.checkin : '',
-    checkout: (props.query && props.query.checkout != "") ? props.query.checkout : '',
+    checkin: initCheckin(),
+    checkout: initCheckout(),
     nights: (props.query && props.query.nights) || ''
   });
 
@@ -89,10 +114,10 @@ const BookingSearchBox = props => {
   },[])
 
 
-  // const checkinFormatted = (props.query && props.query.checkin && props.query.checkin != "") ? moment(props.query.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : '';
-  // const checkoutFormatted = (props.query && props.query.checkout && props.query.checkout != "") ? moment(props.query.checkout, 'YYYY-MM-DD').format('DD/MM/YYYY') : '';
-  const checkinFormatted = (state.checkin != "") ? moment(state.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : '';
-  const checkoutFormatted = (state.checkout != "") ? moment(state.checkout, 'YYYY-MM-DD').format('DD/MM/YYYY') : '';
+  // const checkinFormatted = (props.query && props.query.checkin && props.query.checkin != "") ? moment(props.query.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckinFormatted;
+  // const checkoutFormatted = (props.query && props.query.checkout && props.query.checkout != "") ? moment(props.query.checkout, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckoutFormatted;
+  const checkinFormatted = (state.checkin != "" && state.checkin != undefined) ? moment(state.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckinFormatted;
+  const checkoutFormatted = (state.checkout != "" && state.checkout != undefined) ? moment(state.checkout, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckoutFormatted;
 
   const getMonths = () => {
     // mesi
@@ -165,8 +190,10 @@ const BookingSearchBox = props => {
             <div className="col-lg-3">
               <DateRangePicker
                 initialSettings={{
-                  startDate: state.checkinFormatted,
-                  endDate: state.checkoutFormatted,
+                  // startDate: state.checkinFormatted,
+                  // endDate: state.checkoutFormatted,
+                  startDate: moment(state.checkin, 'YYYY-MM-DD'),
+                  endDate: moment(state.checkout, 'YYYY-MM-DD'),
                   autoApply: true,
                   startDate: moment(),
                   locale: {

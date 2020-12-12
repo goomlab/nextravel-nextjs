@@ -76,7 +76,7 @@ const LastminutePage = props => {
               <div className="stars">{stars}</div>
             </div>
             <div className="single-hotel-call ml-auto">
-              chiama!&nbsp;<span className="bold">081 0000000</span>
+              chiama!&nbsp;<span className="bold">{process.env.contacts.phone.label}</span>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@ const LastminutePage = props => {
                       </div>
                     </div>
                     per ulteriori informazioni contattaci a<br />
-                    <span className="bold">info@nextour.eu</span>
+                    <span className="bold">{process.env.contacts.email.label}</span>
                   </div>
 
                   {/* <!-- <div className="price">

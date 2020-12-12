@@ -5,7 +5,7 @@ import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
 import HotelArchive from "~/components/Partials/HotelArchive";
 
-const TemplateArchiveHotel = props => {console.log('props',props)
+const TemplateArchiveHotel = props => {console.log('props TemplateArchiveHotel',props)
 
   if (!props.page || props.page.length <= 0) {
     return (
@@ -19,9 +19,9 @@ const TemplateArchiveHotel = props => {console.log('props',props)
     <Layout settings={{menu: props.menu}}>
 
       <BookingSearchBox 
-        params={props.params}
-        locs={props.locs || []}
-        hotelCategories={props.hotelCategories || []}
+        searchParams={props.searchParams}
+        // locs={props.locs || []}
+        // hotelCategories={props.hotelCategories || []}
         />
 
       <section className="section-main">

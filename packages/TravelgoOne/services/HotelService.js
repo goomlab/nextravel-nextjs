@@ -10,7 +10,7 @@ export default class HotelService extends BaseService {
   query(params) {
     return axios.get(`${this.url}/query`, { params }, this.config)
     .then(response => {
-      return Promise.resolve(response.data.data);
+      return Promise.resolve(response.data);
     })
     .catch(error => {
       return Promise.reject(error);

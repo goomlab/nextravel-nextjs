@@ -52,12 +52,12 @@ const Index = props => {
           </div>
           <div className="primary-description text-center">
             Per qualsiasi informazione non esitare a contattarci allo{" "}
-            <strong>081 000000</strong>
+            <strong>{process.env.contacts.phone.label}</strong>
           </div>
         </div>
       </section>
       
-      <HotelArchive hotels={props.hotels} />
+      <HotelArchive hotels={props.hotels.data} />
     </Layout>
   );
 };

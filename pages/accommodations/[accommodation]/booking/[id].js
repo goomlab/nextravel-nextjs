@@ -13,7 +13,7 @@ import BookingSearchBox from "~/components/Partials/BookingSearchBox";
 import BookingForm from "~/components/Partials/BookingForm";
 import PriceTable from '~/components/Partials/PriceTable';
 
-const BookingPage = props => {
+const BookingPage = props => {console.log('props booking page',props)
   if (!props.hotel || props.hotel.length <= 0) {
     return (
       <Layout settings={{ menu: props.menu }}>
@@ -69,7 +69,7 @@ const BookingPage = props => {
               <div className="stars">{stars}</div>
             </div>
             <div className="single-hotel-call ml-auto">
-              chiama!&nbsp;<span className="bold">081 0000000</span>
+              chiama!&nbsp;<span className="bold">{process.env.contacts.phone.label}</span>
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@ const BookingPage = props => {
                       </div>
                     </div>
                     per ulteriori informazioni contattaci a<br />
-                    <span className="bold">info@nextour.eu</span>
+                    <span className="bold">{process.env.contacts.email.label}</span>
                   </div>
 
                   {/* <!-- <div className="price">
@@ -116,7 +116,12 @@ const BookingPage = props => {
               </div>
             </div>
 
-            <BookingForm query={props.query} />
+            <BookingForm 
+              rateplan={props.period.rateplan || null}
+              hotel={props.period.rateplan.hotel || null}
+              query={props.query} 
+              priceList={priceList} 
+              />
           </div>
         </div>
       </section>
@@ -148,7 +153,8 @@ const BookingPage = props => {
                   {hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map( (obj, index) => 
                     <li key={index}>
                       <span>
-                        <i className="ico ico-childrens"></i>
+                        {/* ico */}
+                        {/* <i className="ico ico-childrens"></i> */}
                         {obj.name}
                       </span>
                     </li>

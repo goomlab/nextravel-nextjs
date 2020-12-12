@@ -32,7 +32,7 @@ const Index = props => {
               <div className="primary-title">
                 <h1>{props.page.subtitle.it}</h1>
                 <span style={{color: "#384044", textDecoration: "underline"}}>
-                  Chiama! 081 0000000
+                  Chiama! {process.env.contacts.phone.label}
                 </span>
               </div>
             </div>
@@ -56,13 +56,14 @@ const Index = props => {
           </div>
           <div className="primary-description text-center">
             Per qualsiasi informazione non esitare a contattarci allo{" "}
-            <strong>081 000000</strong>
+            <strong>{process.env.contacts.phone.label}</strong>
           </div>
         </div>
       </section>
       
-      <HotelArchive hotels={props.hotels} />
+      <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
 
+      {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) > parseInt(props.hotels.meta.total) &&
       <section className="section-main">
         <div className="container text-center">
           <Link href="/accomodations" as="/accomodations?page=2">
@@ -70,6 +71,7 @@ const Index = props => {
           </Link>
         </div>
       </section>
+      }
 
       <HomeRecap />
 
@@ -103,7 +105,9 @@ Index.getInitialProps = async ctx => {
     page = await postService.get(1);
 
     let hotelService = new HotelService();
-    hotels = await hotelService.query();
+    hotels = await hotelService.query({
+      paginate: 25
+    });
   } catch (e) {
     console.log('error', e)
   }

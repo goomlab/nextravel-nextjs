@@ -28,7 +28,13 @@ const PriceTable = props => {
         {props.priceTableLink &&
           <Link 
             as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`} 
-            href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+            href={{
+              pathname: `/accommodations/[accommodition]/booking/[id]`,
+              query: {
+                checkin: props.period.date_from,
+                checkout: props.period.date_to,
+              }
+            }}
           >
             <a className="prices-goto"></a>
           </Link>
@@ -69,7 +75,15 @@ const PriceTable = props => {
               {prices.n1 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 1,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n1},-
@@ -82,7 +96,15 @@ const PriceTable = props => {
               {prices.n2 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 2,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n2},-
@@ -95,7 +117,15 @@ const PriceTable = props => {
               {prices.n3 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 3,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n3},-
@@ -108,7 +138,15 @@ const PriceTable = props => {
               {prices.n4 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 4,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n4},-
@@ -121,7 +159,15 @@ const PriceTable = props => {
               {prices.n5 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 5,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n5},-
@@ -134,7 +180,15 @@ const PriceTable = props => {
               {prices.n6 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 6,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n6},-
@@ -147,7 +201,15 @@ const PriceTable = props => {
               {prices.n7 && 
               <Link 
                 as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`} 
-                href={{pathname: `/accommodations/[accommodition]/booking/[id]`}}
+                href={{
+                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  query: {
+                    checkin: props.period.date_from,
+                    checkout: props.period.date_to,
+                    treatment: props.treatment,
+                    nights: 7,
+                  }
+                }}
               >
                 <a>
                   <span className="no-smartphone">&euro;</span> {prices.n7},-

@@ -17,10 +17,18 @@ const MyDateRangePicker = (props) => {
     })
   }
 
+  React.useEffect(() => {
+    setState({
+      ...state,
+      startDate: (props.startDate) ? moment(props.startDate, "YYYY-MM-DD") : moment(),
+      endDate: (props.endDate) ? moment(props.endDate, "YYYY-MM-DD") : moment().add('2 days')
+    })
+  }, [props])
+
   return (
     <React.Fragment>
       <DateRangePicker
-        minDate={state.startDate}
+        minDate={moment().format('YYYY-MM-DD')}
         startDate={state.startDate}
         endDate={state.endDate}
         autoApply={true}

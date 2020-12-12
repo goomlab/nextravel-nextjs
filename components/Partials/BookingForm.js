@@ -1,46 +1,33 @@
-import React from 'react';
-import moment from 'moment';
+import React from 'react'
+import { connect } from 'react-redux'
+import moment from 'moment'
+import * as yup from 'yup'
+import { useFormik } from 'formik'
 
-import MyDateRangePicker from '../MyDateRangePicker';
+import PracticeByGuestAction from '~/packages/TravelgoOne/actions/PracticeByGuestAction'
+
+import MyDateRangePicker from '../MyDateRangePicker'
 
 const BookingForm = props => {
 
-  const [state, setState] = React.useState({
-    customer: {
-      first_name: "",
-      last_name: "",
-      email: "",
-      mobile: "",
-    },
-    message: "",
-    privacy: 0,
-    checkin: props.query.startDate || null,
-    checkout: props.query.endDate ||null,
-    numRooms: 1,
-    rooms: [
-      {
-        adults: 2,
-        childrens: 0,
-        childrenAges: []
-      }
-    ],
-    transfer_id: null
-  });
-
-  // const [focus, setFocus] = React.useState([]);
-
-  // const onFocus = (e) => {
-  //   e.persist();console.log(e);
-  //   if( !focus || e.target.value != "" )
-  //     e.target.parentElement.classList.add('focus');
-  //   else
-  //     e.target.parentElement.classList.remove('focus');
-  //   setFocus(!focus);
-  // }
+  /**
+   * ComponentDidUpdate
+   */
+  React.useEffect(() => {console.log('componentDidUpdate', props.practice)
+  let newState = Object.assign({}, props.practice);
+    props.setPractice({
+      ...newState,
+      hotel_id: props.hotel.id,
+      rate_plan_id: props.rateplan.id,
+      checkin: props.query.checkin || null,
+      checkout: props.query.checkout || null,
+      treatment: props.query.treatment || null,
+    })
+  }, [props.query])
 
   const onChange = (e) => {
     e.persist();
-    let newState = Object.assign({},state);
+    let newState = Object.assign({}, props.practice);
     switch( e.target.name ){
       case 'privacy': 
         newState[e.target.name] = (e.target.checked) ? 1 : 0;
@@ -53,45 +40,45 @@ const BookingForm = props => {
       break;
       default: newState[e.target.name] = e.target.value; break;
     }
-    setState(newState);
+    props.setPractice(newState)
   }
 
   const onChangeDatePicker = (startDate, endDate) => {
-    let newState = Object.assign({},state);
+    let newState = Object.assign({}, props.practice);
     newState.checkin = startDate.format('YYYY-MM-DD');
     newState.checkout = endDate.format('YYYY-MM-DD');
-    setState(newState);
+    props.setPractice(newState)
   }
 
   /**
    * Room
    */
   const onAddRoom = () => {
-    let newState = Object.assign({}, state);
+    let newState = Object.assign({}, props.practice);
     newState.rooms.push({
       adults: 2,
       childrens: 0,
       childrenAges: []
     });
-    setState(newState);
+    props.setPractice(newState)
   }
 
   const onDeleteRoom = (index) => {
-    let newState = Object.assign({}, state);
+    let newState = Object.assign({}, props.practice);
     newState.rooms.splice(index, 1);
-    setState(newState);
+    props.setPractice(newState)
   }
 
   const onAddRoomChildren = (e, index) => {
-    let newState = Object.assign({}, state);
+    let newState = Object.assign({}, props.practice);
     newState.rooms[index].childrenAges.push(e.target.value);
     newState.rooms[index].childrenAges.sort();
-    setState(newState);
+    props.setPractice(newState)
   }
   
   const onChangeRoom = (e, index) => {
     e.persist();
-    let newState = Object.assign({}, state);
+    let newState = Object.assign({}, props.practice);
     switch( e.currentTarget.dataset.name ) {
       case "childrens":
         if( parseInt(e.currentTarget.value) == 0 ){
@@ -118,13 +105,54 @@ const BookingForm = props => {
         newState.rooms[index][e.currentTarget.dataset.name] = e.currentTarget.value;  
       break;
     }
-    setState(newState);
+    props.setPractice(newState)
   }
+
+
+  /**
+   * Submit
+   */
+  const handleSubmit = () => {
+    props.createPractice(props.practice)
+  }
+
+  /**
+   * Validate
+   */
+  const formik =  useFormik({
+    initialValues: {
+      // checkin: props.checkin || "",
+      // checkout: props.practice.checkout || "",
+      treatment: props.practice.treatment || "",
+      first_name: props.practice.customer.first_name || "",
+      last_name: props.practice.customer.last_name || "",
+      email: props.practice.customer.email || "",
+      mobile: props.practice.customer.mobile || "",
+      privacy: props.practice.privacy || 0
+    },
+    validationSchema: yup.object().shape({
+      // checkin: yup.string().required('Campo non valido'),
+      // checkout: yup.string().required('Campo non valido'),
+      treatment: yup.string().required('Campo non valido'),
+      first_name: yup.string().required('Campo non valido'),
+      last_name: yup.string().required('Campo non valido'),
+      email: yup.string().required('Campo non valido'),
+      mobile: yup.string().required('Campo non valido'),
+      privacy: yup.number().min(1, 'Campo non valido').max(1, 'Campo non valido'),
+    }),
+    enableReinitialize: true,
+    onSubmit: handleSubmit
+  })
+
+
+  /**
+   * Render
+   */
 
   const renderRooms = () => {
     let _html = [];
 
-    for( let i in state.rooms ){
+    for( let i in props.practice.rooms ){
       // adults
       var _htmlAdultOptions = [];
       _htmlAdultOptions.push(<option key={0} value="0">Adulti</option>);
@@ -153,7 +181,7 @@ const BookingForm = props => {
       }
 
       let _htmlChildrenAges = [];
-      for( let j in state.rooms[i].childrenAges ) {
+      for( let j in props.practice.rooms[i].childrenAges ) {
         _htmlChildrenAges.push(
           <div key={j} className="col-lg-3">
             <div className="form-group">
@@ -162,7 +190,7 @@ const BookingForm = props => {
                 name="childrens_age[]"
                 data-name="ageChildrens"
                 data-index={j}
-                value={state.rooms[i].childrenAges[j] || 0}
+                value={props.practice.rooms[i].childrenAges[j] || 0}
                 onChange={(e)=>onChangeRoom(e,i)}
               >
                 {_ageOptions}
@@ -207,7 +235,7 @@ const BookingForm = props => {
             id={`adults_${i}`} 
             name="adults[]"
             data-name="adults"
-            value={state.rooms[i].adults || 0}
+            value={props.practice.rooms[i].adults || 0}
             onChange={(e)=>onChangeRoom(e, i)}
             >
               ${_htmlAdultOptions}
@@ -221,7 +249,7 @@ const BookingForm = props => {
               id={`childrens_${i}`} 
               name="childrens[]"
               data-name="childrens"
-              value={state.rooms[i].childrens || 0}
+              value={props.practice.rooms[i].childrens || 0}
               onChange={(e)=>onChangeRoom(e, i)} 
             >
               ${_htmlChildrenOptions}
@@ -242,15 +270,42 @@ const BookingForm = props => {
 
   return(
     <React.Fragment>
+    <form onSubmit={formik.handleSubmit} className={"needs-validation" + (formik.errors ? "was-validated" : "")} noValidate>
       <div className="box2 form-template-1">
         <div className="row">
           <div className="col-lg-3">
             <div className="form-group">
               <MyDateRangePicker 
-                startDate={props.query.checkin}
-                endDate={props.query.checkout}
+                startDate={props.practice.checkin}
+                endDate={props.practice.checkout}
                 onChange={(startDate, endDate)=>onChangeDatePicker(startDate, endDate)}
                 />
+            </div>
+          </div>
+          <div className="col-lg-3">
+            <div className="form-group">
+              <select
+                className={"custom-select" + (formik.errors.treatment ? " is-invalid" : "")}
+                name="treatment"
+                id="treatment"
+                // value={props.practice.treatment || ''}
+                // onChange={(e) => onChange(e)}
+                value={formik.values.treatment || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
+                >
+                <option value="">Trattamento</option>
+                {props.priceList && Object.entries(props.priceList).map( ([treatment, prices], index) =>
+                  <option key={index} value={treatment}>{treatment}</option>
+                )}
+              </select>
+              {formik.errors.treatment && 
+                  <div className="invalid-feedback">
+                    {formik.errors.treatment}
+                  </div>
+                }
             </div>
           </div>
           <div className="col-lg-3">
@@ -259,7 +314,7 @@ const BookingForm = props => {
                 className="custom-select"
                 name="transfer_id"
                 id="tranfer_id"
-                value={state.transfer_id || ''}
+                value={props.practice.transfer_id || ''}
                 onChange={(e) => onChange(e)}
                 >
                 <option value="">Transfer</option>
@@ -286,46 +341,87 @@ const BookingForm = props => {
             <div className="form-group">
               <input 
                 type="text"
-                className="form-control"
+                className={"form-control" + (formik.errors.first_name ? " is-invalid" : "")}
                 id="first_name"
                 name="first_name"
                 placeholder="Nome"
-                value={state.customer.first_name || ""}
-                onChange={(e)=>onChange(e)}
-                /> 
+                // value={props.practice.customer.first_name || ""}
+                // onChange={(e)=>onChange(e)}
+                value={formik.values.first_name || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
+                // reuired="true"
+                />
+                {formik.errors.first_name && 
+                  <div className="invalid-feedback">
+                    {formik.errors.first_name}
+                  </div>
+                }
             </div>
             <div className="form-group">
               <input
                 type="text"
-                className="form-control"
+                className={"form-control" + (formik.errors.last_name ? " is-invalid" : "")}
                 id="last_name"
                 name="last_name"
                 placeholder="Cognome"
-                value={state.customer.last_name || ""}
-                onChange={(e)=>onChange(e)}
+                // value={props.practice.customer.last_name || ""}
+                // onChange={(e)=>onChange(e)}
+                value={formik.values.last_name || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
                 /> 
+                {formik.errors.last_name && 
+                  <div className="invalid-feedback">
+                    {formik.errors.last_name}
+                  </div>
+                }
             </div>
             <div className="form-group">
               <input
                 type="email"
-                className="form-control"
+                className={"form-control" + (formik.errors.email ? " is-invalid" : "")}
                 id="email"
                 name="email"
                 placeholder="Email"
-                defaultValue={state.customer.email || ""}
-                onChange={(e)=>onChange(e)}
-                /> 
+                // defaultValue={props.practice.customer.email || ""}
+                // onChange={(e)=>onChange(e)}
+                value={formik.values.email || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
+                />
+                {formik.errors.email && 
+                  <div className="invalid-feedback">
+                    {formik.errors.email}
+                  </div>
+                }
             </div>
             <div className="form-group">
               <input
                 type="text"
-                className="form-control"
+                className={"form-control" + (formik.errors.mobile ? " is-invalid" : "")}
                 id="mobile"
                 name="mobile"
                 placeholder="Cellulare"
-                defaultValue={state.customer.mobile || ""}
-                onChange={(e)=>onChange(e)}
+                // defaultValue={props.practice.customer.mobile || ""}
+                // onChange={(e)=>onChange(e)}
+                value={formik.values.mobile || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
                 /> 
+                {formik.errors.mobile && 
+                  <div className="invalid-feedback">
+                    {formik.errors.mobile}
+                  </div>
+                }
             </div>
           </div>
           <div className="col-lg-5">
@@ -335,7 +431,7 @@ const BookingForm = props => {
                 id="message"
                 name="message"
                 placeholder="Messaggio"
-                value={state.message || ""}
+                value={props.practice.message || ""}
                 onChange={(e)=>onChange(e)}
                 >
               </textarea> 
@@ -344,13 +440,24 @@ const BookingForm = props => {
               <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
-                  className="custom-control-input"
+                  className={"custom-control-input" + (formik.errors.privacy ? " is-invalid" : "")}
                   name="privacy"
                   id="privacy" 
-                  value={state.privacy || 0}
-                  onChange={(e)=>onChange(e)}
+                  // value={props.practice.privacy || 0}
+                  // onChange={(e)=>onChange(e)}
+                  value="1"
+                  checked={formik.values.privacy == 1 ? 1 : 0}
+                  onChange={(e)=>{
+                    onChange(e)
+                    formik.handleChange(e)
+                  }}
                   />
                 <label className="custom-control-label" htmlFor="privacy">Acconsento al trattamento dei miei dati ai sensi dell’informativa sulla <a href="#">Privacy</a>.</label>
+                {formik.errors.privacy && 
+                  <div className="invalid-feedback">
+                    {formik.errors.privacy}
+                  </div>
+                }
               </div>
             </div>
             <div className="form-group text-right">
@@ -359,8 +466,29 @@ const BookingForm = props => {
           </div>
         </div>
       </div>
+    </form>
     </React.Fragment>
   )
 }
 
-export default BookingForm;
+const mapStateToProps = (state) => {
+	return {
+		practice: state.practiceByGuest.item,
+	}
+}
+const mapDispatchToProps = (dispatch) => {
+  let practiceByGuestAction = new PracticeByGuestAction()
+  return {
+    setPractice: (data) => {
+      dispatch(practiceByGuestAction.setItem(data))
+    },
+    resetPractice: () => {
+      dispatch(practiceByGuestAction.resetItem())
+    },
+    createPractice: (data) => {
+      dispatch(practiceByGuestAction.create(data))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookingForm);
