@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nimport BaseService from '../../BaseService';\nexport default class PageFilterService extends BaseService {\n  constructor() {\n    super('/travelgo-one/filterpages');\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

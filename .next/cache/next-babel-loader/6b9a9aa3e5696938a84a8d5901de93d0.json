@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nimport BaseService from '../../BaseService';\nexport default class PostService extends BaseService {\n  constructor() {\n    super('/post/posts');\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

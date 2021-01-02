@@ -16,31 +16,27 @@ const Index = props => {
     );
   }
 
-  React.useEffect(() => {
-    let filter = {
-      loc_id: props.query.loc_id || '',
-      category_id: props.query.category_id || '',
-      checkin: props.query.checkin || '',
-      checkout: props.query.checkout || '',
-      nights: props.query.nights || '',
+  // React.useEffect(() => {
+  //   let filter = {
+  //     loc_id: props.query.loc_id || '',
+  //     category_id: props.query.category_id || '',
+  //     checkin: props.query.checkin || '',
+  //     checkout: props.query.checkout || '',
+  //     nights: props.query.nights || '',
   
-      page: props.query.page || 1,
-      // num_per_page: 15,
-      // orderBy: 'date_from',
-      // orderHow: 'asc'
-      paginate: 2
-    }
+  //     page: props.query.page || 1,
+  //     // num_per_page: 15,
+  //     // orderBy: 'date_from',
+  //     // orderHow: 'asc'
+  //     paginate: 2
+  //   }
 
-    let hotelService = new HotelService();
-    hotelService.query(filter)
-    .then(response => {
-      console.log('response', response)
-    });
-  }, [])
-
-  const handlePageClick = () => {
-
-  }
+  //   let hotelService = new HotelService();
+  //   hotelService.query(filter)
+  //   .then(response => {
+  //     console.log('response', response)
+  //   });
+  // }, [])
 
   return (
     <Layout settings={{template:"accommodation-page", menu: props.menu}}>

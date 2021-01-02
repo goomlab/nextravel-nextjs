@@ -196,6 +196,12 @@ const HotelArchiveItem = props => {
 
 
 const HotelPagination = props => {
+  const [currPage, setCurrPage] = React.useState(0);
+
+  React.useEffect(() => {
+    setCurrPage(parseInt(props.meta.current_page) - 1)
+  },[]);
+
   const handlePageClick = (e) => {
     props.filter.page = e.selected + 1;
 
@@ -209,7 +215,7 @@ const HotelPagination = props => {
   if(props.meta){
     return(
       <ReactPaginate
-        initialPage={parseInt(props.meta.current_page) - 1}
+        forcePage={currPage}
         previousLabel={"<"}
         nextLabel={">"}
         breakLabel={"..."}
