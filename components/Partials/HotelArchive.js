@@ -1,6 +1,10 @@
 import React from "react";
 import moment from 'moment';
 import Link from "next/link";
+import ReactPaginate from 'react-paginate';
+
+import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 import PriceTable from './PriceTable';
 
@@ -16,9 +20,9 @@ const NavTab = props => {
         className={`nav-item nav-link ${(index == 0) ? 'active' : ''}`}
         id={`nav-period-${index}-tab`}
         data-toggle="tab"
-        href={`#nav-period-${index}`}
+        href={`#nav-${props.hotel.id}-period-${index}`}
         role="tab"
-        aria-controls={`nav-period-${index}`}
+        aria-controls={`nav-${props.hotel.id}-period-${index}`}
         aria-selected="true"
       >
         <span>
@@ -53,9 +57,9 @@ const NavContent = props => {
   return (
     <div
       className={`tab-pane fade ${(index == 0) ? 'show active' : ''}`}
-      id={`nav-period-${index}`}
+      id={`nav-${props.hotel.id}-period-${index}`}
       role="tabpanel"
-      aria-labelledby={`nav-period-${index}-tab`}
+      aria-labelledby={`nav-${props.hotel.id}-period-${index}-tab`}
     >
       {priceList && Object.entries(priceList).map( ([treatment, prices], index) => 
         <PriceTable 
@@ -76,11 +80,27 @@ const NavContent = props => {
 
 const HotelArchiveItem = props => {
   const hotel = props.hotel;
+  const swiperPrices = React.useRef(null)
   
   let stars = [];
   for( let i = 1; i <= parseInt(hotel.stars); i++ ) {
     stars.push(<i key={i} className="ico ico-star"></i>);
   }
+
+  React.useEffect(() => {
+    swiperPrices.current = new Swiper(`#swiperPrices-${hotel.id}`, {
+      grubCursor: false,
+      simulateTouch : false,
+      direction: 'horizontal',
+      //speed: 600,
+      slidesPerView: 4,
+      spaceBetween: 0,
+      navigation: {
+        nextEl: `#swiperPrices-${hotel.id}-button-prev`,
+        prevEl: `#swiperPrices-${hotel.id}-button-next`,
+      }
+    })
+  }, [])
   
   return (
     <div className="hotel-list-item">
@@ -101,15 +121,15 @@ const HotelArchiveItem = props => {
       <div className="prices-box">
         <nav>
           <div className="nav nav-tabs" id="nav-tab-1" role="tablist">
-            <div className="swiper-container swiperPrices">
+            <div id={`swiperPrices-${hotel.id}`} className="swiper-container swiperPrices">
               <div className="swiper-wrapper">
                 {hotel.rateplanPeriods.map((period, index) => 
-                  <NavTab key={index} index={index} period={period} />
+                  <NavTab key={index} index={index} period={period} hotel={hotel}/>
                 )}
               </div>
             </div>
-            <div className="swiper-button-prev"></div>
-            <div className="swiper-button-next"></div>
+            <div id={`swiperPrices-${hotel.id}-button-prev`} className="swiper-button-prev"></div>
+            <div id={`swiperPrices-${hotel.id}-button-next`} className="swiper-button-next"></div>
           </div>
         </nav>
         <div className="tab-content" id="nav-tabContent-1">
@@ -174,20 +194,59 @@ const HotelArchiveItem = props => {
   );
 };
 
+
+const HotelPagination = props => {
+  const handlePageClick = (e) => {
+    props.filter.page = e.selected + 1;
+
+    let stringa = '?';
+    for( let i in props.filter )
+      stringa += `${i}=${props.filter[i]}&`;
+
+    window.location.href = window.location.pathname + stringa;
+  };
+
+  if(props.meta){
+    return(
+      <ReactPaginate
+        initialPage={parseInt(props.meta.current_page) - 1}
+        previousLabel={"<"}
+        nextLabel={">"}
+        breakLabel={"..."}
+        breakClassName={"break-me"}
+        pageCount={props.meta.last_page}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={(e) => handlePageClick(e)}
+        containerClassName={"pagination"}
+        subContainerClassName={"pages pagination"}
+        activeClassName={"active"}
+      />
+    )
+  }
+  return ''
+}
+
+
 const HotelArchive = props => {
   return (
     <section>
       <div className="container">
-        <div className="row">
-          {props.hotels && props.hotels.length > 0 && props.hotels.map( (hotel, index) => 
-          <div key={index} className="col-md-6">
-            <HotelArchiveItem hotel={hotel} />
-          </div>
-          )}
-          {!props.hotels || props.hotels.length <= 0 &&
-            <div>Nessun risultato</div>
-          }
-        </div>
+        {props.hotels && props.hotels.length > 0 &&
+          <>
+            <div className="row">
+              {props.hotels.map( (hotel, index) => 
+              <div key={index} className="col-md-6">
+                <HotelArchiveItem hotel={hotel} />
+              </div>
+              )}
+            </div>
+            <HotelPagination {...props} />
+          </>
+        }
+        {!props.hotels || props.hotels.length <= 0 &&
+          <div>Nessun risultato</div>
+        }
       </div>
     </section>
   );

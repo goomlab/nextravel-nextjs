@@ -60,13 +60,13 @@ const Index = props => {
           </div>
         </div>
       </section>
-      
+      {console.log('Hotels', props.hotels)}
       <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
 
-      {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) > parseInt(props.hotels.meta.total) &&
+      {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) &&
       <section className="section-main">
         <div className="container text-center">
-          <Link href="/accomodations" as="/accomodations?page=2">
+          <Link href="/accomodations" as="/accommodations?page=2">
             <a className="btn btn-more">Carica le altre offerte</a>
           </Link>
         </div>
@@ -106,7 +106,7 @@ Index.getInitialProps = async ctx => {
 
     let hotelService = new HotelService();
     hotels = await hotelService.query({
-      paginate: 25
+      paginate: 2
     });
   } catch (e) {
     console.log('error', e)

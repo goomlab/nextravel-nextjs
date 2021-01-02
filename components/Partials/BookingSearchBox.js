@@ -127,7 +127,7 @@ const BookingSearchBox = props => {console.log('booking search props', props)
     let i = 0;
     do {
       months.push(
-        <Link href="/speciali/[slug]" as={`/speciali/${now.format('MMMM').toLowerCase()}`}>
+        <Link href="/offerte/[slug]" as={`/offerte/${now.format('MMMM').toLowerCase()}`}>
           <a>
             <strong>{now.format('MMM')}</strong> {now.format('YY')}
           </a>
@@ -258,7 +258,7 @@ const BookingSearchBox = props => {console.log('booking search props', props)
                 <div className="swiper-wrapper">
                   {params.specials && params.specials.map( (obj, index) => 
                     <div className="swiper-slide" key={index}>
-                      <Link href="/speciali/[slug]" as={`/speciali/${obj.slug.it}`}>
+                      <Link href="/offerte/[slug]" as={`/offerte/${obj.slug.it}`}>
                         <a>
                           {obj.title.it}
                         </a>

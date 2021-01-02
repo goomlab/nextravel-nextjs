@@ -42,7 +42,8 @@ const TemplateArchiveHotel = props => {console.log('props TemplateArchiveHotel',
         </div>
       </section>
       
-      <HotelArchive hotels={props.hotels} />
+      {/* <HotelArchive hotels={props.hotels} /> */}
+      <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
 
     </Layout>
   )

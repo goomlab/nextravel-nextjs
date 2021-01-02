@@ -24,10 +24,11 @@ const Index = props => {
       checkout: props.query.checkout || '',
       nights: props.query.nights || '',
   
-      page: 1,
-      num_per_page: 15,
+      page: props.query.page || 1,
+      // num_per_page: 15,
       // orderBy: 'date_from',
       // orderHow: 'asc'
+      paginate: 2
     }
 
     let hotelService = new HotelService();
@@ -37,7 +38,9 @@ const Index = props => {
     });
   }, [])
 
-  
+  const handlePageClick = () => {
+
+  }
 
   return (
     <Layout settings={{template:"accommodation-page", menu: props.menu}}>
@@ -57,13 +60,14 @@ const Index = props => {
         </div>
       </section>
       
-      <HotelArchive hotels={props.hotels.data} />
+      <HotelArchive hotels={props.hotels.data} meta={props.hotels.meta} filter={props.hotels.filter} />
+
     </Layout>
   );
 };
 
 Index.getInitialProps = async ctx => {
-  
+  console.log('ctx', ctx)
   let filter = {
     loc_id: ctx.query.loc_id || '',
     category_id: ctx.query.category_id || '',
@@ -71,10 +75,11 @@ Index.getInitialProps = async ctx => {
     checkout: ctx.query.checkout || '',
     // nights: ctx.query.nights || '',
 
-    // page: 1,
-    // num_per_page: 15,
-    // orderBy: 'date_from',
-    // orderHow: 'asc'
+    page: ctx.query.page || 1,
+    // num_per_page: 4,
+    // orderBy: 'order_seq',
+    // orderHow: 'asc',
+    paginate: 2
   }
 
   let menu = null;
@@ -91,6 +96,7 @@ Index.getInitialProps = async ctx => {
 
     let hotelService = new HotelService();
     hotels = await hotelService.query(filter);
+    hotels.filter = filter;
   } catch (e) {
     
   }

@@ -10,7 +10,7 @@ const PriceTable = props => {
   switch( props.treatment ){
     case 'RO': title = "Solo Camera"; break;
     case 'BB': title = "Camera e Colazione"; break;
-    case 'HB': title = "Mezza Completa"; break;
+    case 'HB': title = "Mezza Pensione"; break;
     case 'FB': title = "Pensione Completa"; break;
     case 'HBB': title = "Mezza Completa + Bevande"; break;
     case 'FBB': title = "Pensione Completa + Bevande"; break;
