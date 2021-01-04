@@ -70,18 +70,18 @@ const BookingSearchBox = props => {console.log('booking search props', props)
         }
       })
 
-      swiperBookingHolidays.current = new Swiper('#swiperBookingHolidays', {
-        grubCursor: false,
-        simulateTouch : false,
-        direction: 'horizontal',
-        speed: 600,
-        slidesPerView: 10,
-        spaceBetween: 30,
-        navigation: {
-          nextEl: '#swiperBookingHolidays-button-next',
-          prevEl: '#swiperBookingHolidays-button-prev',
-        }
-      })
+      // swiperBookingHolidays.current = new Swiper('#swiperBookingHolidays', {
+      //   grubCursor: false,
+      //   simulateTouch : false,
+      //   direction: 'horizontal',
+      //   speed: 600,
+      //   slidesPerView: 10,
+      //   spaceBetween: 30,
+      //   navigation: {
+      //     nextEl: '#swiperBookingHolidays-button-next',
+      //     prevEl: '#swiperBookingHolidays-button-prev',
+      //   }
+      // })
     }
 
     // init booking
@@ -97,8 +97,8 @@ const BookingSearchBox = props => {console.log('booking search props', props)
       
       if( props.full && swiperBookingMonths && swiperBookingMonths.current )
         swiperBookingMonths.current.update()
-      if( props.full && swiperBookingHolidays && swiperBookingHolidays.current )
-        swiperBookingHolidays.current.update()
+      // if( props.full && swiperBookingHolidays && swiperBookingHolidays.current )
+      //   swiperBookingHolidays.current.update()
     })
     .catch(error => {
       console.log('error', error)
@@ -112,6 +112,24 @@ const BookingSearchBox = props => {console.log('booking search props', props)
     //   nights: (props.query && props.query.nights) || null
     // })
   },[])
+
+
+  React.useEffect(() => {
+    if( props.full ) {
+      swiperBookingHolidays.current = new Swiper('#swiperBookingHolidays', {
+        grubCursor: false,
+        simulateTouch : false,
+        direction: 'horizontal',
+        speed: 600,
+        slidesPerView: 10,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '#swiperBookingHolidays-button-next',
+          prevEl: '#swiperBookingHolidays-button-prev',
+        }
+      })
+    }
+  }, [params])
 
 
   // const checkinFormatted = (props.query && props.query.checkin && props.query.checkin != "") ? moment(props.query.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckinFormatted;
@@ -251,7 +269,7 @@ const BookingSearchBox = props => {console.log('booking search props', props)
               <div id="swiperBookingMonths-button-prev" className="swiper-button-prev"></div>
               <div id="swiperBookingMonths-button-next" className="swiper-button-next"></div>
             </div>
-
+            
             {params.specials && params.specials.length > 0 &&
             <div className="booking-holidays">
               <div id="swiperBookingHolidays" className="swiper-container swiperBookingMonths">

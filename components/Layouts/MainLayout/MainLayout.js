@@ -4,10 +4,10 @@ import Header from './Header';
 import Footer from './Footer';
 import Scripts from './Scripts';
 
-const MainLayout = ({children, settings = {}}) => {
+const MainLayout = ({children, settings = {}, meta = {}}) => {
   return(
     <React.Fragment>
-      <Head />
+      <Head meta={meta}/>
       <div className={`page` + (settings.template ? ` ${settings.template}` : '')}>
         <Header settings={settings} />
         <main>

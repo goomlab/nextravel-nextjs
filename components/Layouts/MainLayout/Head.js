@@ -1,11 +1,11 @@
 import React from 'react'
 import NextHead from 'next/head'
 
-const Head = ({ title, description }) => (
+const Head = (meta) => (
   <NextHead>
     <meta charSet="UTF-8" />
-    <title>{title || ''}</title>
-    <meta name="description" content={description || ''} />
+    <title>{meta.title || ''}</title>
+    <meta name="description" content={meta.description || ''} />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossOrigin="anonymous" />

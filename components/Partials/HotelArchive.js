@@ -104,20 +104,24 @@ const HotelArchiveItem = props => {
   
   return (
     <div className="hotel-list-item">
-      <div className="topline">
-        <div className="title mr-auto">
-          {hotel.name}
+      <a href={`/accommodations/${props.hotel.slug.it}`}>
+        <div className="topline">
+          <div className="title mr-auto">
+            {hotel.name}
+          </div>
+          <div className="stars ml-auto">
+            {stars}
+          </div>
         </div>
-        <div className="stars ml-auto">
-          {stars}
-        </div>
-      </div>
-      <figure className="img-bgas">
-        <img
-          src={(hotel.media && hotel.media.gallery && hotel.media.gallery[0]) ? hotel.media.gallery[0].url : 'default'}
-          alt={hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name} 
-        />
-      </figure>
+      </a>
+      <a href={`/accommodations/${props.hotel.slug.it}`}>
+        <figure className="img-bgas">
+          <img
+            src={(hotel.media && hotel.media.gallery && hotel.media.gallery[0]) ? hotel.media.gallery[0].url : 'default'}
+            alt={hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name} 
+          />
+        </figure>
+      </a>
       <div className="prices-box">
         <nav>
           <div className="nav nav-tabs" id="nav-tab-1" role="tablist">
@@ -199,7 +203,9 @@ const HotelPagination = props => {
   const [currPage, setCurrPage] = React.useState(0);
 
   React.useEffect(() => {
-    setCurrPage(parseInt(props.meta.current_page) - 1)
+    if(props.meta){
+      setCurrPage(parseInt(props.meta.current_page) - 1)
+    }
   },[]);
 
   const handlePageClick = (e) => {

@@ -692,6 +692,11 @@ textarea::placeholder {
   font-weight: 700;
 }
 
+.topline .title a, .topline .title a:visited, .topline .title a:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+
 .topline .stars {
   color: #fbb800;
 }
@@ -882,6 +887,11 @@ textarea::placeholder {
 
 .hotel-list-item {
   margin-bottom: 30px;
+}
+
+.hotel-list-item > a {
+  display: block;
+  text-decoration: none;
 }
 
 .hotel-list-item figure.img-bgas {

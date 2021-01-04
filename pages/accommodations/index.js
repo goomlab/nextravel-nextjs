@@ -73,9 +73,9 @@ Index.getInitialProps = async ctx => {
 
     page: ctx.query.page || 1,
     // num_per_page: 4,
-    // orderBy: 'order_seq',
-    // orderHow: 'asc',
-    paginate: 2
+    orderBy: 'order_seq',
+    orderHow: 'asc',
+    paginate: process.env.pagination.paginate
   }
 
   let menu = null;

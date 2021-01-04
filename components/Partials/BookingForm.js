@@ -13,7 +13,7 @@ const BookingForm = props => {
   /**
    * ComponentDidUpdate
    */
-  React.useEffect(() => {console.log('componentDidUpdate', props.practice)
+  React.useEffect(() => {console.log('componentDidUpdate', props.practice, props.query)
   let newState = Object.assign({}, props.practice);
     props.setPractice({
       ...newState,

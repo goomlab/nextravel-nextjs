@@ -24,7 +24,10 @@ const Index = props => {
   }
 
   return (
-    <Layout settings={{template:"front-page", menu: props.menu}}>
+    <Layout 
+      settings={{template:"front-page", menu: props.menu}}
+      meta={{title: props.page.meta_title.it, description: props.page.meta_description.it}}
+      >
       <section className="section-main section-first home">
         <div className="container">
           <div className="row">
@@ -106,7 +109,10 @@ Index.getInitialProps = async ctx => {
 
     let hotelService = new HotelService();
     hotels = await hotelService.query({
-      paginate: 2
+      hasEmptyPeriods: true,
+      orderBy: 'order_seq',
+      orderHow: 'asc',
+      paginate: process.env.pagination.paginate
     });
   } catch (e) {
     console.log('error', e)

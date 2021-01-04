@@ -115,7 +115,7 @@ const BookingPage = props => {console.log('props booking page',props)
                 </div>
               </div>
             </div>
-
+{console.log('props query', props.query)}
             <BookingForm 
               rateplan={props.period.rateplan || null}
               hotel={props.period.rateplan.hotel || null}

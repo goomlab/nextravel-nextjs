@@ -8,6 +8,9 @@
         text-transform: uppercase
         span
             font-weight: 700
+        a, a:visited, a:hover
+            color: $color-ff
+            text-decoration: none
     .stars
         color: $color-30
     @media screen and (max-width: 991px)
@@ -143,6 +146,10 @@
 
 .hotel-list-item
     margin-bottom: 30px
+
+    > a
+        display: block
+        text-decoration: none
 
     figure.img-bgas
         height: 320px

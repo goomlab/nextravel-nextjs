@@ -21,7 +21,12 @@ Index.getInitialProps = async params => {
   let hotelCategories = [];
   let page = null;
   let hotels = [];
-  let searchParams = {};
+  let searchParams = {
+    page: 1,
+    paginate: process.env.pagination.paginate,
+    orderBy: 'order_seq',
+    orderHow: 'asc',
+  };
   try {
     // initialProps = mainInitialProps();
 
@@ -44,6 +49,7 @@ Index.getInitialProps = async params => {
 
       let hotelService = new HotelService();
       hotels = await hotelService.query(searchParams);
+      console.log('hotels', hotels, searchParams)
     }
   } catch (e) {
     console.log('error', e)

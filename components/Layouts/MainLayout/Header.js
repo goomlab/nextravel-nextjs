@@ -1,10 +1,38 @@
 import React from 'react';
 import Link from "next/link";
 
+// let lastScrollY = 0;
+// let ticking = false;
+
 const Header = (props) => {
+  const [posY, setPosY] = React.useState('');
+  const [navClass, setNavClass] = React.useState('');
+  const navRef = React.createRef();
+
+  const handleScroll = () => {
+    setPosY(window.scrollY)
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll, true);
+  },[])
+
+  React.useEffect(() => {
+    if(posY > 30){
+      setNavClass('fixed-top navbar-scroll')
+      // navRef.current.classList.add('fixed-top')
+      // navRef.current.classList.add('navbar-scroll')
+    }
+    else{
+      setNavClass('')
+      // navRef.current.classList.remove('fixed-top')
+      // navRef.current.classList.remove('navbar-scroll')
+    }
+  },[posY])
+
   return (
     <header>
-      <nav id="nav-0" className="navbar navbar-expand-xl">
+      <nav id="nav-0" className={`navbar navbar-expand-xl`}>
         <div className="container">
           <ul>
             <li>
@@ -31,7 +59,7 @@ const Header = (props) => {
         </div>
       </nav>
         
-      <nav id="nav-1" className="navbar navbar-expand-xl">
+      <nav id="nav-1" className={`navbar navbar-expand-xl ${navClass}`} ref={navRef}>
         <div className="container">
           <Link href="/">
             <a className="navbar-brand">

@@ -31,6 +31,9 @@ module.exports = {
       }
     },
     // ga_tracking_id: 'GTM-5HSTK76',
+    pagination: {
+      paginate: 20
+    },
     socials: {
       'facebook': {
         'label': 'Facebook',
