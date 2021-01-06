@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/3a1Vm3kdXixKtXmE8Qc-M/_buildManifest.js",
-    "static/3a1Vm3kdXixKtXmE8Qc-M/_ssgManifest.js"
+    "static/vQUIjwQxmcYseo0Hk6L6z/_buildManifest.js",
+    "static/vQUIjwQxmcYseo0Hk6L6z/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -84,7 +84,7 @@
       "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.19e5a5eb911e01208cda.js",
       "static/chunks/27bcc547a60abfc2594d90ac5857a0f7ffbf12fa.02b4aae20b6b1fc17774.js",
       "static/chunks/cf469ee435735b46ed2d2357f032fbb1b6167049.1470d661dd22564fae53.js",
-      "static/chunks/pages/accommodations/[accommodation]/booking/[id]-9f176596fdb31e252a7c.js"
+      "static/chunks/pages/accommodations/[accommodation]/booking/[id]-f863e52302af1c6260c7.js"
     ],
     "/offerte/[slug]": [
       "static/chunks/main-686c9ec4c1dda6ad2f7e.js",

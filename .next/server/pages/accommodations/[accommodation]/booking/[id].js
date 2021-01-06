@@ -291,7 +291,7 @@ const BookingPage = props => {
     meta: {
       title: `Booking ${props.hotel.meta_title.it}`,
       description: `Booking`,
-      url: `${{"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.page.slug.it}/booking`,
+      url: `${{"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.hotel.slug.it}/booking`,
       image: props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0] ? props.hotel.media.gallery[0].url : null
     }
   }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], null), __jsx("section", {
