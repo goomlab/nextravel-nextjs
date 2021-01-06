@@ -1,102 +1,38 @@
 {
   "polyfillFiles": [
-    "static/chunks/polyfills-0a2dccd2aa0d7ea1a89f.js"
+    "static/chunks/polyfills.js"
   ],
-  "devFiles": [],
-  "ampDevFiles": [],
+  "devFiles": [
+    "static/chunks/react-refresh.js"
+  ],
+  "ampDevFiles": [
+    "static/chunks/webpack.js",
+    "static/chunks/amp.js"
+  ],
   "lowPriorityFiles": [
-    "static/HcyN9WUGZ7lqszY8eW7qR/_buildManifest.js",
-    "static/HcyN9WUGZ7lqszY8eW7qR/_ssgManifest.js"
+    "static/development/_buildManifest.js",
+    "static/development/_ssgManifest.js"
   ],
   "pages": {
     "/": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/b637e9a5.52d1498874132c1d1b2e.js",
-      "static/chunks/75fc9c18.2ef1f48798a7024aa635.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.3510fe440bcba829bc51.js",
-      "static/chunks/bed81e76a50f1b5e9213f31808f70c8174bbb5af.3841632a7cb74d31faa3.js",
-      "static/chunks/pages/index-ea756a33b148ad8bf764.js"
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/index.js"
     ],
     "/_app": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/27bcc547a60abfc2594d90ac5857a0f7ffbf12fa.02b4aae20b6b1fc17774.js",
-      "static/chunks/pages/_app-a724c32b2f5ab6ff1eab.js"
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/_app.js"
     ],
     "/_error": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/pages/_error-6dec41a80ffd9536fddb.js"
-    ],
-    "/accommodations": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/b637e9a5.52d1498874132c1d1b2e.js",
-      "static/chunks/75fc9c18.2ef1f48798a7024aa635.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.3510fe440bcba829bc51.js",
-      "static/chunks/bed81e76a50f1b5e9213f31808f70c8174bbb5af.3841632a7cb74d31faa3.js",
-      "static/chunks/pages/accommodations-341145e84802e8ff8343.js"
-    ],
-    "/accommodations/[accommodation]": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/b637e9a5.52d1498874132c1d1b2e.js",
-      "static/chunks/75fc9c18.2ef1f48798a7024aa635.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.3510fe440bcba829bc51.js",
-      "static/chunks/pages/accommodations/[accommodation]-a7325bf9c4e90f8e88a4.js"
-    ],
-    "/accommodations/[accommodation]/[lastminute]": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/b637e9a5.52d1498874132c1d1b2e.js",
-      "static/chunks/75fc9c18.2ef1f48798a7024aa635.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.3510fe440bcba829bc51.js",
-      "static/chunks/27bcc547a60abfc2594d90ac5857a0f7ffbf12fa.02b4aae20b6b1fc17774.js",
-      "static/chunks/cf469ee435735b46ed2d2357f032fbb1b6167049.1470d661dd22564fae53.js",
-      "static/chunks/pages/accommodations/[accommodation]/[lastminute]-8cb636e5c3c2b0f1d069.js"
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/_error.js"
     ],
     "/accommodations/[accommodation]/booking/[id]": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/b637e9a5.52d1498874132c1d1b2e.js",
-      "static/chunks/75fc9c18.2ef1f48798a7024aa635.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.3510fe440bcba829bc51.js",
-      "static/chunks/27bcc547a60abfc2594d90ac5857a0f7ffbf12fa.02b4aae20b6b1fc17774.js",
-      "static/chunks/cf469ee435735b46ed2d2357f032fbb1b6167049.1470d661dd22564fae53.js",
-      "static/chunks/pages/accommodations/[accommodation]/booking/[id]-5d925590a6458c71aff1.js"
-    ],
-    "/offerte/[slug]": [
-      "static/chunks/main-686c9ec4c1dda6ad2f7e.js",
-      "static/chunks/webpack-e067438c4cf4ef2ef178.js",
-      "static/chunks/framework.1d36bc031662b4dc4c28.js",
-      "static/chunks/b637e9a5.52d1498874132c1d1b2e.js",
-      "static/chunks/75fc9c18.2ef1f48798a7024aa635.js",
-      "static/chunks/commons.c6a8bf6988d7f4eaa7c5.js",
-      "static/chunks/b75294eafd865b9e3affaf9040556d40c5a9c597.e65dd4ef5050cc2d38dd.js",
-      "static/chunks/160148ac25decff24066eb6666a3105bdbc0329a.3510fe440bcba829bc51.js",
-      "static/chunks/bed81e76a50f1b5e9213f31808f70c8174bbb5af.3841632a7cb74d31faa3.js",
-      "static/chunks/pages/offerte/[slug]-a3998172074d8c6533c6.js"
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/accommodations/[accommodation]/booking/[id].js"
     ]
   },
   "ampFirstPages": []

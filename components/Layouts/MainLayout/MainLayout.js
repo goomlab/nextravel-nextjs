@@ -7,7 +7,7 @@ import Scripts from './Scripts';
 const MainLayout = ({children, settings = {}, meta = {}}) => {
   return(
     <React.Fragment>
-      <Head meta={meta}/>
+      <Head {...meta} />
       <div className={`page` + (settings.template ? ` ${settings.template}` : '')}>
         <Header settings={settings} />
         <main>

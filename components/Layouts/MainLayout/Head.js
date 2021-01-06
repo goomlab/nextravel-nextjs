@@ -15,6 +15,22 @@ const Head = (meta) => (
     <link rel="stylesheet" href="css/select2.min.css" /> */}
 
     <link rel="stylesheet" href={`${process.env.public_path}/css/frontend.min.css`} />
+
+    <meta property="og:url" content={meta.url || ''} />
+    <meta property="og:description" content={meta.description || ''} />
+    <meta property="og:type" content={meta.type || 'website'} />
+    {/* <meta property="fb:app_id" content="your fb id" /> */}
+    <meta property="og:title" content={`${process.env.meta.title} - ${(meta.title || '')}`} />
+    <meta property="og:image" content={meta.image || process.env.meta.image} />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:type" content="article" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:creator" content="" />
+    <meta name="twitter:title" content={`${process.env.meta.title} - ${(meta.title || '')}`} />
+    <meta name="twitter:description" content={meta.description || ''} />
+    <meta name="twitter:image" content={meta.image || process.env.meta.image} />
   </NextHead>
 )
 

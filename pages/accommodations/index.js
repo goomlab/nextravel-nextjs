@@ -39,7 +39,16 @@ const Index = props => {
   // }, [])
 
   return (
-    <Layout settings={{template:"accommodation-page", menu: props.menu}}>
+    <Layout 
+      settings={{template:"accommodation-page", menu: props.menu}}
+      meta={{
+        title: props.page.meta_title.it,
+        description: props.page.meta_description.it,
+        url: `${process.env.meta.url}/accommodations`,
+        // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
+        image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
+      }}
+      >
       <BookingSearchBox query={props.query} />
 
       <section className="section-main">

@@ -1,11 +1,7 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/accommodations/[accommodation]": "pages/accommodations/[accommodation].js",
-  "/accommodations/[accommodation]/[lastminute]": "pages/accommodations/[accommodation]/[lastminute].js",
+  "/_error": "pages/_error.js",
   "/accommodations/[accommodation]/booking/[id]": "pages/accommodations/[accommodation]/booking/[id].js",
-  "/accommodations": "pages/accommodations.js",
-  "/": "pages/index.js",
-  "/offerte/[slug]": "pages/offerte/[slug].js",
-  "/_error": "pages/_error.js"
+  "/": "pages/index.js"
 }

@@ -30,6 +30,12 @@ module.exports = {
         // "X-Requested-With": "XMLHttpRequest"
       }
     },
+    meta: {
+      title: process.env.REACT_APP_NAME,
+      description: process.env.REACT_APP_DESCRIPTION,
+      url: process.env.REACT_APP_URL,
+      image: process.env.REACT_APP_IMAGE,
+    },
     // ga_tracking_id: 'GTM-5HSTK76',
     pagination: {
       paginate: 20

@@ -64,6 +64,32 @@ const BookingSearchBox = props => {console.log('booking search props', props)
         speed: 600,
         slidesPerView: 10,
         spaceBetween: 30,
+        breakpoints: {
+          1: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          320: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          480: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          },
+          768: {
+            slidesPerView: 6,
+            spaceBetween: 30
+          },
+          992: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          },
+          1200: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          }
+        },
         navigation: {
           nextEl: '#swiperBookingMonths-button-next',
           prevEl: '#swiperBookingMonths-button-prev',
@@ -123,6 +149,32 @@ const BookingSearchBox = props => {console.log('booking search props', props)
         speed: 600,
         slidesPerView: 10,
         spaceBetween: 30,
+        breakpoints: {
+          1: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          320: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          480: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          },
+          768: {
+            slidesPerView: 6,
+            spaceBetween: 30
+          },
+          992: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          },
+          1200: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          }
+        },
         navigation: {
           nextEl: '#swiperBookingHolidays-button-next',
           prevEl: '#swiperBookingHolidays-button-prev',

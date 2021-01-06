@@ -47,7 +47,15 @@ const BookingPage = props => {console.log('props booking page',props)
   }
 
   return (
-    <Layout settings={{ template: "lastminute-page", menu: props.menu }}>
+    <Layout 
+      settings={{template:"booking-page", menu: props.menu}}
+      meta={{
+        title: `Booking ${props.hotel.meta_title.it}`,
+        description: `Booking`,
+        url: `${process.env.meta.url}/accommodations/${props.page.slug.it}/booking`,
+        image: (props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0]) ? props.hotel.media.gallery[0].url : null
+      }}
+      >
       <BookingSearchBox />
 
       <section className="single-hotel-section">

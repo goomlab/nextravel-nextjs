@@ -95,6 +95,28 @@ const HotelArchiveItem = props => {
       //speed: 600,
       slidesPerView: 4,
       spaceBetween: 0,
+      breakpoints: {
+        1: {
+          slidesPerView: 3,
+          spaceBetween: 0
+        },
+        320: {
+          slidesPerView: 4,
+          spaceBetween: 0
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 0
+        },
+        992: {
+          slidesPerView: 3,
+          spaceBetween: 0
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 0
+        }
+      },
       navigation: {
         nextEl: `#swiperPrices-${hotel.id}-button-prev`,
         prevEl: `#swiperPrices-${hotel.id}-button-next`,
