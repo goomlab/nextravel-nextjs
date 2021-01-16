@@ -1,6 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
+import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 import BaseService from "~/packages/BaseService";
 import MenuService from "~/packages/Post/services/MenuService";
 import PostService from "~/packages/Post/services/PostService";
@@ -22,11 +25,27 @@ const HotelPage = props => {
   }
 
   const hotel = props.page;
+  const swiperHotelThumbnail = React.useRef(null)
   
   let stars = [];
   for( let i = 1; i <= parseInt(hotel.stars); i++ ) {
     stars.push(<i key={i} className="ico ico-star"></i>);
   }
+
+  React.useEffect(() => {
+    swiperHotelThumbnail.current = new Swiper(`#swiperHotelThumbnail`, {
+      grubCursor: false,
+      simulateTouch : false,
+      direction: 'horizontal',
+      //speed: 600,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      navigation: {
+        nextEl: `#swiperHotelThumbnail-button-next`,
+        prevEl: `#swiperHotelThumbnail-button-prev`,
+      }
+    })
+  }, [])
 
   return (
     <Layout 
@@ -43,12 +62,34 @@ const HotelPage = props => {
 
       <section className="single-hotel-section">
         <div className="container">
-          <figure className="img-bgas">
+
+          <div id={`swiperHotelThumbnail`} className="swiper-container swiperHotelThumbnail">
+            <div className="swiper-wrapper">
+              {hotel.media && hotel.media.gallery.map((img, index) => 
+                <div className="swiper-slide" key={index}>
+                  <figure class="img-bgas">
+                    <img src={img.url} alt={img.name} />
+                  </figure>
+                </div>
+              )}
+              {(!hotel.media || !hotel.media.gallery) && 
+                <div className="swiper-slide">
+                  <figure class="img-bgas">
+                    <img src="default" alt="" />
+                  </figure>
+                </div>
+              }
+            </div>
+            <div id={`swiperHotelThumbnail-button-prev`} className="swiper-button-prev"></div>
+            <div id={`swiperHotelThumbnail-button-next`} className="swiper-button-next"></div>
+          </div>
+            
+          {/* <figure className="img-bgas">
             <img
               src={(hotel.media && hotel.media.gallery && hotel.media.gallery[0]) ? hotel.media.gallery[0].url : 'default'}
               alt={hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name} 
               />
-          </figure>
+          </figure> */}
 
           <div className="topline">
             <div className="title mr-auto">
@@ -123,6 +164,27 @@ const HotelPage = props => {
                 hotel={hotel}
                 periods={props.periods} 
                 />
+
+              <div className="row">
+                <div className="col-sm-10">
+                  <span>Servizi aggiuntivi</span>
+                  <table class="prices-table">
+                    {hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map( (obj, index) => 
+                      <tr key={index}>
+                        <td className="service-name">
+                          {obj.name}
+                        </td>
+                        <td className="service-price">
+                          <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
+                          {obj.pivot.price},-
+                          {(obj.pivot.price_type == 'percent') ? ' %' : ''}
+                        </td>
+                      </tr>
+                    )}
+                  </table>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

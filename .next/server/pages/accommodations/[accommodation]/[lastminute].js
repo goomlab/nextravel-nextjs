@@ -1272,12 +1272,12 @@ const BookingForm = props => {
   }, BookingForm_jsx("option", {
     value: ""
   }, "Transfer"), BookingForm_jsx("option", {
-    value: "1"
-  }, "Transfer 1"), BookingForm_jsx("option", {
-    value: "2"
-  }, "Transfer 2"), BookingForm_jsx("option", {
-    value: "3"
-  }, "Transfer 3"))))), BookingForm_jsx("div", {
+    value: "Bus"
+  }, "Bus dalla tua citt\xE0"), BookingForm_jsx("option", {
+    value: "Aliscafo"
+  }, "Aliscafo"), BookingForm_jsx("option", {
+    value: "Traghetto"
+  }, "Traghetto"))))), BookingForm_jsx("div", {
     className: "room-box",
     id: "roomBox"
   }, renderRooms())), BookingForm_jsx("div", {
@@ -1393,7 +1393,9 @@ const BookingForm = props => {
     className: "custom-control-label",
     htmlFor: "privacy"
   }, "Acconsento al trattamento dei miei dati ai sensi dell\u2019informativa sulla ", BookingForm_jsx("a", {
-    href: "#"
+    href: "/privacy",
+    target: "_blank",
+    rel: "nofollow"
   }, "Privacy"), "."), formik.errors.privacy && BookingForm_jsx("div", {
     className: "invalid-feedback"
   }, formik.errors.privacy))), BookingForm_jsx("div", {

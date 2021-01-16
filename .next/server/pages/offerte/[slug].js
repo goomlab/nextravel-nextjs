@@ -879,15 +879,16 @@ const NavTab = props => {
   let dateTo = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_to, 'YYYY-MM-DD');
   return __jsx("div", {
     key: index,
-    className: "swiper-slide"
+    className: `swiper-slide swiper-slide-${props.hotel.id}`
   }, __jsx("a", {
-    className: `nav-item nav-link ${index == 0 ? 'active' : ''}`,
-    id: `nav-period-${index}-tab`,
+    className: `nav-item nav-link ${index == props.activeTab ? 'active' : ''}`,
+    id: `nav-${props.hotel.id}-period-${index}-tab`,
     "data-toggle": "tab",
     href: `#nav-${props.hotel.id}-period-${index}`,
     role: "tab",
     "aria-controls": `nav-${props.hotel.id}-period-${index}`,
-    "aria-selected": "true"
+    "aria-selected": "true",
+    onClick: () => props.onActivateTab(index)
   }, __jsx("span", null, dateFrom.format('DD/MM'), __jsx("br", null), dateTo.format('DD/MM')), __jsx("i", {
     className: "ico ico-arrow-curved"
   })));
@@ -937,6 +938,12 @@ const HotelArchiveItem = props => {
     }));
   }
 
+  const [activeTab, setActiveTab] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+
+  const onActivateTab = index => {
+    setActiveTab(index);
+  };
+
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
     swiperPrices.current = new swiper__WEBPACK_IMPORTED_MODULE_4__["Swiper"](`#swiperPrices-${hotel.id}`, {
       grubCursor: false,
@@ -972,7 +979,11 @@ const HotelArchiveItem = props => {
         prevEl: `#swiperPrices-${hotel.id}-button-next`
       }
     });
-  }, []);
+  }, []); // React.useEffect(() => {
+  //   if( swiperPrices && swiperPrices.current )
+  //     swiperPrices.current.update()
+  // }, [activeTab])
+
   return __jsx("div", {
     className: "hotel-list-item"
   }, __jsx("a", {
@@ -1005,7 +1016,9 @@ const HotelArchiveItem = props => {
     key: index,
     index: index,
     period: period,
-    hotel: hotel
+    hotel: hotel,
+    activeTab: activeTab,
+    onActivateTab: () => onActivateTab(index)
   })))), __jsx("div", {
     id: `swiperPrices-${hotel.id}-button-prev`,
     className: "swiper-button-prev"

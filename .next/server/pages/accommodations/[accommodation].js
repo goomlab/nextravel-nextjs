@@ -3414,6 +3414,10 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
+// EXTERNAL MODULE: external "swiper"
+var external_swiper_ = __webpack_require__("1nAM");
+var external_swiper_default = /*#__PURE__*/__webpack_require__.n(external_swiper_);
+
 // EXTERNAL MODULE: ./packages/BaseService.js
 var BaseService = __webpack_require__("jC1T");
 
@@ -3510,6 +3514,8 @@ var _accommodation_jsx = external_react_default.a.createElement;
 
 
 
+external_swiper_default.a.use([external_swiper_["Navigation"], external_swiper_["Pagination"], external_swiper_["Scrollbar"], external_swiper_["A11y"]]);
+
 
 
  // import LastminuteService from "~/packages/TravelgoOne/services/LastminuteService";
@@ -3529,6 +3535,7 @@ const HotelPage = props => {
   }
 
   const hotel = props.page;
+  const swiperHotelThumbnail = external_react_default.a.useRef(null);
   let stars = [];
 
   for (let i = 1; i <= parseInt(hotel.stars); i++) {
@@ -3538,6 +3545,20 @@ const HotelPage = props => {
     }));
   }
 
+  external_react_default.a.useEffect(() => {
+    swiperHotelThumbnail.current = new external_swiper_["Swiper"](`#swiperHotelThumbnail`, {
+      grubCursor: false,
+      simulateTouch: false,
+      direction: 'horizontal',
+      //speed: 600,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      navigation: {
+        nextEl: `#swiperHotelThumbnail-button-next`,
+        prevEl: `#swiperHotelThumbnail-button-prev`
+      }
+    });
+  }, []);
   return _accommodation_jsx(MainLayout["a" /* default */], {
     settings: {
       template: "accommodation-page",
@@ -3554,11 +3575,32 @@ const HotelPage = props => {
     className: "single-hotel-section"
   }, _accommodation_jsx("div", {
     className: "container"
+  }, _accommodation_jsx("div", {
+    id: `swiperHotelThumbnail`,
+    className: "swiper-container swiperHotelThumbnail"
+  }, _accommodation_jsx("div", {
+    className: "swiper-wrapper"
+  }, hotel.media && hotel.media.gallery.map((img, index) => _accommodation_jsx("div", {
+    className: "swiper-slide",
+    key: index
   }, _accommodation_jsx("figure", {
-    className: "img-bgas"
+    class: "img-bgas"
   }, _accommodation_jsx("img", {
-    src: hotel.media && hotel.media.gallery && hotel.media.gallery[0] ? hotel.media.gallery[0].url : 'default',
-    alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
+    src: img.url,
+    alt: img.name
+  })))), (!hotel.media || !hotel.media.gallery) && _accommodation_jsx("div", {
+    className: "swiper-slide"
+  }, _accommodation_jsx("figure", {
+    class: "img-bgas"
+  }, _accommodation_jsx("img", {
+    src: "default",
+    alt: ""
+  })))), _accommodation_jsx("div", {
+    id: `swiperHotelThumbnail-button-prev`,
+    className: "swiper-button-prev"
+  }), _accommodation_jsx("div", {
+    id: `swiperHotelThumbnail-button-next`,
+    className: "swiper-button-next"
   })), _accommodation_jsx("div", {
     className: "topline"
   }, _accommodation_jsx("div", {
@@ -3616,7 +3658,21 @@ const HotelPage = props => {
   }, console.log('hotel', hotel), _accommodation_jsx(Partials_PeriodArchive, {
     hotel: hotel,
     periods: props.periods
-  }))))));
+  }), _accommodation_jsx("div", {
+    className: "row"
+  }, _accommodation_jsx("div", {
+    className: "col-sm-10"
+  }, _accommodation_jsx("span", null, "Servizi aggiuntivi"), _accommodation_jsx("table", {
+    class: "prices-table"
+  }, hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map((obj, index) => _accommodation_jsx("tr", {
+    key: index
+  }, _accommodation_jsx("td", {
+    className: "service-name"
+  }, obj.name), _accommodation_jsx("td", {
+    className: "service-price"
+  }, _accommodation_jsx("span", {
+    className: "no-smartphone"
+  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : '')))))))))));
 };
 
 HotelPage.getInitialProps = async params => {

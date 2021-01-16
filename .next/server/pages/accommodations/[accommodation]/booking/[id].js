@@ -222,19 +222,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _packages_BaseService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("jC1T");
-/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("57t+");
-/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("TvVg");
-/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("6Brv");
-/* harmony import */ var _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("N6Bt");
-/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("JHTH");
-/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("8Mm2");
-/* harmony import */ var _components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("8Otk");
-/* harmony import */ var _components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("V5Fq");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("1nAM");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _packages_BaseService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("jC1T");
+/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("57t+");
+/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("TvVg");
+/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("6Brv");
+/* harmony import */ var _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("N6Bt");
+/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("JHTH");
+/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("8Mm2");
+/* harmony import */ var _components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("8Otk");
+/* harmony import */ var _components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("V5Fq");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+swiper__WEBPACK_IMPORTED_MODULE_3___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_3__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_3__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_3__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_3__["A11y"]]);
 
 
 
@@ -249,7 +253,7 @@ const BookingPage = props => {
   console.log('props booking page', props);
 
   if (!props.hotel || props.hotel.length <= 0) {
-    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
       settings: {
         menu: props.menu
       }
@@ -258,6 +262,7 @@ const BookingPage = props => {
 
   const period = props.period;
   const hotel = props.hotel;
+  const swiperHotelThumbnail = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
   let dateFrom = moment__WEBPACK_IMPORTED_MODULE_1___default()(period.date_from, "YYYY-MM-DD");
   let dateTo = moment__WEBPACK_IMPORTED_MODULE_1___default()(period.date_to, "YYYY-MM-DD");
   let stars = [];
@@ -283,7 +288,21 @@ const BookingPage = props => {
     };
   }
 
-  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+    swiperHotelThumbnail.current = new swiper__WEBPACK_IMPORTED_MODULE_3__["Swiper"](`#swiperHotelThumbnail`, {
+      grubCursor: false,
+      simulateTouch: false,
+      direction: 'horizontal',
+      //speed: 600,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      navigation: {
+        nextEl: `#swiperHotelThumbnail-button-next`,
+        prevEl: `#swiperHotelThumbnail-button-prev`
+      }
+    });
+  }, []);
+  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
     settings: {
       template: "booking-page",
       menu: props.menu
@@ -294,15 +313,36 @@ const BookingPage = props => {
       url: `${{"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.hotel.slug.it}/booking`,
       image: props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0] ? props.hotel.media.gallery[0].url : null
     }
-  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], null), __jsx("section", {
+  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], null), __jsx("section", {
     className: "single-hotel-section"
   }, __jsx("div", {
     className: "container"
+  }, __jsx("div", {
+    id: `swiperHotelThumbnail`,
+    className: "swiper-container swiperHotelThumbnail"
+  }, __jsx("div", {
+    className: "swiper-wrapper"
+  }, hotel.media && hotel.media.gallery.map((img, index) => __jsx("div", {
+    className: "swiper-slide",
+    key: index
   }, __jsx("figure", {
-    className: "img-bgas"
+    class: "img-bgas"
   }, __jsx("img", {
-    src: hotel.media && hotel.media.gallery && hotel.media.gallery[0] ? hotel.media.gallery[0].url : 'default',
-    alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
+    src: img.url,
+    alt: img.name
+  })))), (!hotel.media || !hotel.media.gallery) && __jsx("div", {
+    className: "swiper-slide"
+  }, __jsx("figure", {
+    class: "img-bgas"
+  }, __jsx("img", {
+    src: "default",
+    alt: ""
+  })))), __jsx("div", {
+    id: `swiperHotelThumbnail-button-prev`,
+    className: "swiper-button-prev"
+  }), __jsx("div", {
+    id: `swiperHotelThumbnail-button-next`,
+    className: "swiper-button-next"
   })), __jsx("div", {
     className: "topline"
   }, __jsx("div", {
@@ -328,14 +368,24 @@ const BookingPage = props => {
   }, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx("div", {
     className: "prices-box",
     key: index
-  }, __jsx(_components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
+  }, __jsx(_components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], {
     key: index,
     index: index,
     treatment: treatment,
     prices: prices,
     hotel: hotel,
     period: period
-  })))), __jsx("div", {
+  }))), __jsx("span", null, "Servizi aggiuntivi"), __jsx("table", {
+    class: "prices-table"
+  }, hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map((obj, index) => __jsx("tr", {
+    key: index
+  }, __jsx("td", {
+    className: "service-name"
+  }, obj.name), __jsx("td", {
+    className: "service-price"
+  }, __jsx("span", {
+    className: "no-smartphone"
+  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : ''))))), __jsx("div", {
     className: "col-lg-4 offset-lg-2"
   }, __jsx("div", {
     className: "description"
@@ -347,7 +397,7 @@ const BookingPage = props => {
     className: "col-lg-6"
   }, "dal ", dateFrom.format("DD/MM/YYYY"), __jsx("br", null), "al ", dateTo.format("DD/MM/YYYY"))), "per ulteriori informazioni contattaci a", __jsx("br", null), __jsx("span", {
     className: "bold"
-  }, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label))))), console.log('props query', props.query), __jsx(_components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], {
+  }, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label))))), __jsx(_components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
     rateplan: props.period.rateplan || null,
     hotel: props.period.rateplan.hotel || null,
     query: props.query,
@@ -416,13 +466,13 @@ BookingPage.getInitialProps = async params => {
   };
 
   try {
-    let baseService = new _packages_BaseService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    let baseService = new _packages_BaseService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
     let init = await baseService.initApp();
     locs = init.locs || [];
     hotelCategories = init.hotelCategories || [];
-    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
+    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]();
     menu = await menuService.get(1);
-    let rateplanPeriodService = new _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"]();
+    let rateplanPeriodService = new _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"]();
     period = await rateplanPeriodService.get(params.query.id);
 
     if (period && period.rateplan && period.rateplan.hotel) {
@@ -1506,12 +1556,12 @@ const BookingForm = props => {
   }, BookingForm_jsx("option", {
     value: ""
   }, "Transfer"), BookingForm_jsx("option", {
-    value: "1"
-  }, "Transfer 1"), BookingForm_jsx("option", {
-    value: "2"
-  }, "Transfer 2"), BookingForm_jsx("option", {
-    value: "3"
-  }, "Transfer 3"))))), BookingForm_jsx("div", {
+    value: "Bus"
+  }, "Bus dalla tua citt\xE0"), BookingForm_jsx("option", {
+    value: "Aliscafo"
+  }, "Aliscafo"), BookingForm_jsx("option", {
+    value: "Traghetto"
+  }, "Traghetto"))))), BookingForm_jsx("div", {
     className: "room-box",
     id: "roomBox"
   }, renderRooms())), BookingForm_jsx("div", {
@@ -1627,7 +1677,9 @@ const BookingForm = props => {
     className: "custom-control-label",
     htmlFor: "privacy"
   }, "Acconsento al trattamento dei miei dati ai sensi dell\u2019informativa sulla ", BookingForm_jsx("a", {
-    href: "#"
+    href: "/privacy",
+    target: "_blank",
+    rel: "nofollow"
   }, "Privacy"), "."), formik.errors.privacy && BookingForm_jsx("div", {
     className: "invalid-feedback"
   }, formik.errors.privacy))), BookingForm_jsx("div", {

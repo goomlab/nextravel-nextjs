@@ -318,9 +318,9 @@ const BookingForm = props => {
                 onChange={(e) => onChange(e)}
                 >
                 <option value="">Transfer</option>
-                <option value="1">Transfer 1</option>
-                <option value="2">Transfer 2</option>
-                <option value="3">Transfer 3</option>
+                <option value="Bus">Bus dalla tua città</option>
+                <option value="Aliscafo">Aliscafo</option>
+                <option value="Traghetto">Traghetto</option>
               </select>
             </div>
           </div>
@@ -452,7 +452,7 @@ const BookingForm = props => {
                     formik.handleChange(e)
                   }}
                   />
-                <label className="custom-control-label" htmlFor="privacy">Acconsento al trattamento dei miei dati ai sensi dell’informativa sulla <a href="#">Privacy</a>.</label>
+                <label className="custom-control-label" htmlFor="privacy">Acconsento al trattamento dei miei dati ai sensi dell’informativa sulla <a href="/privacy" target="_blank" rel="nofollow">Privacy</a>.</label>
                 {formik.errors.privacy && 
                   <div className="invalid-feedback">
                     {formik.errors.privacy}

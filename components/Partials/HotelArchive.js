@@ -15,15 +15,16 @@ const NavTab = props => {
   let dateTo = moment(props.period.date_to, 'YYYY-MM-DD');
 
   return (
-    <div key={index} className="swiper-slide">
+    <div key={index} className={`swiper-slide swiper-slide-${props.hotel.id}`}>
       <a
-        className={`nav-item nav-link ${(index == 0) ? 'active' : ''}`}
-        id={`nav-period-${index}-tab`}
+        className={`nav-item nav-link ${(index == props.activeTab) ? 'active' : ''}`}
+        id={`nav-${props.hotel.id}-period-${index}-tab`}
         data-toggle="tab"
         href={`#nav-${props.hotel.id}-period-${index}`}
         role="tab"
         aria-controls={`nav-${props.hotel.id}-period-${index}`}
         aria-selected="true"
+        onClick={() => props.onActivateTab(index)}
       >
         <span>
           {dateFrom.format('DD/MM')}
@@ -87,6 +88,12 @@ const HotelArchiveItem = props => {
     stars.push(<i key={i} className="ico ico-star"></i>);
   }
 
+  const [activeTab, setActiveTab] = React.useState(0)
+
+  const onActivateTab = (index) => {
+    setActiveTab(index)
+  }
+
   React.useEffect(() => {
     swiperPrices.current = new Swiper(`#swiperPrices-${hotel.id}`, {
       grubCursor: false,
@@ -123,6 +130,13 @@ const HotelArchiveItem = props => {
       }
     })
   }, [])
+
+
+  // React.useEffect(() => {
+  //   if( swiperPrices && swiperPrices.current )
+  //     swiperPrices.current.update()
+  // }, [activeTab])
+
   
   return (
     <div className="hotel-list-item">
@@ -150,7 +164,14 @@ const HotelArchiveItem = props => {
             <div id={`swiperPrices-${hotel.id}`} className="swiper-container swiperPrices">
               <div className="swiper-wrapper">
                 {hotel.rateplanPeriods.map((period, index) => 
-                  <NavTab key={index} index={index} period={period} hotel={hotel}/>
+                  <NavTab 
+                    key={index}
+                    index={index}
+                    period={period}
+                    hotel={hotel}
+                    activeTab={activeTab}
+                    onActivateTab={() => onActivateTab(index)}
+                  />
                 )}
               </div>
             </div>
