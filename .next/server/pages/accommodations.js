@@ -950,33 +950,28 @@ const HotelArchiveItem = props => {
       simulateTouch: false,
       direction: 'horizontal',
       //speed: 600,
-      slidesPerView: 4,
+      // slidesPerView: 4,
       spaceBetween: 0,
       breakpoints: {
         1: {
-          slidesPerView: 3,
-          spaceBetween: 0
+          slidesPerView: 1
         },
         320: {
-          slidesPerView: 4,
-          spaceBetween: 0
+          slidesPerView: 4
         },
         768: {
-          slidesPerView: 2,
-          spaceBetween: 0
+          slidesPerView: 2
         },
         992: {
-          slidesPerView: 3,
-          spaceBetween: 0
+          slidesPerView: 3
         },
         1200: {
-          slidesPerView: 4,
-          spaceBetween: 0
+          slidesPerView: 4
         }
       },
       navigation: {
-        nextEl: `#swiperPrices-${hotel.id}-button-prev`,
-        prevEl: `#swiperPrices-${hotel.id}-button-next`
+        nextEl: `#swiperPrices-${hotel.id}-button-next`,
+        prevEl: `#swiperPrices-${hotel.id}-button-prev`
       }
     });
   }, []); // React.useEffect(() => {
@@ -1003,15 +998,28 @@ const HotelArchiveItem = props => {
     alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
   }))), __jsx("div", {
     className: "prices-box"
-  }, __jsx("nav", null, __jsx("div", {
+  }, hotel.rateplanPeriods && hotel.rateplanPeriods.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("nav", {
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
     className: "nav nav-tabs",
     id: "nav-tab-1",
-    role: "tablist"
+    role: "tablist",
+    style: {
+      width: "100% !important"
+    }
   }, __jsx("div", {
     id: `swiperPrices-${hotel.id}`,
-    className: "swiper-container swiperPrices"
+    className: "swiper-container swiperPrices",
+    style: {
+      width: "100% !important"
+    }
   }, __jsx("div", {
-    className: "swiper-wrapper"
+    className: "swiper-wrapper",
+    style: {
+      width: "100% !important"
+    }
   }, hotel.rateplanPeriods.map((period, index) => __jsx(NavTab, {
     key: index,
     index: index,
@@ -1033,7 +1041,11 @@ const HotelArchiveItem = props => {
     index: index,
     hotel: hotel,
     period: period
-  }))), __jsx("div", {
+  })))), !hotel.rateplanPeriods || hotel.rateplanPeriods.length <= 0 && __jsx("div", {
+    style: {
+      height: 70
+    }
+  }), __jsx("div", {
     className: "details"
   }, __jsx("div", {
     className: "row"

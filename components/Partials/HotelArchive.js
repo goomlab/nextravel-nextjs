@@ -100,33 +100,28 @@ const HotelArchiveItem = props => {
       simulateTouch : false,
       direction: 'horizontal',
       //speed: 600,
-      slidesPerView: 4,
+      // slidesPerView: 4,
       spaceBetween: 0,
       breakpoints: {
         1: {
-          slidesPerView: 3,
-          spaceBetween: 0
+          slidesPerView: 1
         },
         320: {
-          slidesPerView: 4,
-          spaceBetween: 0
+          slidesPerView: 4
         },
         768: {
-          slidesPerView: 2,
-          spaceBetween: 0
+          slidesPerView: 2
         },
         992: {
-          slidesPerView: 3,
-          spaceBetween: 0
+          slidesPerView: 3
         },
         1200: {
-          slidesPerView: 4,
-          spaceBetween: 0
+          slidesPerView: 4
         }
       },
       navigation: {
-        nextEl: `#swiperPrices-${hotel.id}-button-prev`,
-        prevEl: `#swiperPrices-${hotel.id}-button-next`,
+        nextEl: `#swiperPrices-${hotel.id}-button-next`,
+        prevEl: `#swiperPrices-${hotel.id}-button-prev`,
       }
     })
   }, [])
@@ -159,10 +154,12 @@ const HotelArchiveItem = props => {
         </figure>
       </a>
       <div className="prices-box">
-        <nav>
-          <div className="nav nav-tabs" id="nav-tab-1" role="tablist">
-            <div id={`swiperPrices-${hotel.id}`} className="swiper-container swiperPrices">
-              <div className="swiper-wrapper">
+        {hotel.rateplanPeriods && hotel.rateplanPeriods.length > 0 &&
+        <>
+        <nav style={{width: "100% !important"}}>
+          <div className="nav nav-tabs" id="nav-tab-1" role="tablist" style={{width: "100% !important"}}>
+            <div id={`swiperPrices-${hotel.id}`} className="swiper-container swiperPrices" style={{width: "100% !important"}}>
+              <div className="swiper-wrapper" style={{width: "100% !important"}}>
                 {hotel.rateplanPeriods.map((period, index) => 
                   <NavTab 
                     key={index}
@@ -189,7 +186,11 @@ const HotelArchiveItem = props => {
               />
           )}
         </div>
-        
+        </>
+        }
+        {!hotel.rateplanPeriods || hotel.rateplanPeriods.length <= 0 &&
+        <div style={{height: 70}}></div>
+        }
         <div className="details">
           <div className="row">
             <div className="col-4">
