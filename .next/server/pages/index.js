@@ -849,6 +849,13 @@ const BookingSearchBox = props => {
 
 /***/ }),
 
+/***/ "C8TP":
+/***/ (function(module, exports) {
+
+module.exports = require("yup");
+
+/***/ }),
+
 /***/ "FxrF":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1463,6 +1470,13 @@ module.exports = require("next/dist/next-server/lib/router-context.js");
 
 /***/ }),
 
+/***/ "QxnH":
+/***/ (function(module, exports) {
+
+module.exports = require("formik");
+
+/***/ }),
+
 /***/ "RNiq":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1600,11 +1614,76 @@ const HomeRecap = () => {
 };
 
 /* harmony default export */ var Partials_HomeRecap = (HomeRecap);
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__("h74D");
+
+// EXTERNAL MODULE: external "yup"
+var external_yup_ = __webpack_require__("C8TP");
+
+// EXTERNAL MODULE: external "formik"
+var external_formik_ = __webpack_require__("QxnH");
+
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/NewsletterAction.js + 1 modules
+var NewsletterAction = __webpack_require__("mI8k");
+
 // CONCATENATED MODULE: ./components/Partials/Newsletter.js
 var Newsletter_jsx = external_react_default.a.createElement;
 
 
-const Newsletter = () => {
+
+
+
+
+const Newsletter = props => {
+  /**
+   * onChange
+   */
+  const onChange = e => {
+    e.persist();
+    console.log('onChage', e);
+    let newState = Object.assign({}, props.newsletter);
+
+    switch (e.target.name) {
+      case 'privacy':
+        newState[e.target.name] = e.target.checked ? 1 : 0;
+        break;
+
+      default:
+        newState[e.target.name] = e.target.value;
+        break;
+    }
+
+    props.setContact(newState);
+  };
+  /**
+   * onSubmit
+   */
+
+
+  const handleSubmit = () => {
+    props.createContact(props.newsletter);
+  };
+  /**
+   * Validate
+   */
+
+
+  const formik = Object(external_formik_["useFormik"])({
+    initialValues: {
+      email: props.newsletter.email || "",
+      privacy: props.newsletter.privacy || 0
+    },
+    validationSchema: external_yup_["object"]().shape({
+      email: external_yup_["string"]().required('Campo non valido'),
+      privacy: external_yup_["number"]().min(1, 'Campo non valido').max(1, 'Campo non valido')
+    }),
+    enableReinitialize: true,
+    onSubmit: handleSubmit
+  });
+  /**
+   * Render
+   */
+
   return Newsletter_jsx("section", {
     className: "section-main section-newsletter"
   }, Newsletter_jsx("div", {
@@ -1615,9 +1694,13 @@ const Newsletter = () => {
     className: "col-lg-5"
   }, Newsletter_jsx("div", {
     className: "description"
-  }, Newsletter_jsx("strong", null, "Inserisci la tua email.", Newsletter_jsx("br", null), "Sarai aggiornato su tutte le offerte."), Newsletter_jsx("br", null), "Alcune sono riservate ai soli iscritti.", Newsletter_jsx("br", null), "Per una vacanza su misura contatta", Newsletter_jsx("br", null), "il nostro booking 081 000000")), Newsletter_jsx("div", {
+  }, Newsletter_jsx("strong", null, "Inserisci la tua email.", Newsletter_jsx("br", null), "Sarai aggiornato su tutte le offerte."), Newsletter_jsx("br", null), "Alcune sono riservate ai soli iscritti.", Newsletter_jsx("br", null), "Per una vacanza su misura contatta", Newsletter_jsx("br", null), "il nostro booking ", {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)), Newsletter_jsx("div", {
     className: "col-lg-6 offset-lg-1"
   }, Newsletter_jsx("form", {
+    onSubmit: formik.handleSubmit,
+    className: "needs-validation" + (formik.errors ? "was-validated" : ""),
+    noValidate: true
+  }, Newsletter_jsx("div", {
     className: "form-template-1"
   }, Newsletter_jsx("div", {
     className: "row"
@@ -1627,35 +1710,73 @@ const Newsletter = () => {
     className: "form-group"
   }, Newsletter_jsx("input", {
     type: "email",
-    className: "form-control",
+    className: "form-control" + (formik.errors.email ? " is-invalid" : ""),
     id: "newsletter_email",
-    name: "newsletter_email",
-    placeholder: "email",
-    required: true
-  })), Newsletter_jsx("div", {
+    name: "email",
+    placeholder: "Email",
+    value: formik.values.email || '',
+    onChange: e => {
+      onChange(e);
+      formik.handleChange(e);
+    }
+  }), formik.errors.email && Newsletter_jsx("div", {
+    className: "invalid-feedback"
+  }, formik.errors.email)), Newsletter_jsx("div", {
     className: "form-group"
-  }, Newsletter_jsx("div", {
+  }, console.log('newslettrer', props.newsletter), Newsletter_jsx("div", {
     className: "custom-control custom-checkbox"
   }, Newsletter_jsx("input", {
     type: "checkbox",
-    className: "custom-control-input",
-    id: "newsletter_privacy"
+    className: "custom-control-input" + (formik.errors.privacy ? " is-invalid" : ""),
+    name: "privacy",
+    id: "newsletter_privacy",
+    value: "1",
+    checked: formik.values.privacy == 1 ? 1 : 0,
+    onChange: e => {
+      onChange(e);
+      formik.handleChange(e);
+    }
   }), Newsletter_jsx("label", {
     className: "custom-control-label",
     htmlFor: "newsletter_privacy"
   }, "Acconsento al trattamento dei miei dati ai sensi dell\u2019informativa sulla ", Newsletter_jsx("a", {
-    href: "#"
-  }, "Privacy"), ".")))), Newsletter_jsx("div", {
+    href: "/privacy",
+    target: "_blank",
+    rel: "nofollow"
+  }, "Privacy"), "."), formik.errors.privacy && Newsletter_jsx("div", {
+    className: "invalid-feedback"
+  }, formik.errors.privacy)))), Newsletter_jsx("div", {
     className: "col-lg-3"
   }, Newsletter_jsx("div", {
     className: "form-group"
   }, Newsletter_jsx("button", {
     type: "submit",
     className: "btn btn-green"
-  }, "iscriviti")))))))));
+  }, "iscriviti"))))))))));
 };
 
-/* harmony default export */ var Partials_Newsletter = (Newsletter);
+const mapStateToProps = state => {
+  return {
+    newsletter: state.newsletter
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  let newsletterAction = new NewsletterAction["a" /* default */]();
+  return {
+    setContact: data => {
+      dispatch(newsletterAction.setItem(data));
+    },
+    resetContact: () => {
+      dispatch(newsletterAction.resetItem());
+    },
+    createContact: data => {
+      dispatch(newsletterAction.sendinblue_createContact(data));
+    }
+  };
+};
+
+/* harmony default export */ var Partials_Newsletter = (Object(external_react_redux_["connect"])(mapStateToProps, mapDispatchToProps)(Newsletter));
 // CONCATENATED MODULE: ./pages/index.js
 var pages_jsx = external_react_default.a.createElement;
 
@@ -2037,11 +2158,99 @@ exports.normalizePathTrailingSlash = normalizePathTrailingSlash;
 
 /***/ }),
 
+/***/ "XvPD":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return pageLoaderConsts; });
+const pageLoaderConsts = {
+  SHOW: 'PAGE_LOADER_SHOW',
+  HIDE: 'PAGE_LOADER_HIDE'
+};
+
+class PageLoaderActions {
+  construct() {// this.alertMessageSuccess = this.alertMessageSuccess.bind(this);
+    // this.alertMessageError = this.alertMessageError.bind(this);
+    // this.alertMessageWarning = this.alertMessageWarning.bind(this);
+  }
+
+  static show() {
+    return {
+      type: pageLoaderConsts.SHOW,
+      display: "block"
+    };
+  }
+
+  static hide() {
+    return {
+      type: pageLoaderConsts.HIDE,
+      display: "none"
+    };
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (PageLoaderActions);
+
+/***/ }),
+
 /***/ "YFqc":
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("cTJO")
 
+
+/***/ }),
+
+/***/ "YRjj":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return alertMessageConsts; });
+const alertMessageConsts = {
+  ALERT_MESSAGE_SUCCESS: 'ALERT_MESSAGE_SUCCESS',
+  ALERT_MESSAGE_ERROR: 'ALERT_MESSAGE_ERROR',
+  ALERT_MESSAGE_WARNING: 'ALERT_MESSAGE_WARNING'
+};
+
+class AlertMessageAction {
+  construct() {
+    this.alertMessageSuccess = this.alertMessageSuccess.bind(this);
+    this.alertMessageError = this.alertMessageError.bind(this);
+    this.alertMessageWarning = this.alertMessageWarning.bind(this);
+  }
+
+  static alertMessageSuccess(message) {
+    return {
+      type: alertMessageConsts.ALERT_MESSAGE_SUCCESS,
+      message: message
+    };
+  }
+
+  static alertMessageError(message) {
+    return {
+      type: alertMessageConsts.ALERT_MESSAGE_ERROR,
+      message: message
+    };
+  }
+
+  static alertMessageWarning(message) {
+    return {
+      type: alertMessageConsts.ALERT_MESSAGE_WARNING,
+      message: message
+    };
+  }
+
+  static reset() {
+    return {
+      type: alertMessageConsts.ALERT_MESSAGE_SUCCESS,
+      message: ""
+    };
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["b"] = (AlertMessageAction);
 
 /***/ }),
 
@@ -2463,6 +2672,13 @@ function mitt() {
 
   };
 }
+
+/***/ }),
+
+/***/ "eW3l":
+/***/ (function(module, exports) {
+
+module.exports = require("qs");
 
 /***/ }),
 
@@ -3564,6 +3780,13 @@ function getRouteMatcher(routeRegex) {
 
 /***/ }),
 
+/***/ "h74D":
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+
 /***/ "hS4m":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3619,11 +3842,14 @@ function parseRelativeUrl(url, base) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("eW3l");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class BaseService {
@@ -3688,15 +3914,16 @@ class BaseService {
 
 
   all(params) {
-    let config = this.checkAuthApi();
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
+    // let config = this.checkAuthApi();
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
-      }
-    }, config)).then(response => {
+      } // ...config
+
+    }).then(response => {
       return Promise.resolve(response.data.data);
     }).catch(error => {
       return Promise.reject(error);
@@ -3724,7 +3951,7 @@ class BaseService {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
       }
@@ -3805,6 +4032,100 @@ class BaseService {
     }).catch(error => {
       return Promise.reject(error);
     });
+  }
+
+}
+
+/***/ }),
+
+/***/ "mI8k":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* binding */ newsletterConsts; });
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ NewsletterAction_NewsletterAction; });
+
+// EXTERNAL MODULE: ./packages/BaseAction.js
+var BaseAction = __webpack_require__("sYsk");
+
+// EXTERNAL MODULE: ./packages/Base/actions/PageLoaderAction.js
+var PageLoaderAction = __webpack_require__("XvPD");
+
+// EXTERNAL MODULE: ./packages/Base/actions/AlertMessageAction.js
+var AlertMessageAction = __webpack_require__("YRjj");
+
+// EXTERNAL MODULE: external "axios"
+var external_axios_ = __webpack_require__("zr5I");
+var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
+
+// EXTERNAL MODULE: ./packages/BaseService.js
+var BaseService = __webpack_require__("jC1T");
+
+// CONCATENATED MODULE: ./packages/TravelgoOne/services/NewsletterService.js
+
+
+class NewsletterService_NewsletterService extends BaseService["a" /* default */] {
+  constructor() {
+    super('/newsletter');
+  }
+
+  sendinblue_createContact(params) {
+    return external_axios_default.a.post(`${this.url}/sendinblue/contacts`, params, this.config).then(response => {
+      return Promise.resolve(response.data);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
+}
+// CONCATENATED MODULE: ./packages/TravelgoOne/actions/NewsletterAction.js
+
+
+
+
+const newsletterConsts = {
+  SET_ITEM: 'NEWSLETTER_SET_ITEM',
+  RESET_ITEM: 'NEWSLETTER_RESET_ITEM',
+  SENDINBLUE_CREATE_CONTACT: 'NEWSLETTER_SENDINBLUE_CREATE_CONTACT'
+};
+class NewsletterAction_NewsletterAction extends BaseAction["a" /* default */] {
+  constructor() {
+    super();
+    this.service = new NewsletterService_NewsletterService();
+    this.consts = newsletterConsts;
+  }
+
+  setItem(item) {
+    return dispatch => {
+      dispatch({
+        type: this.consts.SET_ITEM,
+        item: item
+      });
+    };
+  }
+
+  resetItem() {
+    return dispatch => {
+      dispatch({
+        type: this.consts.RESET_ITEM
+      });
+    };
+  }
+
+  sendinblue_createContact(params) {
+    return dispatch => {
+      dispatch(PageLoaderAction["a" /* default */].show());
+      this.service.sendinblue_createContact(params).then(response => {
+        dispatch(this.resetItem());
+        dispatch(AlertMessageAction["b" /* default */].alertMessageSuccess('Ti ringraziamo per esserti registrato alla newsletter. Ti terremo aggiornati sulle nostre offerte.'));
+        dispatch(PageLoaderAction["a" /* default */].hide());
+      }).catch(error => {
+        dispatch(AlertMessageAction["b" /* default */].alertMessageError(error.response.data.meta.message));
+        dispatch(PageLoaderAction["a" /* default */].hide());
+      });
+    };
   }
 
 }
@@ -3959,6 +4280,207 @@ function makePublicRouterInstance(router) {
     };
   });
   return instance;
+}
+
+/***/ }),
+
+/***/ "sYsk":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseAction; });
+// import AlertMessageActions from 'actions/AlertMessageActions';
+// import PageLoaderActions from 'actions/PageLoaderActions';
+class BaseAction {
+  constructor() {
+    this.service = null;
+    this.consts = null;
+    this.redirect = null;
+  }
+
+  all(filter, count) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.search(filter, count).then(response => {
+        dispatch({
+          type: this.consts.SEARCHED,
+          items: response.data.data,
+          totItems: response.data.meta.total
+        }); // dispatch(PageLoaderActions.hide());
+      }).catch(error => {// dispatch(PageLoaderActions.hide());
+        // if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+      });
+    };
+  }
+
+  get(id) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.load(id).then(response => {
+        dispatch({
+          type: this.consts.LOADED,
+          item: response.data.data
+        }); // dispatch(PageLoaderActions.hide());
+      }).catch(error => {// dispatch(PageLoaderActions.hide());
+        // if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+      });
+    };
+  }
+
+  createPost(postData, ownProps) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.createPost(postData).then(response => {
+        dispatch({
+          type: this.consts.CREATED,
+          item: response.data.data
+        }); // dispatch(PageLoaderActions.hide());
+        // dispatch(AlertMessageActions.alertMessageSuccess(response.data.meta.message));
+        // let postype = this.getQueryString(ownProps.location, 'post_type');
+        // let redirect = this.redirect + '/' + response.data.data.id + ((postype) ? '?post_type='+postype : '');
+        // ownProps.history.push(redirect);
+      }).catch(error => {// dispatch(PageLoaderActions.hide());
+        // if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+      });
+    };
+  }
+
+  create(postData, ownProps) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.create(postData).then(response => {
+        dispatch({
+          type: this.consts.CREATED,
+          item: response.data.data
+        }); // dispatch(PageLoaderActions.hide());
+        // dispatch(AlertMessageActions.alertMessageSuccess(response.data.meta.message));
+        // let postype = this.getQueryString(ownProps.location, 'post_type');
+        // let redirect = this.redirect + '/' + response.data.data.id + ((postype) ? '?post_type='+postype : '');
+        // ownProps.history.push(redirect);
+      }).catch(error => {// dispatch(PageLoaderActions.hide());
+        // if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+      });
+    };
+  }
+
+  updatePost(id, postData, ownProps) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.updatePost(id, postData).then(response => {
+        dispatch({
+          type: this.consts.UPDATED,
+          item: response.data.data
+        }); // dispatch(PageLoaderActions.hide());
+        // dispatch(AlertMessageActions.alertMessageSuccess(response.data.meta.message));
+        // let postype = this.getQueryString(ownProps.location, 'post_type');
+        // let redirect = this.redirect + '/' + response.data.item.id + ((postype) ? '?post_type='+postype : '');
+        // ownProps.history.push(redirect);
+
+        dispatch(this.load(id));
+      }).catch(error => {// dispatch(PageLoaderActions.hide());
+        // if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+      });
+    };
+  }
+
+  update(id, postData, ownProps) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.update(id, postData).then(response => {
+        dispatch({
+          type: this.consts.UPDATED,
+          item: response.data.data
+        }); // dispatch(PageLoaderActions.hide());
+        // dispatch(AlertMessageActions.alertMessageSuccess(response.data.meta.message));
+        // dispatch(this.load(id));
+      }).catch(error => {// dispatch(PageLoaderActions.hide());
+        // if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+      });
+    };
+  }
+
+  remove(id) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.remove(id).then(response => {
+        dispatch({
+          type: this.consts.REMOVED // item: response.data.item
+
+        }); // dispatch(AlertMessageActions.alertMessageSuccess(response.data.message));
+        // dispatch(PageLoaderActions.hide());
+      }).catch(error => {// dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // dispatch(PageLoaderActions.hide());
+      });
+    };
+  }
+
+  removeOnList(id, searchParams, searchCount) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.remove(id).then(response => {
+        dispatch({
+          type: this.consts.REMOVED // item: response.data.item
+
+        }); // dispatch(this.search(searchParams, searchCount));
+        // dispatch(AlertMessageActions.alertMessageSuccess(response.data.message));
+        // dispatch(PageLoaderActions.hide());
+      }).catch(error => {// dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // dispatch(PageLoaderActions.hide());
+      });
+    };
+  }
+
+  updateFields(id, postData, searchParams, searchCount) {
+    return dispatch => {
+      // dispatch(PageLoaderActions.show());
+      this.service.updateFields(id, postData).then(response => {
+        dispatch({
+          type: this.consts.UPDATED,
+          item: response.data.data
+        }); // dispatch(this.search(searchParams, searchCount));
+        // dispatch(AlertMessageActions.alertMessageSuccess(response.data.meta.message));
+        // dispatch(PageLoaderActions.hide());
+      }).catch(error => {// if( error.response && error.response.data && error.response.data.meta )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.meta.message));
+        // else if( error.response && error.response.data && error.response.data.message )
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.response.data.message));
+        // else
+        // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
+        // dispatch(PageLoaderActions.hide());
+      });
+    };
+  }
+
 }
 
 /***/ }),

@@ -1155,7 +1155,22 @@ var external_yup_ = __webpack_require__("C8TP");
 // EXTERNAL MODULE: external "formik"
 var external_formik_ = __webpack_require__("QxnH");
 
-// EXTERNAL MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js + 2 modules
+// EXTERNAL MODULE: external "axios"
+var external_axios_ = __webpack_require__("zr5I");
+
+// EXTERNAL MODULE: ./packages/BaseService.js
+var BaseService = __webpack_require__("jC1T");
+
+// CONCATENATED MODULE: ./packages/TravelgoOne/services/HotelServiceService.js
+
+
+class HotelServiceService_HotelServiceService extends BaseService["a" /* default */] {
+  constructor() {
+    super('/travelgo-one/services');
+  }
+
+}
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js
 var PracticeByGuestAction = __webpack_require__("p54a");
 
 // EXTERNAL MODULE: external "react-bootstrap-daterangepicker"
@@ -1236,12 +1251,13 @@ function BookingForm_defineProperty(obj, key, value) { if (key in obj) { Object.
 
 
 
+
 const BookingForm = props => {
   /**
    * ComponentDidUpdate
    */
   external_react_default.a.useEffect(() => {
-    console.log('componentDidUpdate', props.practice, props.query);
+    //console.log('componentDidUpdate', props.practice, props.query)
     let newState = Object.assign({}, props.practice);
     props.setPractice(BookingForm_objectSpread(BookingForm_objectSpread({}, newState), {}, {
       hotel_id: props.hotel.id,
@@ -1251,6 +1267,20 @@ const BookingForm = props => {
       treatment: props.query.treatment || null
     }));
   }, [props.query]);
+  const [transfers, setTransfers] = external_react_default.a.useState([]);
+  external_react_default.a.useEffect(() => {
+    let service = new HotelServiceService_HotelServiceService();
+    service.all({
+      type: {
+        key: 'type',
+        compare: '=',
+        value: 'transfer'
+      }
+    }).then(response => {
+      setTransfers(response);
+      console.log('transfers', response);
+    });
+  }, []);
 
   const onChange = e => {
     e.persist();
@@ -1555,13 +1585,10 @@ const BookingForm = props => {
     onChange: e => onChange(e)
   }, BookingForm_jsx("option", {
     value: ""
-  }, "Transfer"), BookingForm_jsx("option", {
-    value: "Bus"
-  }, "Bus dalla tua citt\xE0"), BookingForm_jsx("option", {
-    value: "Aliscafo"
-  }, "Aliscafo"), BookingForm_jsx("option", {
-    value: "Traghetto"
-  }, "Traghetto"))))), BookingForm_jsx("div", {
+  }, "Transfer"), transfers.map((obj, index) => BookingForm_jsx("option", {
+    key: index,
+    value: obj.id
+  }, obj.name)))))), BookingForm_jsx("div", {
     className: "room-box",
     id: "roomBox"
   }, renderRooms())), BookingForm_jsx("div", {
@@ -2551,6 +2578,39 @@ function getRouteRegex(normalizedRoute) {
 
 /***/ }),
 
+/***/ "ZC9X":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PracticeService; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("jC1T");
+
+
+class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"] {
+  constructor() {
+    super('/travelgo-one/practices');
+  }
+
+  createByGuest(postData) {
+    let config = {
+      headers: {
+        'Content-Type': 'application/json' // 'Authorization': `Bearer ${token}`
+
+      }
+    };
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.url + '/create-by-guest', postData, config).then(response => {
+      return Promise.resolve(response);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
+}
+
+/***/ }),
+
 /***/ "cDcd":
 /***/ (function(module, exports) {
 
@@ -2844,6 +2904,13 @@ function mitt() {
 
   };
 }
+
+/***/ }),
+
+/***/ "eW3l":
+/***/ (function(module, exports) {
+
+module.exports = require("qs");
 
 /***/ }),
 
@@ -4007,11 +4074,14 @@ function parseRelativeUrl(url, base) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("eW3l");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class BaseService {
@@ -4076,15 +4146,16 @@ class BaseService {
 
 
   all(params) {
-    let config = this.checkAuthApi();
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
+    // let config = this.checkAuthApi();
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
-      }
-    }, config)).then(response => {
+      } // ...config
+
+    }).then(response => {
       return Promise.resolve(response.data.data);
     }).catch(error => {
       return Promise.reject(error);
@@ -4112,7 +4183,7 @@ class BaseService {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
       }
@@ -4355,12 +4426,68 @@ function makePublicRouterInstance(router) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return practiceByGuestConsts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PracticeByGuestAction; });
+/* harmony import */ var _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("sYsk");
+/* harmony import */ var _packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("XvPD");
+/* harmony import */ var _packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YRjj");
+/* harmony import */ var _services_PracticeService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ZC9X");
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "b", function() { return /* binding */ practiceByGuestConsts; });
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ PracticeByGuestAction_PracticeByGuestAction; });
 
-// CONCATENATED MODULE: ./packages/BaseAction.js
+
+
+const practiceByGuestConsts = {
+  SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
+  RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  CREATE: 'PRACTICE_BY_GUEST_CREATE'
+};
+class PracticeByGuestAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"] {
+  constructor() {
+    super();
+    this.service = new _services_PracticeService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    this.consts = practiceByGuestConsts;
+  }
+
+  setItem(item) {
+    return dispatch => {
+      dispatch({
+        type: this.consts.SET_ITEM,
+        item: item
+      });
+    };
+  }
+
+  resetItem() {
+    return dispatch => {
+      dispatch({
+        type: this.consts.RESET_ITEM
+      });
+    };
+  }
+
+  create(params) {
+    return dispatch => {
+      dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].show());
+      this.service.createByGuest(params).then(response => {
+        dispatch(this.resetItem());
+        dispatch(_packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__[/* default */ "b"].alertMessageSuccess('Richiesta inviata con successo!'));
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      }).catch(error => {
+        dispatch(_packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__[/* default */ "b"].alertMessageError(error.response.data.meta.message));
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      });
+    };
+  }
+
+}
+
+/***/ }),
+
+/***/ "sYsk":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseAction; });
 // import AlertMessageActions from 'actions/AlertMessageActions';
 // import PageLoaderActions from 'actions/PageLoaderActions';
 class BaseAction {
@@ -4549,91 +4676,6 @@ class BaseAction {
         // else
         // 	dispatch(AlertMessageActions.alertMessageError('Errore: ' + error.status));
         // dispatch(PageLoaderActions.hide());
-      });
-    };
-  }
-
-}
-// EXTERNAL MODULE: ./packages/Base/actions/PageLoaderAction.js
-var PageLoaderAction = __webpack_require__("XvPD");
-
-// EXTERNAL MODULE: ./packages/Base/actions/AlertMessageAction.js
-var AlertMessageAction = __webpack_require__("YRjj");
-
-// EXTERNAL MODULE: external "axios"
-var external_axios_ = __webpack_require__("zr5I");
-var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
-
-// EXTERNAL MODULE: ./packages/BaseService.js
-var BaseService = __webpack_require__("jC1T");
-
-// CONCATENATED MODULE: ./packages/TravelgoOne/services/PracticeService.js
-
-
-class PracticeService_PracticeService extends BaseService["a" /* default */] {
-  constructor() {
-    super('/travelgo-one/practices');
-  }
-
-  createByGuest(postData) {
-    let config = {
-      headers: {
-        'Content-Type': 'application/json' // 'Authorization': `Bearer ${token}`
-
-      }
-    };
-    return external_axios_default.a.post(this.url + '/create-by-guest', postData, config).then(response => {
-      return Promise.resolve(response);
-    }).catch(error => {
-      return Promise.reject(error);
-    });
-  }
-
-}
-// CONCATENATED MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js
-
-
-
-
-const practiceByGuestConsts = {
-  SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
-  RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
-  CREATE: 'PRACTICE_BY_GUEST_CREATE'
-};
-class PracticeByGuestAction_PracticeByGuestAction extends BaseAction {
-  constructor() {
-    super();
-    this.service = new PracticeService_PracticeService();
-    this.consts = practiceByGuestConsts;
-  }
-
-  setItem(item) {
-    return dispatch => {
-      dispatch({
-        type: this.consts.SET_ITEM,
-        item: item
-      });
-    };
-  }
-
-  resetItem() {
-    return dispatch => {
-      dispatch({
-        type: this.consts.RESET_ITEM
-      });
-    };
-  }
-
-  create(params) {
-    return dispatch => {
-      dispatch(PageLoaderAction["a" /* default */].show());
-      this.service.createByGuest(params).then(response => {
-        dispatch(this.resetItem());
-        dispatch(AlertMessageAction["b" /* default */].alertMessageSuccess('Richiesta inviata con successo!'));
-        dispatch(PageLoaderAction["a" /* default */].hide());
-      }).catch(error => {
-        dispatch(AlertMessageAction["b" /* default */].alertMessageError(error.response.data.meta.message));
-        dispatch(PageLoaderAction["a" /* default */].hide());
       });
     };
   }

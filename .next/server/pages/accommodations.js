@@ -2140,6 +2140,13 @@ function mitt() {
 
 /***/ }),
 
+/***/ "eW3l":
+/***/ (function(module, exports) {
+
+module.exports = require("qs");
+
+/***/ }),
+
 /***/ "elyg":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3293,11 +3300,14 @@ function parseRelativeUrl(url, base) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("eW3l");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class BaseService {
@@ -3362,15 +3372,16 @@ class BaseService {
 
 
   all(params) {
-    let config = this.checkAuthApi();
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
+    // let config = this.checkAuthApi();
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
-      }
-    }, config)).then(response => {
+      } // ...config
+
+    }).then(response => {
       return Promise.resolve(response.data.data);
     }).catch(error => {
       return Promise.reject(error);
@@ -3398,7 +3409,7 @@ class BaseService {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
       }
@@ -3590,7 +3601,7 @@ Index.getInitialProps = async ctx => {
     let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]();
     menu = await menuService.get(1);
     let postService = new _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
-    page = await postService.get(1);
+    page = await postService.get(2);
     let hotelService = new _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
     hotels = await hotelService.query(filter);
     hotels.filter = filter;

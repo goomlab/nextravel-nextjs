@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs'
 
 export default class BaseService {
 
@@ -71,7 +72,7 @@ export default class BaseService {
   //   });
   // }
   all(params){
-    let config = this.checkAuthApi();
+    // let config = this.checkAuthApi();
     return axios.get(this.url, {
       params,
       paramsSerializer: function(params) {
@@ -79,7 +80,7 @@ export default class BaseService {
           encode: false
         });
       },
-      ...config
+      // ...config
     })
     .then(response => {
       return Promise.resolve(response.data.data);

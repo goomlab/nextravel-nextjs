@@ -4,6 +4,7 @@ import moment from 'moment'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 
+import HotelServiceService from '~/packages/TravelgoOne/services/HotelServiceService'
 import PracticeByGuestAction from '~/packages/TravelgoOne/actions/PracticeByGuestAction'
 
 import MyDateRangePicker from '../MyDateRangePicker'
@@ -13,8 +14,9 @@ const BookingForm = props => {
   /**
    * ComponentDidUpdate
    */
-  React.useEffect(() => {console.log('componentDidUpdate', props.practice, props.query)
-  let newState = Object.assign({}, props.practice);
+  React.useEffect(() => {
+    //console.log('componentDidUpdate', props.practice, props.query)
+    let newState = Object.assign({}, props.practice);
     props.setPractice({
       ...newState,
       hotel_id: props.hotel.id,
@@ -24,6 +26,22 @@ const BookingForm = props => {
       treatment: props.query.treatment || null,
     })
   }, [props.query])
+
+  const [transfers, setTransfers] = React.useState([]);
+  React.useEffect(() => {
+    let service = new HotelServiceService()
+    service.all({
+      type: {
+        key: 'type',
+        compare: '=',
+        value: 'transfer'
+      }
+    })
+    .then(response => {
+      setTransfers(response)
+      console.log('transfers', response)
+    })
+  }, [])
 
   const onChange = (e) => {
     e.persist();
@@ -318,9 +336,12 @@ const BookingForm = props => {
                 onChange={(e) => onChange(e)}
                 >
                 <option value="">Transfer</option>
-                <option value="Bus">Bus dalla tua città</option>
+                {/* <option value="Bus">Bus dalla tua città</option>
                 <option value="Aliscafo">Aliscafo</option>
-                <option value="Traghetto">Traghetto</option>
+                <option value="Traghetto">Traghetto</option> */}
+                {transfers.map((obj, index) => 
+                  <option key={index} value={obj.id}>{obj.name}</option>
+                )}
               </select>
             </div>
           </div>

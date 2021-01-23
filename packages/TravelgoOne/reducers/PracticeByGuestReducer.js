@@ -32,10 +32,20 @@ const initialState = {
 const PracticeByGuestReducer = (state = initialState, action) => {
   switch (action.type) {
     case practiceByGuestConsts.RESET_ITEM:
-      return {
+      let newState = {
         ...state,
-        customer: initialCustomer
+        item: {
+          ...state.item,
+          customer: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            mobile: "",
+          }
+        }
       }
+      console.log('newState', newState)
+      return newState
     case practiceByGuestConsts.SET_ITEM:
       return {
         ...state,

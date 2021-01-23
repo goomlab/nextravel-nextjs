@@ -7,5 +7,6 @@
   "/accommodations": "pages/accommodations.js",
   "/": "pages/index.js",
   "/offerte/[slug]": "pages/offerte/[slug].js",
+  "/preventivi/[id]": "pages/preventivi/[id].js",
   "/_error": "pages/_error.js"
 }

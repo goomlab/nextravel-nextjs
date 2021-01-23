@@ -193,7 +193,7 @@ const PageLoaderReducer = (state = {
 };
 
 /* harmony default export */ var reducers_PageLoaderReducer = (PageLoaderReducer);
-// EXTERNAL MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js + 2 modules
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js
 var PracticeByGuestAction = __webpack_require__("p54a");
 
 // CONCATENATED MODULE: ./packages/TravelgoOne/reducers/PracticeByGuestReducer.js
@@ -233,9 +233,19 @@ const PracticeByGuestReducer_initialState = {
 const PracticeByGuestReducer = (state = PracticeByGuestReducer_initialState, action) => {
   switch (action.type) {
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].RESET_ITEM:
-      return _objectSpread(_objectSpread({}, state), {}, {
-        customer: initialCustomer
+      let newState = _objectSpread(_objectSpread({}, state), {}, {
+        item: _objectSpread(_objectSpread({}, state.item), {}, {
+          customer: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            mobile: ""
+          }
+        })
       });
+
+      console.log('newState', newState);
+      return newState;
 
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].SET_ITEM:
       return _objectSpread(_objectSpread({}, state), {}, {
@@ -253,7 +263,45 @@ const PracticeByGuestReducer = (state = PracticeByGuestReducer_initialState, act
 };
 
 /* harmony default export */ var reducers_PracticeByGuestReducer = (PracticeByGuestReducer);
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/NewsletterAction.js + 1 modules
+var NewsletterAction = __webpack_require__("mI8k");
+
+// CONCATENATED MODULE: ./packages/TravelgoOne/reducers/NewsletterReducer.js
+function NewsletterReducer_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function NewsletterReducer_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { NewsletterReducer_ownKeys(Object(source), true).forEach(function (key) { NewsletterReducer_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { NewsletterReducer_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function NewsletterReducer_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+const NewsletterReducer_initialState = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  mobile: "",
+  privacy: "",
+  list_ids: [2]
+};
+
+const NewsletterReducer = (state = NewsletterReducer_initialState, action) => {
+  switch (action.type) {
+    case NewsletterAction["b" /* newsletterConsts */].RESET_ITEM:
+      return NewsletterReducer_initialState;
+
+    case NewsletterAction["b" /* newsletterConsts */].SET_ITEM:
+      return NewsletterReducer_objectSpread(NewsletterReducer_objectSpread({}, state), action.item);
+
+    case NewsletterAction["b" /* newsletterConsts */].SENDINBLUE_CREATE_CONTACT:
+      return NewsletterReducer_initialState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ var reducers_NewsletterReducer = (NewsletterReducer);
 // CONCATENATED MODULE: ./store.js
+
 
 
 
@@ -265,7 +313,8 @@ const PracticeByGuestReducer = (state = PracticeByGuestReducer_initialState, act
 const makeStore = context => Object(external_redux_["createStore"])(Object(external_redux_["combineReducers"])({
   alertMessage: reducers_AlertMessageReducer,
   pageLoader: reducers_PageLoaderReducer,
-  practiceByGuest: reducers_PracticeByGuestReducer
+  practiceByGuest: reducers_PracticeByGuestReducer,
+  newsletter: reducers_NewsletterReducer
 }), {}, Object(external_redux_devtools_extension_["composeWithDevTools"])(Object(external_redux_["applyMiddleware"])(external_redux_thunk_default.a))); // export an assembled wrapper
 
 const wrapper = Object(external_next_redux_wrapper_["createWrapper"])(makeStore, {
@@ -699,6 +748,39 @@ class AlertMessageAction {
 
 /***/ }),
 
+/***/ "ZC9X":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PracticeService; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("jC1T");
+
+
+class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"] {
+  constructor() {
+    super('/travelgo-one/practices');
+  }
+
+  createByGuest(postData) {
+    let config = {
+      headers: {
+        'Content-Type': 'application/json' // 'Authorization': `Bearer ${token}`
+
+      }
+    };
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.url + '/create-by-guest', postData, config).then(response => {
+      return Promise.resolve(response);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
+}
+
+/***/ }),
+
 /***/ "ZSx1":
 /***/ (function(module, exports) {
 
@@ -710,6 +792,13 @@ module.exports = require("redux-thunk");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "eW3l":
+/***/ (function(module, exports) {
+
+module.exports = require("qs");
 
 /***/ }),
 
@@ -727,11 +816,14 @@ module.exports = require("react-redux");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseService; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("eW3l");
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 class BaseService {
@@ -796,15 +888,16 @@ class BaseService {
 
 
   all(params) {
-    let config = this.checkAuthApi();
-    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
+    // let config = this.checkAuthApi();
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, {
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
-      }
-    }, config)).then(response => {
+      } // ...config
+
+    }).then(response => {
       return Promise.resolve(response.data.data);
     }).catch(error => {
       return Promise.reject(error);
@@ -832,7 +925,7 @@ class BaseService {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.url, _objectSpread({
       params,
       paramsSerializer: function (params) {
-        return qs.stringify(params, {
+        return qs__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(params, {
           encode: false
         });
       }
@@ -926,16 +1019,173 @@ module.exports = require("next/dist/next-server/lib/utils.js");
 
 /***/ }),
 
-/***/ "p54a":
+/***/ "mI8k":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXPORTS
-__webpack_require__.d(__webpack_exports__, "b", function() { return /* binding */ practiceByGuestConsts; });
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ PracticeByGuestAction_PracticeByGuestAction; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* binding */ newsletterConsts; });
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ NewsletterAction_NewsletterAction; });
 
-// CONCATENATED MODULE: ./packages/BaseAction.js
+// EXTERNAL MODULE: ./packages/BaseAction.js
+var BaseAction = __webpack_require__("sYsk");
+
+// EXTERNAL MODULE: ./packages/Base/actions/PageLoaderAction.js
+var PageLoaderAction = __webpack_require__("XvPD");
+
+// EXTERNAL MODULE: ./packages/Base/actions/AlertMessageAction.js
+var AlertMessageAction = __webpack_require__("YRjj");
+
+// EXTERNAL MODULE: external "axios"
+var external_axios_ = __webpack_require__("zr5I");
+var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
+
+// EXTERNAL MODULE: ./packages/BaseService.js
+var BaseService = __webpack_require__("jC1T");
+
+// CONCATENATED MODULE: ./packages/TravelgoOne/services/NewsletterService.js
+
+
+class NewsletterService_NewsletterService extends BaseService["a" /* default */] {
+  constructor() {
+    super('/newsletter');
+  }
+
+  sendinblue_createContact(params) {
+    return external_axios_default.a.post(`${this.url}/sendinblue/contacts`, params, this.config).then(response => {
+      return Promise.resolve(response.data);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
+}
+// CONCATENATED MODULE: ./packages/TravelgoOne/actions/NewsletterAction.js
+
+
+
+
+const newsletterConsts = {
+  SET_ITEM: 'NEWSLETTER_SET_ITEM',
+  RESET_ITEM: 'NEWSLETTER_RESET_ITEM',
+  SENDINBLUE_CREATE_CONTACT: 'NEWSLETTER_SENDINBLUE_CREATE_CONTACT'
+};
+class NewsletterAction_NewsletterAction extends BaseAction["a" /* default */] {
+  constructor() {
+    super();
+    this.service = new NewsletterService_NewsletterService();
+    this.consts = newsletterConsts;
+  }
+
+  setItem(item) {
+    return dispatch => {
+      dispatch({
+        type: this.consts.SET_ITEM,
+        item: item
+      });
+    };
+  }
+
+  resetItem() {
+    return dispatch => {
+      dispatch({
+        type: this.consts.RESET_ITEM
+      });
+    };
+  }
+
+  sendinblue_createContact(params) {
+    return dispatch => {
+      dispatch(PageLoaderAction["a" /* default */].show());
+      this.service.sendinblue_createContact(params).then(response => {
+        dispatch(this.resetItem());
+        dispatch(AlertMessageAction["b" /* default */].alertMessageSuccess('Ti ringraziamo per esserti registrato alla newsletter. Ti terremo aggiornati sulle nostre offerte.'));
+        dispatch(PageLoaderAction["a" /* default */].hide());
+      }).catch(error => {
+        dispatch(AlertMessageAction["b" /* default */].alertMessageError(error.response.data.meta.message));
+        dispatch(PageLoaderAction["a" /* default */].hide());
+      });
+    };
+  }
+
+}
+
+/***/ }),
+
+/***/ "p54a":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return practiceByGuestConsts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PracticeByGuestAction; });
+/* harmony import */ var _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("sYsk");
+/* harmony import */ var _packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("XvPD");
+/* harmony import */ var _packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YRjj");
+/* harmony import */ var _services_PracticeService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ZC9X");
+
+
+
+
+const practiceByGuestConsts = {
+  SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
+  RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  CREATE: 'PRACTICE_BY_GUEST_CREATE'
+};
+class PracticeByGuestAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"] {
+  constructor() {
+    super();
+    this.service = new _services_PracticeService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    this.consts = practiceByGuestConsts;
+  }
+
+  setItem(item) {
+    return dispatch => {
+      dispatch({
+        type: this.consts.SET_ITEM,
+        item: item
+      });
+    };
+  }
+
+  resetItem() {
+    return dispatch => {
+      dispatch({
+        type: this.consts.RESET_ITEM
+      });
+    };
+  }
+
+  create(params) {
+    return dispatch => {
+      dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].show());
+      this.service.createByGuest(params).then(response => {
+        dispatch(this.resetItem());
+        dispatch(_packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__[/* default */ "b"].alertMessageSuccess('Richiesta inviata con successo!'));
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      }).catch(error => {
+        dispatch(_packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__[/* default */ "b"].alertMessageError(error.response.data.meta.message));
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      });
+    };
+  }
+
+}
+
+/***/ }),
+
+/***/ "rKB8":
+/***/ (function(module, exports) {
+
+module.exports = require("redux");
+
+/***/ }),
+
+/***/ "sYsk":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseAction; });
 // import AlertMessageActions from 'actions/AlertMessageActions';
 // import PageLoaderActions from 'actions/PageLoaderActions';
 class BaseAction {
@@ -1129,98 +1379,6 @@ class BaseAction {
   }
 
 }
-// EXTERNAL MODULE: ./packages/Base/actions/PageLoaderAction.js
-var PageLoaderAction = __webpack_require__("XvPD");
-
-// EXTERNAL MODULE: ./packages/Base/actions/AlertMessageAction.js
-var AlertMessageAction = __webpack_require__("YRjj");
-
-// EXTERNAL MODULE: external "axios"
-var external_axios_ = __webpack_require__("zr5I");
-var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
-
-// EXTERNAL MODULE: ./packages/BaseService.js
-var BaseService = __webpack_require__("jC1T");
-
-// CONCATENATED MODULE: ./packages/TravelgoOne/services/PracticeService.js
-
-
-class PracticeService_PracticeService extends BaseService["a" /* default */] {
-  constructor() {
-    super('/travelgo-one/practices');
-  }
-
-  createByGuest(postData) {
-    let config = {
-      headers: {
-        'Content-Type': 'application/json' // 'Authorization': `Bearer ${token}`
-
-      }
-    };
-    return external_axios_default.a.post(this.url + '/create-by-guest', postData, config).then(response => {
-      return Promise.resolve(response);
-    }).catch(error => {
-      return Promise.reject(error);
-    });
-  }
-
-}
-// CONCATENATED MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js
-
-
-
-
-const practiceByGuestConsts = {
-  SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
-  RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
-  CREATE: 'PRACTICE_BY_GUEST_CREATE'
-};
-class PracticeByGuestAction_PracticeByGuestAction extends BaseAction {
-  constructor() {
-    super();
-    this.service = new PracticeService_PracticeService();
-    this.consts = practiceByGuestConsts;
-  }
-
-  setItem(item) {
-    return dispatch => {
-      dispatch({
-        type: this.consts.SET_ITEM,
-        item: item
-      });
-    };
-  }
-
-  resetItem() {
-    return dispatch => {
-      dispatch({
-        type: this.consts.RESET_ITEM
-      });
-    };
-  }
-
-  create(params) {
-    return dispatch => {
-      dispatch(PageLoaderAction["a" /* default */].show());
-      this.service.createByGuest(params).then(response => {
-        dispatch(this.resetItem());
-        dispatch(AlertMessageAction["b" /* default */].alertMessageSuccess('Richiesta inviata con successo!'));
-        dispatch(PageLoaderAction["a" /* default */].hide());
-      }).catch(error => {
-        dispatch(AlertMessageAction["b" /* default */].alertMessageError(error.response.data.meta.message));
-        dispatch(PageLoaderAction["a" /* default */].hide());
-      });
-    };
-  }
-
-}
-
-/***/ }),
-
-/***/ "rKB8":
-/***/ (function(module, exports) {
-
-module.exports = require("redux");
 
 /***/ }),
 
