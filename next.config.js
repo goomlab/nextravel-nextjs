@@ -38,7 +38,7 @@ module.exports = {
       url: process.env.REACT_APP_URL,
       image: process.env.REACT_APP_IMAGE,
     },
-    ga_tracking_id: 'GTM-TZBGDPX',
+    ga_tracking_id: process.env.REACT_GTAG_ID,
     pagination: {
       paginate: 20
     },

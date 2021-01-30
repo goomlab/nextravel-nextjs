@@ -141,13 +141,32 @@ const GtagScript = () => {
     }
   }
 
-  return __jsx(external_react_default.a.Fragment, null);
+  return __jsx(external_react_default.a.Fragment, null, __jsx("script", {
+    id: "gtm-js",
+    async: true,
+    src: `https://www.googletagmanager.com/gtm.js?id=${GA_TRACKING_ID}`
+  }), __jsx("script", {
+    dangerouslySetInnerHTML: {
+      __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
+            (${intercept.toString()})()
+            `
+    }
+  }));
 };
 const style = {
   display: "none",
   visibility: "hidden"
 };
-const GtagNoscript = props => __jsx(external_react_default.a.Fragment, null);
+const GtagNoscript = props => __jsx(external_react_default.a.Fragment, null, __jsx("noscript", null, __jsx("iframe", {
+  src: `https://www.googletagmanager.com/ns.html?id=${GA_TRACKING_ID}`,
+  height: "0",
+  width: "0",
+  style: style
+})));
 // CONCATENATED MODULE: ./pages/_document.js
 var _document_jsx = external_react_default.a.createElement;
 

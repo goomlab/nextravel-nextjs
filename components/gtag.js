@@ -13,7 +13,7 @@ export const GtagScript = () => {
 
   return (
     <React.Fragment>
-      {/* <script
+      <script
         id="gtm-js"
         async
         src={`https://www.googletagmanager.com/gtm.js?id=${GA_TRACKING_ID}`}
@@ -28,7 +28,7 @@ export const GtagScript = () => {
             (${intercept.toString()})()
             `
         }}
-      /> */}
+      />
       
       {/* <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -45,13 +45,13 @@ const style = {
 };
 export const GtagNoscript = props => (
   <React.Fragment>
-    {/* <noscript>
+    <noscript>
       <iframe
         src={`https://www.googletagmanager.com/ns.html?id=${GA_TRACKING_ID}`}
         height="0"
         width="0"
         style={style}
       />
-    </noscript> */}
+    </noscript>
   </React.Fragment>
 );
