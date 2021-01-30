@@ -161,12 +161,7 @@ const style = {
   display: "none",
   visibility: "hidden"
 };
-const GtagNoscript = props => __jsx(external_react_default.a.Fragment, null, __jsx("noscript", null, __jsx("iframe", {
-  src: `https://www.googletagmanager.com/ns.html?id=${GA_TRACKING_ID}`,
-  height: "0",
-  width: "0",
-  style: style
-})));
+const GtagNoscript = props => __jsx(external_react_default.a.Fragment, null);
 // CONCATENATED MODULE: ./pages/_document.js
 var _document_jsx = external_react_default.a.createElement;
 

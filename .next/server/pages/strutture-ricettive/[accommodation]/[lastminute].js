@@ -1485,7 +1485,7 @@ var __jsx = external_react_default.a.createElement;
 
 const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
   charSet: "UTF-8"
-}), __jsx("title", null, meta.title || '', " - ", "NextTravel"), __jsx("meta", {
+}), __jsx("title", null, meta.title || '', " - ", "Nextravel"), __jsx("meta", {
   name: "description",
   content: meta.description || ''
 }), __jsx("meta", {
@@ -1522,10 +1522,10 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
   content: meta.type || 'website'
 }), __jsx("meta", {
   property: "og:title",
-  content: `${{"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.title} - ${meta.title || ''}`
+  content: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.title} - ${meta.title || ''}`
 }), __jsx("meta", {
   property: "og:image",
-  content: meta.image || {"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
+  content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
 }), __jsx("meta", {
   property: "og:locale",
   content: "it_IT"
@@ -1543,13 +1543,13 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
   content: ""
 }), __jsx("meta", {
   name: "twitter:title",
-  content: `${{"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.title} - ${meta.title || ''}`
+  content: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.title} - ${meta.title || ''}`
 }), __jsx("meta", {
   name: "twitter:description",
   content: meta.description || ''
 }), __jsx("meta", {
   name: "twitter:image",
-  content: meta.image || {"title":"NextTravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
+  content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
 }));
 
 /* harmony default export */ var MainLayout_Head = (Head);
