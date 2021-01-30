@@ -141,21 +141,7 @@ const GtagScript = () => {
     }
   }
 
-  return __jsx(external_react_default.a.Fragment, null, __jsx("script", {
-    id: "gtm-js",
-    async: true,
-    src: `https://www.googletagmanager.com/gtm.js?id=${GA_TRACKING_ID}`
-  }), __jsx("script", {
-    dangerouslySetInnerHTML: {
-      __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}');
-            (${intercept.toString()})()
-            `
-    }
-  }));
+  return __jsx(external_react_default.a.Fragment, null);
 };
 const style = {
   display: "none",
