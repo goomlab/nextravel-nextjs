@@ -105,7 +105,7 @@ const Newsletter = (props) => {
                           formik.handleChange(e)
                         }}
                         />
-                      <label className="custom-control-label" htmlFor="newsletter_privacy">Acconsento al trattamento dei miei dati ai sensi dell’informativa sulla <a href="/privacy" target="_blank" rel="nofollow">Privacy</a>.</label>
+                      <label className="custom-control-label" htmlFor="newsletter_privacy">Acconsento al trattamento dei miei dati ai sensi dell’informativa sulla <a href="/privacy-policy" target="_blank" rel="nofollow">Privacy</a>.</label>
                       {formik.errors.privacy && 
                         <div className="invalid-feedback">
                           {formik.errors.privacy}

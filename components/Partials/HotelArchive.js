@@ -135,7 +135,7 @@ const HotelArchiveItem = props => {
   
   return (
     <div className="hotel-list-item">
-      <a href={`/accommodations/${props.hotel.slug.it}`}>
+      <a href={`${process.env.accommodations_path}/${props.hotel.slug.it}`} rel="nofollow">
         <div className="topline">
           <div className="title mr-auto">
             {hotel.name}
@@ -145,7 +145,7 @@ const HotelArchiveItem = props => {
           </div>
         </div>
       </a>
-      <a href={`/accommodations/${props.hotel.slug.it}`}>
+      <a href={`${process.env.accommodations_path}/${props.hotel.slug.it}`} rel="nofollow">
         <figure className="img-bgas">
           <img
             src={(hotel.media && hotel.media.gallery && hotel.media.gallery[0]) ? hotel.media.gallery[0].url : 'default'}
@@ -227,8 +227,8 @@ const HotelArchiveItem = props => {
             </div>
             <div className="col-4">
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}`} 
-                href={{pathname: `/accommodations/[accommodition]`}}
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}`} 
+                href={{pathname: `${process.env.accommodations_path}/[accommodition]`}}
               >
                 <a className="goto">
                   Visualizza la struttura

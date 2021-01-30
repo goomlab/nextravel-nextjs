@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -478,6 +478,14 @@ function assign(target, ...searchParamsList) {
 
 /***/ }),
 
+/***/ 5:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("/zPf");
+
+
+/***/ }),
+
 /***/ "57t+":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -625,14 +633,6 @@ function formatUrl(urlObj) {
   search = search.replace('#', '%23');
   return `${protocol}${host}${pathname}${search}${hash}`;
 }
-
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("/zPf");
-
 
 /***/ }),
 

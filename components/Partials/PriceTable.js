@@ -27,9 +27,9 @@ const PriceTable = props => {
         </div>
         {props.priceTableLink &&
           <Link 
-            as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`} 
+            as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`} 
             href={{
-              pathname: `/accommodations/[accommodition]/booking/[id]`,
+              pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
               query: {
                 checkin: props.period.date_from,
                 checkout: props.period.date_to,
@@ -74,9 +74,9 @@ const PriceTable = props => {
             <td>
               {prices.n1 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
@@ -95,9 +95,9 @@ const PriceTable = props => {
             <td>
               {prices.n2 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
@@ -116,9 +116,9 @@ const PriceTable = props => {
             <td>
               {prices.n3 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
@@ -137,9 +137,9 @@ const PriceTable = props => {
             <td>
               {prices.n4 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
@@ -158,9 +158,9 @@ const PriceTable = props => {
             <td>
               {prices.n5 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
@@ -179,9 +179,9 @@ const PriceTable = props => {
             <td>
               {prices.n6 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
@@ -200,9 +200,9 @@ const PriceTable = props => {
             <td>
               {prices.n7 && 
               <Link 
-                as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`} 
                 href={{
-                  pathname: `/accommodations/[accommodition]/booking/[id]`,
+                  pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,

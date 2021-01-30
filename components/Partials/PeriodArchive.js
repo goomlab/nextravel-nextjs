@@ -45,8 +45,8 @@ const PeriodArchiveItem = props => {
     </div>
     <div className="col-sm-2 text-right">
       <Link 
-        as={`/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`} 
-        href={{pathname: `/accommodations/[accommodition]/booking/[period]`}}
+        as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`} 
+        href={{pathname: `${process.env.accommodations_path}/[accommodition]/booking/[period]`}}
       >
         <a className="prices-goto with-top-border"></a>
       </Link>

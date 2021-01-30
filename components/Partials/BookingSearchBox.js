@@ -197,7 +197,7 @@ const BookingSearchBox = props => {console.log('booking search props', props)
     let i = 0;
     do {
       months.push(
-        <Link href="/offerte/[slug]" as={`/offerte/${now.format('MMMM').toLowerCase()}`}>
+        <Link href={`${process.env.filterpages_path}/[slug]`} as={`${process.env.filterpages_path}/${now.format('MMMM').toLowerCase()}`}>
           <a>
             <strong>{now.format('MMM')}</strong> {now.format('YY')}
           </a>
@@ -228,7 +228,7 @@ const BookingSearchBox = props => {console.log('booking search props', props)
 
   const onSumbit = (e) => {
     e.preventDefault();
-    var url = "/accommodations?";
+    var url = `${process.env.accommodations_path}?`;
     for(let [key, value] of Object.entries(state))
       url += key + '=' + value + '&';
     window.location.href = url;
@@ -328,7 +328,7 @@ const BookingSearchBox = props => {console.log('booking search props', props)
                 <div className="swiper-wrapper">
                   {params.specials && params.specials.map( (obj, index) => 
                     <div className="swiper-slide" key={index}>
-                      <Link href="/offerte/[slug]" as={`/offerte/${obj.slug.it}`}>
+                      <Link href={`${process.env.filterpages_path}/[slug]`} as={`${process.env.filterpages_path}/${obj.slug.it}`}>
                         <a>
                           {obj.title.it}
                         </a>

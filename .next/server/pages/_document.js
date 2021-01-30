@@ -88,12 +88,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 1:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("5w0S");
@@ -112,13 +112,63 @@ module.exports = require("styled-jsx/server");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MyDocument; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("8cZr");
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_1__);
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ _document_MyDocument; });
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: ./node_modules/next/document.js
+var next_document = __webpack_require__("8cZr");
+var document_default = /*#__PURE__*/__webpack_require__.n(next_document);
+
+// CONCATENATED MODULE: ./components/gtag.js
+var __jsx = external_react_default.a.createElement;
+
+const GA_TRACKING_ID = "GTM-TZBGDPX";
+const GtagScript = () => {
+  function intercept() {
+    const qs = document.querySelector("#gtm-js");
+
+    if (qs !== null) {
+      qs.addEventListener("load", () => {
+        console.log("GTM loaded");
+      });
+    }
+  }
+
+  return __jsx(external_react_default.a.Fragment, null, __jsx("script", {
+    id: "gtm-js",
+    async: true,
+    src: `https://www.googletagmanager.com/gtm.js?id=${GA_TRACKING_ID}`
+  }), __jsx("script", {
+    dangerouslySetInnerHTML: {
+      __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
+            (${intercept.toString()})()
+            `
+    }
+  }));
+};
+const style = {
+  display: "none",
+  visibility: "hidden"
+};
+const GtagNoscript = props => __jsx(external_react_default.a.Fragment, null, __jsx("noscript", null, __jsx("iframe", {
+  src: `https://www.googletagmanager.com/ns.html?id=${GA_TRACKING_ID}`,
+  height: "0",
+  width: "0",
+  style: style
+})));
+// CONCATENATED MODULE: ./pages/_document.js
+var _document_jsx = external_react_default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -127,24 +177,24 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
- // import { GtagScript, GtagNoscript } from '../components/gtag'
 
-class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_1___default.a {
+
+class _document_MyDocument extends document_default.a {
   static async getInitialProps(ctx) {
-    const initialProps = await next_document__WEBPACK_IMPORTED_MODULE_1___default.a.getInitialProps(ctx);
+    const initialProps = await document_default.a.getInitialProps(ctx);
     return _objectSpread({}, initialProps);
   }
 
   render() {
-    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Html"], {
+    return _document_jsx(next_document["Html"], {
       lang: "it"
-    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Head"], null, __jsx("meta", {
+    }, _document_jsx(next_document["Head"], null, _document_jsx("meta", {
       name: "theme-color",
       content: "#666"
-    }), __jsx("link", {
+    }), _document_jsx("link", {
       href: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap",
       rel: "stylesheet"
-    })), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_1__["NextScript"], null)));
+    }), _document_jsx(GtagScript, null)), _document_jsx("body", null, _document_jsx(GtagNoscript, null), _document_jsx(next_document["Main"], null), _document_jsx(next_document["NextScript"], null)));
   }
 
 }

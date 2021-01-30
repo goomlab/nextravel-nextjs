@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -211,6 +211,14 @@ module.exports = _interopRequireWildcard;
 
 /***/ }),
 
+/***/ 3:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("RNiq");
+
+
+/***/ }),
+
 /***/ "3WeD":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -283,14 +291,6 @@ class MenuService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* default *
   }
 
 }
-
-/***/ }),
-
-/***/ 6:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("RNiq");
-
 
 /***/ }),
 
@@ -671,8 +671,8 @@ const BookingSearchBox = props => {
 
     do {
       months.push(__jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        href: "/offerte/[slug]",
-        as: `/offerte/${now.format('MMMM').toLowerCase()}`
+        href: `${"/offerte"}/[slug]`,
+        as: `${"/offerte"}/${now.format('MMMM').toLowerCase()}`
       }, __jsx("a", null, __jsx("strong", null, now.format('MMM')), " ", now.format('YY'))));
       i++;
       now.add(1, 'months');
@@ -696,7 +696,7 @@ const BookingSearchBox = props => {
 
   const onSumbit = e => {
     e.preventDefault();
-    var url = "/accommodations?";
+    var url = `${"/strutture-ricettive"}?`;
 
     for (let [key, value] of Object.entries(state)) url += key + '=' + value + '&';
 
@@ -834,8 +834,8 @@ const BookingSearchBox = props => {
     className: "swiper-slide",
     key: index
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    href: "/offerte/[slug]",
-    as: `/offerte/${obj.slug.it}`
+    href: `${"/offerte"}/[slug]`,
+    as: `${"/offerte"}/${obj.slug.it}`
   }, __jsx("a", null, obj.title.it)))))), __jsx("div", {
     id: "swiperBookingHolidays-button-prev",
     className: "swiper-button-prev"
@@ -989,7 +989,8 @@ const HotelArchiveItem = props => {
   return __jsx("div", {
     className: "hotel-list-item"
   }, __jsx("a", {
-    href: `/accommodations/${props.hotel.slug.it}`
+    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    rel: "nofollow"
   }, __jsx("div", {
     className: "topline"
   }, __jsx("div", {
@@ -997,7 +998,8 @@ const HotelArchiveItem = props => {
   }, hotel.name), __jsx("div", {
     className: "stars ml-auto"
   }, stars))), __jsx("a", {
-    href: `/accommodations/${props.hotel.slug.it}`
+    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    rel: "nofollow"
   }, __jsx("figure", {
     className: "img-bgas"
   }, __jsx("img", {
@@ -1083,9 +1085,9 @@ const HotelArchiveItem = props => {
   })), __jsx("div", {
     className: "col-4"
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
     href: {
-      pathname: `/accommodations/[accommodition]`
+      pathname: `${"/strutture-ricettive"}/[accommodition]`
     }
   }, __jsx("a", {
     className: "goto"
@@ -1740,7 +1742,7 @@ const Newsletter = props => {
     className: "custom-control-label",
     htmlFor: "newsletter_privacy"
   }, "Acconsento al trattamento dei miei dati ai sensi dell\u2019informativa sulla ", Newsletter_jsx("a", {
-    href: "/privacy",
+    href: "/privacy-policy",
     target: "_blank",
     rel: "nofollow"
   }, "Privacy"), "."), formik.errors.privacy && Newsletter_jsx("div", {
@@ -2003,9 +2005,9 @@ const PriceTable = props => {
   }, __jsx("div", {
     className: "prices-details"
   }, __jsx("span", null, title, " / prezzi p.p.")), props.priceTableLink && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to
@@ -2034,9 +2036,9 @@ const PriceTable = props => {
   }, "notti")), __jsx("th", null, "7 ", __jsx("span", {
     className: "no-smartphone"
   }, "notti")))), __jsx("tbody", null, __jsx("tr", null, __jsx("td", null, prices.n1 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
@@ -2047,9 +2049,9 @@ const PriceTable = props => {
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n1, ",-")), !prices.n1 && `-`), __jsx("td", null, prices.n2 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
@@ -2060,9 +2062,9 @@ const PriceTable = props => {
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n2, ",-")), !prices.n2 && `-`), __jsx("td", null, prices.n3 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
@@ -2073,9 +2075,9 @@ const PriceTable = props => {
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n3, ",-")), !prices.n3 && `-`), __jsx("td", null, prices.n4 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
@@ -2086,9 +2088,9 @@ const PriceTable = props => {
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n4, ",-")), !prices.n4 && `-`), __jsx("td", null, prices.n5 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
@@ -2099,9 +2101,9 @@ const PriceTable = props => {
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n5, ",-")), !prices.n5 && `-`), __jsx("td", null, prices.n6 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
@@ -2112,9 +2114,9 @@ const PriceTable = props => {
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n6, ",-")), !prices.n6 && `-`), __jsx("td", null, prices.n7 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `/accommodations/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`,
     href: {
-      pathname: `/accommodations/[accommodition]/booking/[id]`,
+      pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,

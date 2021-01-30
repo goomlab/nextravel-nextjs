@@ -21,6 +21,8 @@ module.exports = {
     app_title: process.env.REACT_APP_NAME,
     api_url: process.env.REACT_APP_API_URL,
     public_path: process.env.REACT_PUBLIC_PATH,
+    accommodations_path: process.env.REACT_ACCOMMODATIONS_PATH,
+    filterpages_path: process.env.REACT_FILTERPAGES_PATH,
     api: {
       headers: {
         'Accept': 'application/json'
@@ -36,7 +38,7 @@ module.exports = {
       url: process.env.REACT_APP_URL,
       image: process.env.REACT_APP_IMAGE,
     },
-    // ga_tracking_id: 'GTM-5HSTK76',
+    ga_tracking_id: 'GTM-TZBGDPX',
     pagination: {
       paginate: 20
     },
