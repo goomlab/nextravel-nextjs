@@ -4,7 +4,7 @@ import NextHead from 'next/head'
 const Head = (meta) => (
   <NextHead>
     <meta charSet="UTF-8" />
-    <title>{meta.title || ''}</title>
+    <title>{meta.title || ''} - {process.env.app_title}</title>
     <meta name="description" content={meta.description || ''} />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous" />

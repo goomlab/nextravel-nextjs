@@ -1485,7 +1485,7 @@ var __jsx = external_react_default.a.createElement;
 
 const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
   charSet: "UTF-8"
-}), __jsx("title", null, meta.title || ''), __jsx("meta", {
+}), __jsx("title", null, meta.title || '', " - ", "NextTravel"), __jsx("meta", {
   name: "description",
   content: meta.description || ''
 }), __jsx("meta", {
