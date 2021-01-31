@@ -4090,7 +4090,6 @@ class NewsletterService_NewsletterService extends BaseService["a" /* default */]
 
   sendinblue_createContact(params) {
     return external_axios_default.a.post(`${this.url}/sendinblue/contacts`, params, this.config).then(response => {
-      console('clientIp', response);
       return Promise.resolve(response);
     }).catch(error => {
       return Promise.reject(error);
@@ -4152,7 +4151,8 @@ class NewsletterAction_NewsletterAction extends BaseAction["a" /* default */] {
         dispatch(AlertMessageAction["b" /* default */].alertMessageSuccess('Ti ringraziamo per esserti registrato alla newsletter. Ti terremo aggiornati sulle nostre offerte.'));
         dispatch(PageLoaderAction["a" /* default */].hide());
       }).catch(error => {
-        dispatch(AlertMessageAction["b" /* default */].alertMessageError(error.response.data.meta.message));
+        dispatch(AlertMessageAction["b" /* default */].alertMessageError(error.response.data.meta.message)); // dispatch(AlertMessageAction.alertMessageError("Errore dura"))
+
         dispatch(PageLoaderAction["a" /* default */].hide());
       });
     };

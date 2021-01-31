@@ -62,6 +62,7 @@ export default class NewsletterAction extends BaseAction {
       })
       .catch(error => {
         dispatch(AlertMessageAction.alertMessageError(error.response.data.meta.message))
+        // dispatch(AlertMessageAction.alertMessageError("Errore dura"))
         dispatch(PageLoaderAction.hide())
       })
     }

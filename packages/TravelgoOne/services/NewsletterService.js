@@ -20,7 +20,7 @@ export default class NewsletterService extends BaseService {
 
   sendinblue_createContact(params) {
     return axios.post(`${this.url}/sendinblue/contacts`, params, this.config)
-    .then(response => {console('clientIp', response)
+    .then(response => {
       return Promise.resolve(response);
     })
     .catch(error => {
