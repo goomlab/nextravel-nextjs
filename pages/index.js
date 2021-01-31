@@ -89,7 +89,7 @@ const Index = props => {
   );
 };
 
-Index.getInitialProps = async ctx => {console.log('CTX', ctx.req.clientIp)
+Index.getInitialProps = async ctx => {
   let menu = null;
   // let months = [];
   // let specials = [];

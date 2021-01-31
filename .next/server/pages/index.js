@@ -1871,7 +1871,6 @@ const Index = props => {
 };
 
 Index.getInitialProps = async ctx => {
-  console.log('CTX', ctx.req.clientIp);
   let menu = null; // let months = [];
   // let specials = [];
   // let locs = [];
