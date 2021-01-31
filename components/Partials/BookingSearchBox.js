@@ -9,7 +9,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-const BookingSearchBox = props => {console.log('booking search props', props)
+const BookingSearchBox = props => {
   const swiperBookingMonths = React.useRef(null)
   const swiperBookingHolidays = React.useRef(null)
 

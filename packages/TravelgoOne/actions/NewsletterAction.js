@@ -6,6 +6,7 @@ import NewsletterService from '../services/NewsletterService'
 export const newsletterConsts = {
   SET_ITEM: 'NEWSLETTER_SET_ITEM',
   RESET_ITEM: 'NEWSLETTER_RESET_ITEM',
+  GET_CLIENT_IP: 'NEWSLETTER_GET_CLIENT_IP',
   SENDINBLUE_CREATE_CONTACT: 'NEWSLETTER_SENDINBLUE_CREATE_CONTACT',
 }
 
@@ -31,6 +32,21 @@ export default class NewsletterAction extends BaseAction {
     return (dispatch) => {
       dispatch({
         type: this.consts.RESET_ITEM,
+      })
+    }
+  }
+
+  getClientIp() {
+    return (dispatch) => {
+      this.service.getClientIp()
+      .then(response => {
+        dispatch({
+          type: this.consts.GET_CLIENT_IP,
+          clientIp: response.data.clientIp,
+        })
+      })
+      .catch(error => {
+
       })
     }
   }

@@ -1,5 +1,6 @@
 const express = require('express');
 const next = require('next');
+const requestIp = require('request-ip');
 
 const dev = process.env.NODE_ENV !== 'production';
 
@@ -15,6 +16,13 @@ app.prepare()
   //   console.log('server params', req.params)
   //   app.render(req, res, '/post', {id: req.params.id});
   // });
+
+  server.get('/get-client-ip', (req, res) => {
+    let ip = requestIp.getClientIp(req)
+    return res.json({
+      clientIp: ip
+    })
+  })
 
   server.get('*', (req, res) => {
     return handler(req, res);

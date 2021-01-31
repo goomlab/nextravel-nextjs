@@ -69,7 +69,7 @@ const Index = props => {
           </div>
         </div>
       </section>
-      {console.log('Hotels', props.hotels)}
+
       <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
 
       {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) &&
@@ -89,7 +89,7 @@ const Index = props => {
   );
 };
 
-Index.getInitialProps = async ctx => {
+Index.getInitialProps = async ctx => {console.log('CTX', ctx.req.clientIp)
   let menu = null;
   // let months = [];
   // let specials = [];

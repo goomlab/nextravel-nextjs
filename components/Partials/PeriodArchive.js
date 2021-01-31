@@ -61,7 +61,6 @@ const PeriodArchive = props => {
   return (
     <div className="prices-box-container">
       <div className="row">
-        {console.log('periods',props.periods)}
         {props.periods && props.periods.length > 0 && props.periods.map( (period, index) => 
           <PeriodArchiveItem 
             key={index} 

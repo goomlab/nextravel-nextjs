@@ -1,13 +1,6 @@
 {
-  "/[page]": "pages/[page].js",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/offerte/[slug]": "pages/offerte/[slug].js",
-  "/preventivi/[id]": "pages/preventivi/[id].js",
-  "/strutture-ricettive/[accommodation]": "pages/strutture-ricettive/[accommodation].js",
-  "/strutture-ricettive/[accommodation]/[lastminute]": "pages/strutture-ricettive/[accommodation]/[lastminute].js",
-  "/strutture-ricettive/[accommodation]/booking/[id]": "pages/strutture-ricettive/[accommodation]/booking/[id].js",
-  "/strutture-ricettive": "pages/strutture-ricettive.js",
-  "/_error": "pages/_error.js"
+  "/_error": "pages/_error.js",
+  "/": "pages/index.js"
 }

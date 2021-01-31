@@ -28,7 +28,6 @@ const Footer = () => {
           </div>
           <div className="col-md-5">
             <ul className="menu-social">
-              {console.log('socials',process.env.socials)}
               {Object.entries(process.env.contacts).map(([key, obj], index) => 
                 <li key={key}>
                   <a href={obj.url}>

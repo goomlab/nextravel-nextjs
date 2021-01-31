@@ -18,6 +18,11 @@ const NewsletterReducer = (state = initialState, action) => {
         ...state,
         ...action.item
       }
+    case newsletterConsts.GET_CLIENT_IP:
+      return {
+        ...state,
+        sub_ip: action.clientIp
+      }
     case newsletterConsts.SENDINBLUE_CREATE_CONTACT:
       return initialState;
     default:

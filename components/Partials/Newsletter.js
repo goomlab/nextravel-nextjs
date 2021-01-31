@@ -7,6 +7,10 @@ import NewsletterAction from '~/packages/TravelgoOne/actions/NewsletterAction'
 
 const Newsletter = (props) => {
 
+  React.useEffect(() => {
+    props.getClientIp();
+  },[])
+
   /**
    * onChange
    */
@@ -91,7 +95,7 @@ const Newsletter = (props) => {
                         </div>
                       }
                   </div>
-                  <div className="form-group">{console.log('newslettrer', props.newsletter)}
+                  <div className="form-group">
                     <div className="custom-control custom-checkbox">
                       <input
                         type="checkbox"
@@ -161,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     resetContact: () => {
       dispatch(newsletterAction.resetItem())
+    },
+    getClientIp: () => {
+      dispatch(newsletterAction.getClientIp())
     },
     createContact: (data) => {
       dispatch(newsletterAction.sendinblue_createContact(data))
