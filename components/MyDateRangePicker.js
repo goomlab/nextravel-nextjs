@@ -42,7 +42,7 @@ const MyDateRangePicker = (props) => {
         <input 
           type="text" className="form-control" id="" name="" placeholder="Checkin" 
           value={state.startDate.format('DD/MM/YYYY') + ' - ' + state.endDate.format('DD/MM/YYYY') || ''} 
-          onchange={(e) => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
       </DateRangePicker>
     </React.Fragment>

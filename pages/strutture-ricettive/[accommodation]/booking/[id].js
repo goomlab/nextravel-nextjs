@@ -14,9 +14,11 @@ import RateplanPeriodService from "~/packages/TravelgoOne/services/RateplanPerio
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
 import BookingForm from "~/components/Partials/BookingForm";
+import HotelAgeRangesTable from '~/components/Partials/HotelAgeRangesTable';
+import HotelExtraServicesTable from '~/components/Partials/HotelExtraServicesTable';
 import PriceTable from '~/components/Partials/PriceTable';
 
-const BookingPage = props => {console.log('props booking page',props)
+const BookingPage = props => {
   if (!props.hotel || props.hotel.length <= 0) {
     return (
       <Layout settings={{ menu: props.menu }}>
@@ -83,7 +85,7 @@ const BookingPage = props => {console.log('props booking page',props)
             <div className="swiper-wrapper">
               {hotel.media && hotel.media.gallery.map((img, index) => 
                 <div className="swiper-slide" key={index}>
-                  <figure class="img-bgas">
+                  <figure className="img-bgas">
                     <img src={img.url} alt={img.name} />
                   </figure>
                 </div>
@@ -130,33 +132,69 @@ const BookingPage = props => {console.log('props booking page',props)
               <div className="row">
                 <div className="col-lg-6">
                 {priceList && Object.entries(priceList).map( ([treatment, prices], index) => 
-                  <div className="prices-box" key={index}>
-                    <PriceTable 
-                      key={index}
-                      index={index}
-                      treatment={treatment}
-                      prices={prices}
-                      hotel={hotel}
-                      period={period}
-                      />
-                  </div>
+                  <React.Fragment>
+                    <div className="prices-box" key={index}>
+                      <PriceTable 
+                        key={index}
+                        index={index}
+                        treatment={treatment}
+                        prices={prices}
+                        hotel={hotel}
+                        period={period}
+                        />
+                    </div>
+                  </React.Fragment>
                 )}
 
-                <span>Servizi aggiuntivi</span>
-                <table class="prices-table">
-                  {hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map( (obj, index) => 
-                    <tr key={index}>
-                      <td className="service-name">
-                        {obj.name}
-                      </td>
-                      <td className="service-price">
-                        <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
-                        {obj.pivot.price},-
-                        {(obj.pivot.price_type == 'percent') ? ' %' : ''}
-                      </td>
-                    </tr>
-                  )}
-                </table>
+                {period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && 
+                  <HotelAgeRangesTable 
+                    hotelAgeRanges={period.hotelAgeRanges} 
+                    />
+                  // <React.Fragment>
+                  //   <span>Supplementi e Riduzioni per età</span>
+                  //   <table className="prices-table">
+                  //     <tbody>
+                  //       {period.hotelAgeRanges.map( (obj, index) => 
+                  //         <tr key={index}>
+                  //           <td className="service-name">
+                  //             {obj.age_min} - {obj.age_max}
+                  //           </td>
+                  //           <td className="service-price">
+                  //             <span className="no-smartphone">{(obj.price_type == 'fixed') ? '€ ' : '+ '}</span>
+                  //             {obj.price},-
+                  //             {(obj.price_type == 'percent') ? ' %' : ''}
+                  //           </td>
+                  //         </tr>
+                  //       )}
+                  //     </tbody>
+                  //   </table>
+                  // </React.Fragment>
+                }
+
+                {hotel.extraServices && hotel.extraServices.length > 0 && 
+                  <HotelExtraServicesTable 
+                    extraServices={hotel.extraServices} 
+                    />
+                  // <React.Fragment>
+                  //   <span>Servizi aggiuntivi</span>
+                  //   <table class="prices-table">
+                  //     <tbody>
+                  //       {hotel.extraServices.map( (obj, index) => 
+                  //         <tr key={index}>
+                  //           <td className="service-name">
+                  //             {obj.name}
+                  //           </td>
+                  //           <td className="service-price">
+                  //             <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
+                  //             {obj.pivot.price},-
+                  //             {(obj.pivot.price_type == 'percent') ? ' %' : ''}
+                  //           </td>
+                  //         </tr>
+                  //       )}
+                  //     </tbody>
+                  //   </table>
+                  // </React.Fragment>
+                }
                 
                 </div>
                 <div className="col-lg-4 offset-lg-2">

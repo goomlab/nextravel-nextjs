@@ -944,7 +944,7 @@ const MyDateRangePicker = props => {
     name: "",
     placeholder: "Checkin",
     value: state.startDate.format('DD/MM/YYYY') + ' - ' + state.endDate.format('DD/MM/YYYY') || '',
-    onchange: e => onChange(e)
+    onChange: e => onChange(e)
   })));
 };
 

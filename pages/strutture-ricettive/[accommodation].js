@@ -14,6 +14,7 @@ import RateplanPeriodService from "~/packages/TravelgoOne/services/RateplanPerio
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
 import PeriodArchive from "~/components/Partials/PeriodArchive";
+import HotelExtraServicesTable from '~/components/Partials/HotelExtraServicesTable';
 
 const HotelPage = props => {
   if (!props.page || props.page.length <= 0) {
@@ -67,14 +68,14 @@ const HotelPage = props => {
             <div className="swiper-wrapper">
               {hotel.media && hotel.media.gallery.map((img, index) => 
                 <div className="swiper-slide" key={index}>
-                  <figure class="img-bgas">
+                  <figure className="img-bgas">
                     <img src={img.url} alt={img.name} />
                   </figure>
                 </div>
               )}
               {(!hotel.media || !hotel.media.gallery) && 
                 <div className="swiper-slide">
-                  <figure class="img-bgas">
+                  <figure classNAme="img-bgas">
                     <img src="default" alt="" />
                   </figure>
                 </div>
@@ -159,31 +160,39 @@ const HotelPage = props => {
               </div>
             </div>
 
-            <div className="col-lg-7 offset-lg-1">{console.log('hotel',hotel)}
+            <div className="col-lg-7 offset-lg-1">
               <PeriodArchive
                 hotel={hotel}
-                periods={props.periods} 
+                periods={props.periods}
+                hasHotelAgeRanges={true}
                 />
 
-              <div className="row">
-                <div className="col-sm-10">
-                  <span>Servizi aggiuntivi</span>
-                  <table class="prices-table">
-                    {hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map( (obj, index) => 
-                      <tr key={index}>
-                        <td className="service-name">
-                          {obj.name}
-                        </td>
-                        <td className="service-price">
-                          <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
-                          {obj.pivot.price},-
-                          {(obj.pivot.price_type == 'percent') ? ' %' : ''}
-                        </td>
-                      </tr>
-                    )}
-                  </table>
-                </div>
-              </div>
+              {hotel.extraServices && hotel.extraServices.length > 0 && 
+                <HotelExtraServicesTable
+                  extraServices={hotel.extraServices}
+                  />
+                // <div className="row">
+                //   <div className="col-sm-10">
+                //     <span>Servizi aggiuntivi</span>
+                //     <table class="prices-table">
+                //       <tbody>
+                //       {hotel.extraServices.map( (obj, index) => 
+                //         <tr key={index}>
+                //           <td className="service-name">
+                //             {obj.name}
+                //           </td>
+                //           <td className="service-price">
+                //             <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
+                //             {obj.pivot.price},-
+                //             {(obj.pivot.price_type == 'percent') ? ' %' : ''}
+                //           </td>
+                //         </tr>
+                //       )}
+                //       </tbody>
+                //     </table>
+                //   </div>
+                // </div>
+              }
 
             </div>
           </div>

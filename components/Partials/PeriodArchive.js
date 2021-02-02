@@ -2,10 +2,13 @@ import React from "react";
 import moment from 'moment';
 import Link from "next/link";
 
+import HotelAgeRangesTable from '~/components/Partials/HotelAgeRangesTable';
 import PriceTable from './PriceTable';
+import HotelExtraServicesTable from "./HotelExtraServicesTable";
 
 
 const PeriodArchiveItem = props => {
+  const period = props.period; console.log('period', props)
   let dateFrom = moment(props.period.date_from, 'YYYY-MM-DD');
   let dateTo = moment(props.period.date_to, 'YYYY-MM-DD');
 
@@ -42,6 +45,32 @@ const PeriodArchiveItem = props => {
             />
         </div>
       )}
+
+      {props.hasHotelAgeRanges && period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && 
+        <HotelAgeRangesTable
+          hotelAgeRanges={period.hotelAgeRanges}
+          />  
+
+        // <React.Fragment>
+        //   <span>Supplementi e Riduzioni per età</span>
+        //   <table className="prices-table">
+        //     <tbody>
+        //       {period.hotelAgeRanges.map( (obj, index) => 
+        //         <tr key={index}>
+        //           <td className="service-name">
+        //             {obj.age_min} - {obj.age_max}
+        //           </td>
+        //           <td className="service-price">
+        //             <span className="no-smartphone">{(obj.price_type == 'fixed') ? '€ ' : '+ '}</span>
+        //             {obj.price},-
+        //             {(obj.price_type == 'percent') ? ' %' : ''}
+        //           </td>
+        //         </tr>
+        //       )}
+        //     </tbody>
+        //   </table>
+        // </React.Fragment>
+      }
     </div>
     <div className="col-sm-2 text-right">
       <Link 
@@ -66,6 +95,7 @@ const PeriodArchive = props => {
             key={index} 
             hotel={props.hotel}
             period={period} 
+            hasHotelAgeRanges={props.hasHotelAgeRanges}
             />
         )}
       </div>

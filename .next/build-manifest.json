@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/Yj8Mse-OEqXazL3k89Axi/_buildManifest.js",
-    "static/Yj8Mse-OEqXazL3k89Axi/_ssgManifest.js"
+    "static/yh1aUK_d4-bMAkKQjnRfO/_buildManifest.js",
+    "static/yh1aUK_d4-bMAkKQjnRfO/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -100,7 +100,7 @@
       "static/chunks/89f069275d8bc0f4ed8298df246b99e816cb275d.1e10738e6a8a8a64f792.js",
       "static/chunks/e605cda4f3b89db726b32ca9d2839875a1140a2f.4b6041c93c10a563bcb9.js",
       "static/chunks/eadb3eba9f5dd6cbe8b0bcdfd7c9f65d9c8aa11f.d9c97ce4fe4323955480.js",
-      "static/chunks/pages/strutture-ricettive/[accommodation]-e6decc919aa5fe2d6e06.js"
+      "static/chunks/pages/strutture-ricettive/[accommodation]-9572a3b10045f98ad511.js"
     ],
     "/strutture-ricettive/[accommodation]/[lastminute]": [
       "static/chunks/main-501a59c5f44d0bdbe47f.js",
@@ -115,7 +115,7 @@
       "static/chunks/eadb3eba9f5dd6cbe8b0bcdfd7c9f65d9c8aa11f.d9c97ce4fe4323955480.js",
       "static/chunks/0700f23b5f29293c6fa082dc9d1afc964589d7dd.f52ba31d208a689cc9c0.js",
       "static/chunks/10dba252b9340cc66684f2cd02ea47e225fadbb3.c2cce53b37859f2deede.js",
-      "static/chunks/7d990f6e464e335cbeea06259d451b91878fba66.03954af00cdc9a851bcf.js",
+      "static/chunks/7d990f6e464e335cbeea06259d451b91878fba66.3909b623fe735c60ab66.js",
       "static/chunks/pages/strutture-ricettive/[accommodation]/[lastminute]-ed2c4e77fc6f182b2a60.js"
     ],
     "/strutture-ricettive/[accommodation]/booking/[id]": [
@@ -131,8 +131,8 @@
       "static/chunks/eadb3eba9f5dd6cbe8b0bcdfd7c9f65d9c8aa11f.d9c97ce4fe4323955480.js",
       "static/chunks/0700f23b5f29293c6fa082dc9d1afc964589d7dd.f52ba31d208a689cc9c0.js",
       "static/chunks/10dba252b9340cc66684f2cd02ea47e225fadbb3.c2cce53b37859f2deede.js",
-      "static/chunks/7d990f6e464e335cbeea06259d451b91878fba66.03954af00cdc9a851bcf.js",
-      "static/chunks/pages/strutture-ricettive/[accommodation]/booking/[id]-1880f2f7eb12fcc74a75.js"
+      "static/chunks/7d990f6e464e335cbeea06259d451b91878fba66.3909b623fe735c60ab66.js",
+      "static/chunks/pages/strutture-ricettive/[accommodation]/booking/[id]-397a29aae404301a240a.js"
     ]
   },
   "ampFirstPages": []

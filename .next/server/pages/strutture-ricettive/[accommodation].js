@@ -93,6 +93,39 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "+1oh":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const HotelExtraServicesTable = props => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.extraServices && props.extraServices > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Supplementi e servizi aggiuntivi"), __jsx("table", {
+    class: "prices-table"
+  }, __jsx("tbody", null, props.extraServices.map((obj, index) => __jsx("tr", {
+    key: index
+  }, __jsx("td", {
+    className: "service-name"
+  }, obj.name), __jsx("td", {
+    className: "service-price"
+  }, __jsx("span", {
+    className: "no-smartphone"
+  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : '')))))));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (HotelExtraServicesTable);
+
+/***/ }),
+
 /***/ "/jkW":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -848,6 +881,39 @@ const BookingSearchBox = props => {
 
 /***/ }),
 
+/***/ "Gmui":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const HotelAgeRangesTable = props => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.hotelAgeRanges && props.hotelAgeRanges > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Supplementi e Riduzioni per et\xE0"), __jsx("table", {
+    className: "prices-table"
+  }, __jsx("tbody", null, props.hotelAgeRanges.map((obj, index) => __jsx("tr", {
+    key: index
+  }, __jsx("td", {
+    className: "service-name"
+  }, obj.age_min, " - ", obj.age_max), __jsx("td", {
+    className: "service-price"
+  }, __jsx("span", {
+    className: "no-smartphone"
+  }, obj.price_type == 'fixed' ? '€ ' : '+ '), obj.price, ",-", obj.price_type == 'percent' ? ' %' : '')))))));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (HotelAgeRangesTable);
+
+/***/ }),
+
 /***/ "JHTH":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1285,8 +1351,14 @@ var BookingSearchBox = __webpack_require__("8Mm2");
 var external_moment_ = __webpack_require__("wy2R");
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
+// EXTERNAL MODULE: ./components/Partials/HotelAgeRangesTable.js
+var HotelAgeRangesTable = __webpack_require__("Gmui");
+
 // EXTERNAL MODULE: ./components/Partials/PriceTable.js
 var PriceTable = __webpack_require__("V5Fq");
+
+// EXTERNAL MODULE: ./components/Partials/HotelExtraServicesTable.js
+var HotelExtraServicesTable = __webpack_require__("+1oh");
 
 // CONCATENATED MODULE: ./components/Partials/PeriodArchive.js
 var __jsx = external_react_default.a.createElement;
@@ -1295,7 +1367,11 @@ var __jsx = external_react_default.a.createElement;
 
 
 
+
+
 const PeriodArchiveItem = props => {
+  const period = props.period;
+  console.log('period', props);
   let dateFrom = external_moment_default()(props.period.date_from, 'YYYY-MM-DD');
   let dateTo = external_moment_default()(props.period.date_to, 'YYYY-MM-DD');
   let priceList = {};
@@ -1326,7 +1402,28 @@ const PeriodArchiveItem = props => {
     prices: prices,
     hotel: props.hotel,
     period: props.period
-  })))), __jsx("div", {
+  }))), props.hasHotelAgeRanges && period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && __jsx(HotelAgeRangesTable["a" /* default */], {
+    hotelAgeRanges: period.hotelAgeRanges
+  }) // <React.Fragment>
+  //   <span>Supplementi e Riduzioni per età</span>
+  //   <table className="prices-table">
+  //     <tbody>
+  //       {period.hotelAgeRanges.map( (obj, index) => 
+  //         <tr key={index}>
+  //           <td className="service-name">
+  //             {obj.age_min} - {obj.age_max}
+  //           </td>
+  //           <td className="service-price">
+  //             <span className="no-smartphone">{(obj.price_type == 'fixed') ? '€ ' : '+ '}</span>
+  //             {obj.price},-
+  //             {(obj.price_type == 'percent') ? ' %' : ''}
+  //           </td>
+  //         </tr>
+  //       )}
+  //     </tbody>
+  //   </table>
+  // </React.Fragment>
+  ), __jsx("div", {
     className: "col-sm-2 text-right"
   }, __jsx(link_default.a, {
     as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`,
@@ -1346,7 +1443,8 @@ const PeriodArchive = props => {
   }, props.periods && props.periods.length > 0 && props.periods.map((period, index) => __jsx(PeriodArchiveItem, {
     key: index,
     hotel: props.hotel,
-    period: period
+    period: period,
+    hasHotelAgeRanges: props.hasHotelAgeRanges
   }))));
 };
 
@@ -1361,6 +1459,7 @@ external_swiper_default.a.use([external_swiper_["Navigation"], external_swiper_[
 
 
  // import LastminuteService from "~/packages/TravelgoOne/services/LastminuteService";
+
 
 
 
@@ -1426,14 +1525,14 @@ const HotelPage = props => {
     className: "swiper-slide",
     key: index
   }, _accommodation_jsx("figure", {
-    class: "img-bgas"
+    className: "img-bgas"
   }, _accommodation_jsx("img", {
     src: img.url,
     alt: img.name
   })))), (!hotel.media || !hotel.media.gallery) && _accommodation_jsx("div", {
     className: "swiper-slide"
   }, _accommodation_jsx("figure", {
-    class: "img-bgas"
+    classNAme: "img-bgas"
   }, _accommodation_jsx("img", {
     src: "default",
     alt: ""
@@ -1497,24 +1596,34 @@ const HotelPage = props => {
     }
   })))), _accommodation_jsx("div", {
     className: "col-lg-7 offset-lg-1"
-  }, console.log('hotel', hotel), _accommodation_jsx(Partials_PeriodArchive, {
+  }, _accommodation_jsx(Partials_PeriodArchive, {
     hotel: hotel,
-    periods: props.periods
-  }), _accommodation_jsx("div", {
-    className: "row"
-  }, _accommodation_jsx("div", {
-    className: "col-sm-10"
-  }, _accommodation_jsx("span", null, "Servizi aggiuntivi"), _accommodation_jsx("table", {
-    class: "prices-table"
-  }, hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map((obj, index) => _accommodation_jsx("tr", {
-    key: index
-  }, _accommodation_jsx("td", {
-    className: "service-name"
-  }, obj.name), _accommodation_jsx("td", {
-    className: "service-price"
-  }, _accommodation_jsx("span", {
-    className: "no-smartphone"
-  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : '')))))))))));
+    periods: props.periods,
+    hasHotelAgeRanges: true
+  }), hotel.extraServices && hotel.extraServices.length > 0 && _accommodation_jsx(HotelExtraServicesTable["a" /* default */], {
+    extraServices: hotel.extraServices
+  }) // <div className="row">
+  //   <div className="col-sm-10">
+  //     <span>Servizi aggiuntivi</span>
+  //     <table class="prices-table">
+  //       <tbody>
+  //       {hotel.extraServices.map( (obj, index) => 
+  //         <tr key={index}>
+  //           <td className="service-name">
+  //             {obj.name}
+  //           </td>
+  //           <td className="service-price">
+  //             <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
+  //             {obj.pivot.price},-
+  //             {(obj.pivot.price_type == 'percent') ? ' %' : ''}
+  //           </td>
+  //         </tr>
+  //       )}
+  //       </tbody>
+  //     </table>
+  //   </div>
+  // </div>
+  )))));
 };
 
 HotelPage.getInitialProps = async params => {

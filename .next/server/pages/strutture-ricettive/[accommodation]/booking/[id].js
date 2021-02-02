@@ -93,6 +93,39 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "+1oh":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const HotelExtraServicesTable = props => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.extraServices && props.extraServices > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Supplementi e servizi aggiuntivi"), __jsx("table", {
+    class: "prices-table"
+  }, __jsx("tbody", null, props.extraServices.map((obj, index) => __jsx("tr", {
+    key: index
+  }, __jsx("td", {
+    className: "service-name"
+  }, obj.name), __jsx("td", {
+    className: "service-price"
+  }, __jsx("span", {
+    className: "no-smartphone"
+  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : '')))))));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (HotelExtraServicesTable);
+
+/***/ }),
+
 /***/ "/jkW":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -307,7 +340,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("JHTH");
 /* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("8Mm2");
 /* harmony import */ var _components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("8Otk");
-/* harmony import */ var _components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("V5Fq");
+/* harmony import */ var _components_Partials_HotelAgeRangesTable__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("Gmui");
+/* harmony import */ var _components_Partials_HotelExtraServicesTable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("+1oh");
+/* harmony import */ var _components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("V5Fq");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
@@ -324,9 +359,9 @@ swiper__WEBPACK_IMPORTED_MODULE_3___default.a.use([swiper__WEBPACK_IMPORTED_MODU
 
 
 
-const BookingPage = props => {
-  console.log('props booking page', props);
 
+
+const BookingPage = props => {
   if (!props.hotel || props.hotel.length <= 0) {
     return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
       settings: {
@@ -401,7 +436,7 @@ const BookingPage = props => {
     className: "swiper-slide",
     key: index
   }, __jsx("figure", {
-    class: "img-bgas"
+    className: "img-bgas"
   }, __jsx("img", {
     src: img.url,
     alt: img.name
@@ -440,27 +475,59 @@ const BookingPage = props => {
     className: "row"
   }, __jsx("div", {
     className: "col-lg-6"
-  }, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx("div", {
+  }, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
     className: "prices-box",
     key: index
-  }, __jsx(_components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], {
+  }, __jsx(_components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"], {
     key: index,
     index: index,
     treatment: treatment,
     prices: prices,
     hotel: hotel,
     period: period
-  }))), __jsx("span", null, "Servizi aggiuntivi"), __jsx("table", {
-    class: "prices-table"
-  }, hotel.extraServices && hotel.extraServices.length > 0 && hotel.extraServices.map((obj, index) => __jsx("tr", {
-    key: index
-  }, __jsx("td", {
-    className: "service-name"
-  }, obj.name), __jsx("td", {
-    className: "service-price"
-  }, __jsx("span", {
-    className: "no-smartphone"
-  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : ''))))), __jsx("div", {
+  })))), period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && __jsx(_components_Partials_HotelAgeRangesTable__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], {
+    hotelAgeRanges: period.hotelAgeRanges
+  }) // <React.Fragment>
+  //   <span>Supplementi e Riduzioni per età</span>
+  //   <table className="prices-table">
+  //     <tbody>
+  //       {period.hotelAgeRanges.map( (obj, index) => 
+  //         <tr key={index}>
+  //           <td className="service-name">
+  //             {obj.age_min} - {obj.age_max}
+  //           </td>
+  //           <td className="service-price">
+  //             <span className="no-smartphone">{(obj.price_type == 'fixed') ? '€ ' : '+ '}</span>
+  //             {obj.price},-
+  //             {(obj.price_type == 'percent') ? ' %' : ''}
+  //           </td>
+  //         </tr>
+  //       )}
+  //     </tbody>
+  //   </table>
+  // </React.Fragment>
+  , hotel.extraServices && hotel.extraServices.length > 0 && __jsx(_components_Partials_HotelExtraServicesTable__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], {
+    extraServices: hotel.extraServices
+  }) // <React.Fragment>
+  //   <span>Servizi aggiuntivi</span>
+  //   <table class="prices-table">
+  //     <tbody>
+  //       {hotel.extraServices.map( (obj, index) => 
+  //         <tr key={index}>
+  //           <td className="service-name">
+  //             {obj.name}
+  //           </td>
+  //           <td className="service-price">
+  //             <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
+  //             {obj.pivot.price},-
+  //             {(obj.pivot.price_type == 'percent') ? ' %' : ''}
+  //           </td>
+  //         </tr>
+  //       )}
+  //     </tbody>
+  //   </table>
+  // </React.Fragment>
+  ), __jsx("div", {
     className: "col-lg-4 offset-lg-2"
   }, __jsx("div", {
     className: "description"
@@ -1228,7 +1295,7 @@ const MyDateRangePicker = props => {
     name: "",
     placeholder: "Checkin",
     value: state.startDate.format('DD/MM/YYYY') + ' - ' + state.endDate.format('DD/MM/YYYY') || '',
-    onchange: e => onChange(e)
+    onChange: e => onChange(e)
   })));
 };
 
@@ -1745,6 +1812,39 @@ const mapDispatchToProps = dispatch => {
 /***/ (function(module, exports) {
 
 module.exports = require("yup");
+
+/***/ }),
+
+/***/ "Gmui":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const HotelAgeRangesTable = props => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.hotelAgeRanges && props.hotelAgeRanges > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Supplementi e Riduzioni per et\xE0"), __jsx("table", {
+    className: "prices-table"
+  }, __jsx("tbody", null, props.hotelAgeRanges.map((obj, index) => __jsx("tr", {
+    key: index
+  }, __jsx("td", {
+    className: "service-name"
+  }, obj.age_min, " - ", obj.age_max), __jsx("td", {
+    className: "service-price"
+  }, __jsx("span", {
+    className: "no-smartphone"
+  }, obj.price_type == 'fixed' ? '€ ' : '+ '), obj.price, ",-", obj.price_type == 'percent' ? ' %' : '')))))));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (HotelAgeRangesTable);
 
 /***/ }),
 
