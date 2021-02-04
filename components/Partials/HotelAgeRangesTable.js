@@ -6,8 +6,8 @@ import Link from "next/link";
 const HotelAgeRangesTable = props => {
   return (
     <React.Fragment>
-      {props.hotelAgeRanges && props.hotelAgeRanges > 0 && 
-        <React.Fragment>
+      {props.hotelAgeRanges && props.hotelAgeRanges.length > 0 && 
+        <div class="prices-box-details">
           <span>Supplementi e Riduzioni per età</span>
           <table className="prices-table">
             <tbody>
@@ -25,7 +25,7 @@ const HotelAgeRangesTable = props => {
             )}
             </tbody>
           </table>
-        </React.Fragment>
+        </div>
       }
     </React.Fragment>
   )

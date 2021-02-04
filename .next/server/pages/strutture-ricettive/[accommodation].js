@@ -109,7 +109,9 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const HotelExtraServicesTable = props => {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.extraServices && props.extraServices > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Supplementi e servizi aggiuntivi"), __jsx("table", {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.extraServices && props.extraServices.length > 0 && __jsx("div", {
+    class: "prices-box-details"
+  }, __jsx("span", null, "Supplementi e servizi aggiuntivi"), __jsx("table", {
     class: "prices-table"
   }, __jsx("tbody", null, props.extraServices.map((obj, index) => __jsx("tr", {
     key: index
@@ -897,7 +899,9 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const HotelAgeRangesTable = props => {
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.hotelAgeRanges && props.hotelAgeRanges > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("span", null, "Supplementi e Riduzioni per et\xE0"), __jsx("table", {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.hotelAgeRanges && props.hotelAgeRanges.length > 0 && __jsx("div", {
+    class: "prices-box-details"
+  }, __jsx("span", null, "Supplementi e Riduzioni per et\xE0"), __jsx("table", {
     className: "prices-table"
   }, __jsx("tbody", null, props.hotelAgeRanges.map((obj, index) => __jsx("tr", {
     key: index

@@ -6,8 +6,8 @@ import Link from "next/link";
 const HotelExtraServicesTable = props => {
   return (
     <React.Fragment>
-      {props.extraServices && props.extraServices > 0 && 
-        <React.Fragment>
+      {props.extraServices && props.extraServices.length > 0 && 
+        <div class="prices-box-details">
           <span>Supplementi e servizi aggiuntivi</span>
           <table class="prices-table">
             <tbody>
@@ -25,7 +25,7 @@ const HotelExtraServicesTable = props => {
             )}
             </tbody>
           </table>
-        </React.Fragment>
+        </div>
       }
     </React.Fragment>
   )
