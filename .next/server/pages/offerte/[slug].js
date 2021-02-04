@@ -3641,6 +3641,12 @@ Index.getInitialProps = async params => {
       if (parseInt(page.stars) > 0) searchParams = _objectSpread(_objectSpread({}, searchParams), {}, {
         stars: page.stars
       });
+      searchParams = _objectSpread(_objectSpread({}, searchParams), {}, {
+        hasEmptyPeriods: true,
+        orderBy: 'order_seq',
+        orderHow: 'asc',
+        paginate: {"paginate":20}.paginate
+      });
       let hotelService = new HotelService["a" /* default */]();
       hotels = await hotelService.query(searchParams);
       console.log('hotels', hotels, searchParams);

@@ -80,6 +80,7 @@ Index.getInitialProps = async ctx => {
     checkout: ctx.query.checkout || '',
     // nights: ctx.query.nights || '',
 
+    hasEmptyPeriods: true,
     page: ctx.query.page || 1,
     // num_per_page: 4,
     orderBy: 'order_seq',

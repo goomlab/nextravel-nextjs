@@ -17,9 +17,10 @@ const HotelAgeRangesTable = props => {
                   {obj.age_min} - {obj.age_max}
                 </td>
                 <td className="service-price">
-                  <span className="no-smartphone">{(obj.price_type == 'fixed') ? '€ ' : '+ '}</span>
-                  {obj.price},-
-                  {(obj.price_type == 'percent') ? ' %' : ''}
+                  {/* <span className="no-smartphone">{(obj.price_type == 'fixed') ? '€' : (parseFloat(obj.price) > 0 ? '+' : '')}</span> */}
+                  <span className="no-smartphone" dangerouslySetInnerHTML={{ __html: (obj.price_type == 'fixed') ? '€&nbsp;' : (parseFloat(obj.price) > 0 ? '+' : '') }} />
+                  {obj.price}
+                  {(obj.price_type == 'percent') ? '%' : ',-'}
                 </td>
               </tr>
             )}

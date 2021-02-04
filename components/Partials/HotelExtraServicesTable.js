@@ -17,9 +17,10 @@ const HotelExtraServicesTable = props => {
                   {obj.name}
                 </td>
                 <td className="service-price">
-                  <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€ ' : '+ '}</span>
-                  {obj.pivot.price},-
-                  {(obj.pivot.price_type == 'percent') ? ' %' : ''}
+                  {/* <span className="no-smartphone">{(obj.pivot.price_type == 'fixed') ? '€' : ''}</span> */}
+                  <span className="no-smartphone" dangerouslySetInnerHTML={{ __html: (obj.pivot.price_type == 'fixed') ? '€&nbsp;' : '' }} />
+                  {obj.pivot.price}
+                  {(obj.pivot.price_type == 'percent') ? '%' : ',-'}
                 </td>
               </tr>
             )}

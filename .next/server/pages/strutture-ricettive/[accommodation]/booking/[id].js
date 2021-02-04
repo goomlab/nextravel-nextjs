@@ -120,8 +120,11 @@ const HotelExtraServicesTable = props => {
   }, obj.name), __jsx("td", {
     className: "service-price"
   }, __jsx("span", {
-    className: "no-smartphone"
-  }, obj.pivot.price_type == 'fixed' ? '€ ' : '+ '), obj.pivot.price, ",-", obj.pivot.price_type == 'percent' ? ' %' : '')))))));
+    className: "no-smartphone",
+    dangerouslySetInnerHTML: {
+      __html: obj.pivot.price_type == 'fixed' ? '€&nbsp;' : ''
+    }
+  }), obj.pivot.price, obj.pivot.price_type == 'percent' ? '%' : ',-')))))));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (HotelExtraServicesTable);
@@ -1844,8 +1847,11 @@ const HotelAgeRangesTable = props => {
   }, obj.age_min, " - ", obj.age_max), __jsx("td", {
     className: "service-price"
   }, __jsx("span", {
-    className: "no-smartphone"
-  }, obj.price_type == 'fixed' ? '€ ' : '+ '), obj.price, ",-", obj.price_type == 'percent' ? ' %' : '')))))));
+    className: "no-smartphone",
+    dangerouslySetInnerHTML: {
+      __html: obj.price_type == 'fixed' ? '€&nbsp;' : parseFloat(obj.price) > 0 ? '+' : ''
+    }
+  }), obj.price, obj.price_type == 'percent' ? '%' : ',-')))))));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (HotelAgeRangesTable);

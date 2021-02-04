@@ -47,6 +47,13 @@ Index.getInitialProps = async params => {
       if( page.category_id ) searchParams = {...searchParams, category_id: page.category_id};
       if( parseInt(page.stars) > 0 ) searchParams = {...searchParams, stars: page.stars};
 
+      searchParams = {
+        ...searchParams, 
+        hasEmptyPeriods: true,
+        orderBy: 'order_seq',
+        orderHow: 'asc',
+        paginate: process.env.pagination.paginate
+      };
       let hotelService = new HotelService();
       hotels = await hotelService.query(searchParams);
       console.log('hotels', hotels, searchParams)
