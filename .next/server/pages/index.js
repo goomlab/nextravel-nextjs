@@ -1535,11 +1535,19 @@ var BookingSearchBox = __webpack_require__("8Mm2");
 // EXTERNAL MODULE: ./components/Partials/HotelArchive.js
 var HotelArchive = __webpack_require__("FxrF");
 
+// EXTERNAL MODULE: external "moment"
+var external_moment_ = __webpack_require__("wy2R");
+var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
+
 // CONCATENATED MODULE: ./components/Partials/HomeRecap.js
 var __jsx = external_react_default.a.createElement;
 
 
-const HomeRecap = () => {
+
+
+const HomeRecap = props => {
+  external_moment_default.a.locale('it');
+  var now = external_moment_default()();
   return __jsx("section", {
     className: "section-main section-home-primopiano"
   }, __jsx("div", {
@@ -1575,18 +1583,21 @@ const HomeRecap = () => {
     className: "home-primopiano-item"
   }, __jsx("div", {
     className: "title"
-  }, "Transfer traghetto"), __jsx("div", {
+  }, props.busPage.title.it), __jsx("div", {
     className: "description"
-  }, "Prenota l\u2019Hotel con noi ed avrai il Traghetto per Ischia a soli \u20AC136 \u20AC70 A/R Auto+Conducente*"), __jsx("div", {
-    className: "note"
-  }, "*offerta non valida dal 26-Dic e dal 03-Gen"), __jsx("div", {
+  }, __jsx("span", {
+    dangerouslySetInnerHTML: {
+      __html: props.busPage.content_short.it
+    }
+  })), __jsx("div", {
     className: "row"
   }, __jsx("div", {
     className: "col-sm-6"
+  }, __jsx(link_default.a, {
+    href: props.busPage.page_path.it
   }, __jsx("a", {
-    href: "#",
     className: "btn btn-transparent"
-  }, "scopri")), __jsx("div", {
+  }, "scopri"))), __jsx("div", {
     className: "col-sm-6"
   }, __jsx("i", {
     className: "ico ico-orologio"
@@ -1596,18 +1607,18 @@ const HomeRecap = () => {
     className: "home-primopiano-item"
   }, __jsx("div", {
     className: "title"
-  }, "Transfer traghetto"), __jsx("div", {
+  }, "Offerte del mese"), __jsx("div", {
     className: "description"
-  }, "Prenota l\u2019Hotel con noi ed avrai il Traghetto per Ischia a soli \u20AC136 \u20AC70 A/R Auto+Conducente*"), __jsx("div", {
-    className: "note"
-  }, "*offerta non valida dal 26-Dic e dal 03-Gen"), __jsx("div", {
+  }, __jsx("p", null, "Tutte le offerte di ", __jsx("strong", null, now.format('MMMM'), " ", now.format('YYYY')), " a portata di click. Non perdere l'occasione.")), __jsx("div", {
     className: "row"
   }, __jsx("div", {
     className: "col-sm-6"
+  }, __jsx(link_default.a, {
+    href: `${"/offerte"}/[slug]`,
+    as: `${"/offerte"}/${now.format('MMMM').toLowerCase()}`
   }, __jsx("a", {
-    href: "#",
     className: "btn btn-transparent"
-  }, "scopri")), __jsx("div", {
+  }, "scopri"))), __jsx("div", {
     className: "col-sm-6"
   }, __jsx("i", {
     className: "ico ico-cal"
@@ -1867,7 +1878,7 @@ const Index = props => {
     as: "/accommodations?page=2"
   }, pages_jsx("a", {
     className: "btn btn-more"
-  }, "Carica le altre offerte")))), pages_jsx(Partials_HomeRecap, null), pages_jsx(Partials_Newsletter, null));
+  }, "Carica le altre offerte")))), pages_jsx(Partials_HomeRecap, props), pages_jsx(Partials_Newsletter, null));
 };
 
 Index.getInitialProps = async ctx => {
@@ -1877,6 +1888,7 @@ Index.getInitialProps = async ctx => {
   // let hotelCategories = [];
 
   let page = null;
+  let busPage = null;
   let hotels = [];
 
   try {
@@ -1891,6 +1903,7 @@ Index.getInitialProps = async ctx => {
     menu = await menuService.get(1);
     let postService = new PostService["a" /* default */]();
     page = await postService.get(1);
+    busPage = await postService.get(3);
     let hotelService = new HotelService["a" /* default */]();
     hotels = await hotelService.query({
       hasEmptyPeriods: true,
@@ -1910,6 +1923,7 @@ Index.getInitialProps = async ctx => {
     // locs,
     // hotelCategories,
     page,
+    busPage,
     hotels
   };
 };

@@ -1428,6 +1428,12 @@ a, a:hover, a:visited {
 }
 
 @media screen and (min-width: 992px) {
+  .home-primopiano-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
   .box-home-primopiano [class*="col-"]:nth-child(2) .home-primopiano-item::after, .box-home-primopiano [class*="col-"]:nth-child(2) .home-primopiano-item::before {
     content: "";
     display: block;
@@ -1463,6 +1469,32 @@ a, a:hover, a:visited {
 
 .section-newsletter form .form-control {
   font-size: 12px;
+}
+
+table,
+.table {
+  width: 100%;
+  font-size: 14px;
+}
+
+table th, table td,
+.table th,
+.table td {
+  width: 14.28%;
+  padding: 8px 0;
+  border-bottom: solid 1px #4fbaad;
+  border-top: none;
+}
+
+table a, table a:visited,
+.table a,
+.table a:visited {
+  color: #000;
+}
+
+table a:hover,
+.table a:hover {
+  color: #4fbaad;
 }
 
 .pagination {

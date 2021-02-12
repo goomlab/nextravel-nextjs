@@ -82,7 +82,7 @@ const Index = props => {
       </section>
       }
 
-      <HomeRecap />
+      <HomeRecap {...props} />
 
       <Newsletter />
     </Layout>
@@ -96,6 +96,7 @@ Index.getInitialProps = async ctx => {
   // let locs = [];
   // let hotelCategories = [];
   let page = null;
+  let busPage = null;
   let hotels = [];
   try {
     // initialProps = mainInitialProps();
@@ -112,6 +113,7 @@ Index.getInitialProps = async ctx => {
 
     let postService = new PostService();
     page = await postService.get(1);
+    busPage = await postService.get(3);
 
     let hotelService = new HotelService();
     hotels = await hotelService.query({
@@ -132,6 +134,7 @@ Index.getInitialProps = async ctx => {
     // locs,
     // hotelCategories,
     page,
+    busPage,
     hotels
   };
 };

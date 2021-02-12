@@ -6,6 +6,7 @@ import PostService from '../packages/Post/services/PostService';
 
 import Layout from '../components/Layouts/MainLayout/MainLayout';
 import HomePageTemplate from '../components/Templates/HomePageTemplate';
+import Template1 from '../components/Templates/Template1';
 import BlankPageTemplate from '../components/Templates/BlankPageTemplate';
 
 const Page = (props) => {
@@ -20,6 +21,8 @@ const Page = (props) => {
   switch( props.data.template ){
     case 'home':
       return <HomePageTemplate {...props}/>
+    case 'template_1':
+      return <Template1 {...props}/>
     default:
       return <BlankPageTemplate {...props} />
   }

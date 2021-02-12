@@ -151,6 +151,13 @@ function withRouter(ComposedComponent) {
 
 /***/ }),
 
+/***/ "1nAM":
+/***/ (function(module, exports) {
+
+module.exports = require("swiper");
+
+/***/ }),
+
 /***/ "284h":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -403,6 +410,391 @@ function formatUrl(urlObj) {
   search = search.replace('#', '%23');
   return `${protocol}${host}${pathname}${search}${hash}`;
 }
+
+/***/ }),
+
+/***/ "8Mm2":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _packages_BaseService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("jC1T");
+/* harmony import */ var react_bootstrap_daterangepicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("KPCs");
+/* harmony import */ var react_bootstrap_daterangepicker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_bootstrap_daterangepicker__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("1nAM");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_5__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+swiper__WEBPACK_IMPORTED_MODULE_5___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_5__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_5__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_5__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_5__["A11y"]]);
+
+const BookingSearchBox = props => {
+  const swiperBookingMonths = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
+  const swiperBookingHolidays = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
+  const defaultCheckin = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(1, 'days').format('YYYY-MM-DD');
+  const defaultCheckout = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(7, 'days').format('YYYY-MM-DD');
+  const defaultCheckinFormatted = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(1, 'days').format('DD/MM/YYYY');
+  const defaultCheckoutFormatted = moment__WEBPACK_IMPORTED_MODULE_1___default()().add(7, 'days').format('DD/MM/YYYY');
+
+  const initCheckin = () => {
+    if (props.query && props.query.checkin != undefined && props.query.checkin != "") {
+      return props.query.checkin;
+    }
+
+    if (props.searchParams && props.searchParams.checkin != undefined && props.searchParams.checkin != "") {
+      return props.searchParams.checkin;
+    }
+
+    return defaultCheckin;
+  };
+
+  const initCheckout = () => {
+    if (props.query && props.query.checkout != undefined && props.query.checkout != "") {
+      return props.query.checkout;
+    }
+
+    if (props.searchParams && props.searchParams.checkout != undefined && props.searchParams.checkout != "") {
+      return props.searchParams.checkout;
+    }
+
+    return defaultCheckout;
+  };
+
+  const [state, setState] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
+    loc_id: props.query && props.query.loc_id || '',
+    category_id: props.query && props.query.category_id || '',
+    checkin: initCheckin(),
+    checkout: initCheckout(),
+    nights: props.query && props.query.nights || ''
+  });
+  const [params, setParams] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState({
+    locs: [],
+    hotelCategories: [],
+    months: [],
+    specials: []
+  });
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+    // swipers
+    if (props.full) {
+      swiperBookingMonths.current = new swiper__WEBPACK_IMPORTED_MODULE_5__["Swiper"]('#swiperBookingMonths', {
+        grubCursor: false,
+        simulateTouch: false,
+        direction: 'horizontal',
+        speed: 600,
+        slidesPerView: 10,
+        spaceBetween: 30,
+        breakpoints: {
+          1: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          320: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          480: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          },
+          768: {
+            slidesPerView: 6,
+            spaceBetween: 30
+          },
+          992: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          },
+          1200: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          }
+        },
+        navigation: {
+          nextEl: '#swiperBookingMonths-button-next',
+          prevEl: '#swiperBookingMonths-button-prev'
+        }
+      }); // swiperBookingHolidays.current = new Swiper('#swiperBookingHolidays', {
+      //   grubCursor: false,
+      //   simulateTouch : false,
+      //   direction: 'horizontal',
+      //   speed: 600,
+      //   slidesPerView: 10,
+      //   spaceBetween: 30,
+      //   navigation: {
+      //     nextEl: '#swiperBookingHolidays-button-next',
+      //     prevEl: '#swiperBookingHolidays-button-prev',
+      //   }
+      // })
+    } // init booking
+
+
+    let baseService = new _packages_BaseService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    baseService.initApp().then(response => {
+      setParams({
+        locs: response.locs || [],
+        hotelCategories: response.hotelCategories || [],
+        months: response.filterPages.months || [],
+        specials: response.filterPages.specials || []
+      });
+      if (props.full && swiperBookingMonths && swiperBookingMonths.current) swiperBookingMonths.current.update(); // if( props.full && swiperBookingHolidays && swiperBookingHolidays.current )
+      //   swiperBookingHolidays.current.update()
+    }).catch(error => {
+      console.log('error', error);
+    }); // setState({
+    //   loc_id: (props.query && props.query.loc_id) || null,
+    //   category_id: (props.query && props.query.category_id) || null,
+    //   checkin: (props.query && props.query.checkin) || null,
+    //   checkout: (props.query && props.query.checkout) || null,
+    //   nights: (props.query && props.query.nights) || null
+    // })
+  }, []);
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+    if (props.full) {
+      swiperBookingHolidays.current = new swiper__WEBPACK_IMPORTED_MODULE_5__["Swiper"]('#swiperBookingHolidays', {
+        grubCursor: false,
+        simulateTouch: false,
+        direction: 'horizontal',
+        speed: 600,
+        slidesPerView: 10,
+        spaceBetween: 30,
+        breakpoints: {
+          1: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          320: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          480: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          },
+          768: {
+            slidesPerView: 6,
+            spaceBetween: 30
+          },
+          992: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          },
+          1200: {
+            slidesPerView: 10,
+            spaceBetween: 30
+          }
+        },
+        navigation: {
+          nextEl: '#swiperBookingHolidays-button-next',
+          prevEl: '#swiperBookingHolidays-button-prev'
+        }
+      });
+    }
+  }, [params]); // const checkinFormatted = (props.query && props.query.checkin && props.query.checkin != "") ? moment(props.query.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckinFormatted;
+  // const checkoutFormatted = (props.query && props.query.checkout && props.query.checkout != "") ? moment(props.query.checkout, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckoutFormatted;
+
+  const checkinFormatted = state.checkin != "" && state.checkin != undefined ? moment__WEBPACK_IMPORTED_MODULE_1___default()(state.checkin, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckinFormatted;
+  const checkoutFormatted = state.checkout != "" && state.checkout != undefined ? moment__WEBPACK_IMPORTED_MODULE_1___default()(state.checkout, 'YYYY-MM-DD').format('DD/MM/YYYY') : defaultCheckoutFormatted;
+
+  const getMonths = () => {
+    // mesi
+    let months = [];
+    moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('it');
+    var now = moment__WEBPACK_IMPORTED_MODULE_1___default()();
+    let i = 0;
+
+    do {
+      months.push(__jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        href: `${"/offerte"}/[slug]`,
+        as: `${"/offerte"}/${now.format('MMMM').toLowerCase()}`
+      }, __jsx("a", null, __jsx("strong", null, now.format('MMM')), " ", now.format('YY'))));
+      i++;
+      now.add(1, 'months');
+    } while (i < 12);
+
+    return months;
+  };
+
+  const onChange = e => {
+    let newState = Object.assign({}, state);
+    newState[e.target.name] = e.target.value;
+    setState(_objectSpread({}, newState));
+  };
+
+  const onDatePickerApply = (event, picker) => {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      checkin: picker.startDate.format('YYYY-MM-DD'),
+      checkout: picker.endDate.format('YYYY-MM-DD')
+    }));
+  };
+
+  const onSumbit = e => {
+    e.preventDefault();
+    var url = `${"/strutture-ricettive"}?`;
+
+    for (let [key, value] of Object.entries(state)) url += key + '=' + value + '&';
+
+    window.location.href = url;
+  };
+
+  const months = getMonths();
+  return __jsx("section", {
+    className: "booking-box"
+  }, __jsx("div", {
+    className: "container"
+  }, __jsx("form", {
+    className: "booking-form"
+  }, __jsx("div", {
+    className: "row"
+  }, __jsx("div", {
+    className: "col-lg-3"
+  }, __jsx("select", {
+    className: "custom-select",
+    name: "loc_id",
+    id: "loc_id",
+    onChange: e => onChange(e),
+    value: state.loc_id || ''
+  }, __jsx("option", {
+    value: ""
+  }, "Localit\xE0"), params.locs && params.locs.map((obj, index) => __jsx("option", {
+    key: index,
+    value: obj.id
+  }, obj.name)))), __jsx("div", {
+    className: "col-lg-3"
+  }, __jsx("select", {
+    className: "custom-select",
+    name: "category_id",
+    id: "category_id",
+    onChange: e => onChange(e),
+    value: state.category_id || ''
+  }, __jsx("option", {
+    value: ""
+  }, "Struttura"), params.hotelCategories && params.hotelCategories.map((obj, index) => __jsx("option", {
+    key: index,
+    value: obj.id
+  }, obj.name)))), __jsx("div", {
+    className: "col-lg-3"
+  }, __jsx(react_bootstrap_daterangepicker__WEBPACK_IMPORTED_MODULE_4___default.a, {
+    initialSettings: {
+      // startDate: state.checkinFormatted,
+      // endDate: state.checkoutFormatted,
+      startDate: moment__WEBPACK_IMPORTED_MODULE_1___default()(state.checkin, 'YYYY-MM-DD'),
+      endDate: moment__WEBPACK_IMPORTED_MODULE_1___default()(state.checkout, 'YYYY-MM-DD'),
+      autoApply: true,
+      startDate: moment__WEBPACK_IMPORTED_MODULE_1___default()(),
+      locale: {
+        'cancelLabel': 'Cancella',
+        'applyLabel': 'Applica'
+      }
+    },
+    onApply: onDatePickerApply,
+    style: {
+      display: 'block',
+      width: '100%'
+    }
+  }, __jsx("input", {
+    className: "form-control",
+    id: "booking_dateRangePicker",
+    type: "text",
+    placeholder: "Checkin",
+    value: checkinFormatted != "" && checkoutFormatted != "" ? `${checkinFormatted} - ${checkoutFormatted}` : '',
+    onChange: e => {}
+  })), __jsx("input", {
+    type: "hidden",
+    name: "checkin",
+    id: "checkin",
+    onChange: e => onChange(e),
+    value: state.checkin || ''
+  }), __jsx("input", {
+    type: "hidden",
+    name: "checkout",
+    id: "checkout",
+    onChange: e => onChange(e),
+    value: state.checkout || ''
+  })), __jsx("div", {
+    className: "col-lg-2"
+  }, __jsx("select", {
+    className: "custom-select",
+    name: "nights",
+    id: "nights",
+    onChange: e => onChange(e),
+    value: state.nights || ''
+  }, __jsx("option", {
+    value: ""
+  }, "Notti"), __jsx("option", {
+    value: "1"
+  }, "1"), __jsx("option", {
+    value: "2"
+  }, "2"), __jsx("option", {
+    value: "3"
+  }, "3"), __jsx("option", {
+    value: "4"
+  }, "4"), __jsx("option", {
+    value: "5"
+  }, "5"), __jsx("option", {
+    value: "6"
+  }, "6"), __jsx("option", {
+    value: "7"
+  }, "7"))), __jsx("div", {
+    className: "col-lg-1"
+  }, __jsx("button", {
+    type: "submit",
+    className: "btn btn-yellow",
+    onClick: e => onSumbit(e)
+  }, "Cerca")))), props.full && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
+    className: "booking-months"
+  }, __jsx("div", {
+    id: "swiperBookingMonths",
+    className: "swiper-container swiperBookingMonths"
+  }, __jsx("div", {
+    className: "swiper-wrapper"
+  }, months.map((obj, index) => __jsx("div", {
+    className: "swiper-slide",
+    key: index
+  }, obj)))), __jsx("div", {
+    id: "swiperBookingMonths-button-prev",
+    className: "swiper-button-prev"
+  }), __jsx("div", {
+    id: "swiperBookingMonths-button-next",
+    className: "swiper-button-next"
+  })), params.specials && params.specials.length > 0 && __jsx("div", {
+    className: "booking-holidays"
+  }, __jsx("div", {
+    id: "swiperBookingHolidays",
+    className: "swiper-container swiperBookingMonths"
+  }, __jsx("div", {
+    className: "swiper-wrapper"
+  }, params.specials && params.specials.map((obj, index) => __jsx("div", {
+    className: "swiper-slide",
+    key: index
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    href: `${"/offerte"}/[slug]`,
+    as: `${"/offerte"}/${obj.slug.it}`
+  }, __jsx("a", null, obj.title.it)))))), __jsx("div", {
+    id: "swiperBookingHolidays-button-prev",
+    className: "swiper-button-prev"
+  }), __jsx("div", {
+    id: "swiperBookingHolidays-button-next",
+    className: "swiper-button-next"
+  })))));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (BookingSearchBox);
 
 /***/ }),
 
@@ -716,6 +1108,13 @@ const MainLayout = ({
 
 /***/ }),
 
+/***/ "KPCs":
+/***/ (function(module, exports) {
+
+module.exports = require("react-bootstrap-daterangepicker");
+
+/***/ }),
+
 /***/ "NjAa":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -763,6 +1162,124 @@ const HomePageTemplate = props => {
 };
 
 /* harmony default export */ var Templates_HomePageTemplate = (HomePageTemplate);
+// EXTERNAL MODULE: external "swiper"
+var external_swiper_ = __webpack_require__("1nAM");
+var external_swiper_default = /*#__PURE__*/__webpack_require__.n(external_swiper_);
+
+// EXTERNAL MODULE: ./components/Partials/BookingSearchBox.js
+var BookingSearchBox = __webpack_require__("8Mm2");
+
+// CONCATENATED MODULE: ./components/Templates/Template1.js
+var Template1_jsx = external_react_default.a.createElement;
+
+
+
+
+external_swiper_default.a.use([external_swiper_["Navigation"], external_swiper_["Pagination"], external_swiper_["Scrollbar"], external_swiper_["A11y"]]);
+
+
+
+const Template1 = props => {
+  if (!props.data || props.data.length <= 0) {
+    return Template1_jsx(MainLayout["a" /* default */], null, Template1_jsx("div", null, "Data not found"));
+  }
+
+  const page = props.data;
+  const swiperHotelThumbnail = external_react_default.a.useRef(null);
+  external_react_default.a.useEffect(() => {
+    swiperHotelThumbnail.current = new external_swiper_["Swiper"](`#swiperHotelThumbnail`, {
+      grubCursor: false,
+      simulateTouch: false,
+      direction: 'horizontal',
+      //speed: 600,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      navigation: {
+        nextEl: `#swiperHotelThumbnail-button-next`,
+        prevEl: `#swiperHotelThumbnail-button-prev`
+      }
+    });
+  }, []);
+  return Template1_jsx(MainLayout["a" /* default */], {
+    settings: {
+      template: "accommodation-page",
+      menu: props.menu
+    },
+    meta: {
+      title: page.meta_title.it,
+      description: page.meta_description.it,
+      url: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}}`,
+      image: page.media && page.media.gallery && page.media.gallery[0] ? page.media.gallery[0].url : null // image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
+
+    }
+  }, Template1_jsx(BookingSearchBox["a" /* default */], null), Template1_jsx("section", {
+    className: "single-hotel-section"
+  }, Template1_jsx("div", {
+    className: "container"
+  }, Template1_jsx("div", {
+    id: `swiperHotelThumbnail`,
+    className: "swiper-container swiperHotelThumbnail"
+  }, Template1_jsx("div", {
+    className: "swiper-wrapper"
+  }, page.media && page.media.gallery.map((img, index) => Template1_jsx("div", {
+    className: "swiper-slide",
+    key: index
+  }, Template1_jsx("figure", {
+    className: "img-bgas"
+  }, Template1_jsx("img", {
+    src: img.url,
+    alt: img.name
+  })))), (!page.media || !page.media.gallery) && Template1_jsx("div", {
+    className: "swiper-slide"
+  }, Template1_jsx("figure", {
+    classNAme: "img-bgas"
+  }, Template1_jsx("img", {
+    src: "default",
+    alt: ""
+  })))), Template1_jsx("div", {
+    id: `swiperHotelThumbnail-button-prev`,
+    className: "swiper-button-prev"
+  }), Template1_jsx("div", {
+    id: `swiperHotelThumbnail-button-next`,
+    className: "swiper-button-next"
+  })), Template1_jsx("div", {
+    className: "topline"
+  }, Template1_jsx("div", {
+    className: "title mr-auto"
+  }, Template1_jsx("h1", null, page.title.it)), Template1_jsx("div", {
+    className: "single-hotel-call ml-auto"
+  }, "chiama!\xA0", Template1_jsx("span", {
+    className: "bold"
+  }, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label))))), Template1_jsx("section", {
+    className: "section-main only-padding-bottom single-hotel-section"
+  }, Template1_jsx("div", {
+    className: "container"
+  }, Template1_jsx("div", {
+    className: "row"
+  }, Template1_jsx("div", {
+    className: "col-lg-4"
+  }, Template1_jsx("div", {
+    className: "content-box content-box-1"
+  }, Template1_jsx("div", {
+    className: "description"
+  }, Template1_jsx("div", {
+    dangerouslySetInnerHTML: {
+      __html: page.content_short.it
+    }
+  })))), Template1_jsx("div", {
+    className: "col-lg-7 offset-lg-1"
+  }, Template1_jsx("div", {
+    className: "content-box content-box-1"
+  }, Template1_jsx("div", {
+    className: "description"
+  }, Template1_jsx("div", {
+    dangerouslySetInnerHTML: {
+      __html: page.content.it
+    }
+  }))))))));
+};
+
+/* harmony default export */ var Templates_Template1 = (Template1);
 // CONCATENATED MODULE: ./components/Templates/BlankPageTemplate.js
 var BlankPageTemplate_jsx = external_react_default.a.createElement;
 
@@ -801,6 +1318,7 @@ var _page_jsx = external_react_default.a.createElement;
 
 
 
+
 const Page = props => {
   if (!props.data || props.data.length <= 0) {
     return _page_jsx(MainLayout["a" /* default */], null, _page_jsx("div", null, "404 - Page not found"));
@@ -809,6 +1327,9 @@ const Page = props => {
   switch (props.data.template) {
     case 'home':
       return _page_jsx(Templates_HomePageTemplate, props);
+
+    case 'template_1':
+      return _page_jsx(Templates_Template1, props);
 
     default:
       return _page_jsx(Templates_BlankPageTemplate, props);
@@ -2874,6 +3395,13 @@ function makePublicRouterInstance(router) {
 "use strict";
 exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denormalizePagePath=denormalizePagePath;function normalizePathSep(path){return path.replace(/\\/g,'/');}function denormalizePagePath(page){page=normalizePathSep(page);if(page.startsWith('/index/')){page=page.slice(6);}else if(page==='/index'){page='/';}return page;}
 //# sourceMappingURL=denormalize-page-path.js.map
+
+/***/ }),
+
+/***/ "wy2R":
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
 
 /***/ }),
 
