@@ -14,6 +14,7 @@ const PriceTable = props => {
     case 'FB': title = "Pensione Completa"; break;
     case 'HBB': title = "Mezza Completa + Bevande"; break;
     case 'FBB': title = "Pensione Completa + Bevande"; break;
+    case 'ALL_INCLUSIVE': title = "All inclusive"; break;
   }
 
   return (

@@ -1528,6 +1528,10 @@ const PriceTable = props => {
     case 'FBB':
       title = "Pensione Completa + Bevande";
       break;
+
+    case 'ALL_INCLUSIVE':
+      title = "All inclusive";
+      break;
   }
 
   return __jsx("div", {
@@ -3647,6 +3651,7 @@ Index.getInitialProps = async params => {
         orderHow: 'asc',
         paginate: {"paginate":20}.paginate
       });
+      console.log('search', searchParams);
       let hotelService = new HotelService["a" /* default */]();
       hotels = await hotelService.query(searchParams);
       console.log('hotels', hotels, searchParams);

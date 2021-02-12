@@ -53,7 +53,7 @@ Index.getInitialProps = async params => {
         orderBy: 'order_seq',
         orderHow: 'asc',
         paginate: process.env.pagination.paginate
-      };
+      };console.log('search',searchParams)
       let hotelService = new HotelService();
       hotels = await hotelService.query(searchParams);
       console.log('hotels', hotels, searchParams)

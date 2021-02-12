@@ -2001,6 +2001,10 @@ const PriceTable = props => {
     case 'FBB':
       title = "Pensione Completa + Bevande";
       break;
+
+    case 'ALL_INCLUSIVE':
+      title = "All inclusive";
+      break;
   }
 
   return __jsx("div", {
