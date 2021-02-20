@@ -886,6 +886,140 @@ const BookingSearchBox = props => {
 
 /***/ }),
 
+/***/ "8ici":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _PriceTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("V5Fq");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+const PriceTableWrap2 = props => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.period.viewPeriodPrices && Object.entries(props.period.viewPeriodPrices).map(([roomType, roomTypeContent], index) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    key: index
+  }, roomTypeContent.prices && Object.entries(roomTypeContent.prices).map(([treatment, prices], index2) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    key: index2
+  }, __jsx("div", null, __jsx("span", {
+    style: {
+      color: '#4fbaad'
+    }
+  }, roomTypeContent.room_type.name)), __jsx(_PriceTable__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"] // key={index2}
+  , {
+    index: index,
+    room_type: roomTypeContent.room_type,
+    treatment: treatment,
+    prices: prices,
+    hotel: props.hotel,
+    period: props.period,
+    priceTableLink: true
+  }))))));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (PriceTableWrap2); // export const getPriceList = period =>{
+//   let priceList = {}
+//   for (const [roomTypeName, roomTypeContent] of Object.entries(period.viewPeriodPrices)){
+//     priceList[roomTypeName] = {};
+//     if( roomTypeContent.prices ){
+//       for (const [key, treatmentObj] of Object.entries(roomTypeContent.prices)) {
+//         priceList[roomTypeName][key] = {
+//           n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
+//           n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
+//           n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
+//           n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
+//           n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
+//           n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
+//           n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
+//         };
+//       }
+//     }
+//   }
+//   return priceList
+// }
+// const PriceTableWrap2 = props => {
+//   const priceList = getPriceList(props.period)
+//   return(
+//     <>
+//     {priceList && Object.entries(priceList).map( ([roomType, treatments], index) => 
+//       <React.Fragment key={index}>
+//         {treatments && Object.entries(treatments).map( ([treatment, prices], index2) => 
+//           <React.Fragment key={index2}>
+//             <div><span style={{color: '#4fbaad'}}>{roomType}</span></div>
+//             <PriceTable 
+//               // key={index2}
+//               index={index}
+//               room_type={roomType}
+//               treatment={treatment}
+//               prices={prices}
+//               hotel={props.hotel}
+//               period={props.period}
+//               priceTableLink={true}
+//             />
+//           </React.Fragment>
+//         )}
+//       </React.Fragment>
+//     )}
+//     </>
+//   )
+// }
+// export default PriceTableWrap2;
+
+/***/ }),
+
+/***/ "EIQ/":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export getPriceList */
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _PriceTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("V5Fq");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const getPriceList = period => {
+  let priceList = {};
+
+  for (const [key, treatmentObj] of Object.entries(period.viewPrices)) {
+    priceList[roomTypeName][key] = {
+      n1: treatmentObj.n1 ? treatmentObj.n1 : null,
+      n2: treatmentObj.n2 ? treatmentObj.n2 : null,
+      n3: treatmentObj.n3 ? treatmentObj.n3 : null,
+      n4: treatmentObj.n4 ? treatmentObj.n4 : null,
+      n5: treatmentObj.n5 ? treatmentObj.n5 : null,
+      n6: treatmentObj.n6 ? treatmentObj.n6 : null,
+      n7: treatmentObj.n7 ? treatmentObj.n7 : null
+    };
+  }
+
+  return priceList;
+};
+
+const PriceTableWrap = props => {
+  const priceList = getPriceList(props.period);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx(_PriceTable__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"], {
+    key: index,
+    index: index,
+    treatment: treatment,
+    prices: prices,
+    hotel: props.hotel,
+    period: props.period,
+    priceTableLink: true
+  })));
+};
+
+/* unused harmony default export */ var _unused_webpack_default_export = (PriceTableWrap);
+
+/***/ }),
+
 /***/ "Gmui":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -903,7 +1037,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const HotelAgeRangesTable = props => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, props.hotelAgeRanges && props.hotelAgeRanges.length > 0 && __jsx("div", {
-    class: "prices-box-details"
+    className: "prices-box-details"
   }, __jsx("span", null, "Supplementi e Riduzioni per et\xE0"), __jsx("table", {
     className: "prices-table"
   }, __jsx("tbody", null, props.hotelAgeRanges.map((obj, index) => __jsx("tr", {
@@ -1367,6 +1501,12 @@ var HotelAgeRangesTable = __webpack_require__("Gmui");
 // EXTERNAL MODULE: ./components/Partials/PriceTable.js
 var PriceTable = __webpack_require__("V5Fq");
 
+// EXTERNAL MODULE: ./components/Partials/PriceTableWrap.js
+var PriceTableWrap = __webpack_require__("EIQ/");
+
+// EXTERNAL MODULE: ./components/Partials/PriceTableWrap2.js
+var PriceTableWrap2 = __webpack_require__("8ici");
+
 // EXTERNAL MODULE: ./components/Partials/HotelExtraServicesTable.js
 var HotelExtraServicesTable = __webpack_require__("+1oh");
 
@@ -1379,40 +1519,30 @@ var __jsx = external_react_default.a.createElement;
 
 
 
+
+
 const PeriodArchiveItem = props => {
   const period = props.period;
   console.log('period', props);
   let dateFrom = external_moment_default()(props.period.date_from, 'YYYY-MM-DD');
-  let dateTo = external_moment_default()(props.period.date_to, 'YYYY-MM-DD');
-  let priceList = {};
-
-  for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
-    priceList[key] = {
-      n1: treatmentObj.n1 ? treatmentObj.n1 : null,
-      n2: treatmentObj.n2 ? treatmentObj.n2 : null,
-      n3: treatmentObj.n3 ? treatmentObj.n3 : null,
-      n4: treatmentObj.n4 ? treatmentObj.n4 : null,
-      n5: treatmentObj.n5 ? treatmentObj.n5 : null,
-      n6: treatmentObj.n6 ? treatmentObj.n6 : null,
-      n7: treatmentObj.n7 ? treatmentObj.n7 : null
-    };
-  }
+  let dateTo = external_moment_default()(props.period.date_to, 'YYYY-MM-DD'); // let priceList = {};
+  // for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
+  //   priceList[key] = {
+  //     n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
+  //     n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
+  //     n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
+  //     n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
+  //     n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
+  //     n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
+  //     n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
+  //   };
+  // }
 
   return __jsx(external_react_default.a.Fragment, null, __jsx("div", {
     className: "col-sm-10"
   }, __jsx("div", {
     className: "prices-date"
-  }, "dal ", dateFrom.format('DD/MM'), " al ", dateTo.format('DD/MM')), priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx("div", {
-    className: "prices-box",
-    key: index
-  }, __jsx(PriceTable["a" /* default */], {
-    key: index,
-    index: index,
-    treatment: treatment,
-    prices: prices,
-    hotel: props.hotel,
-    period: props.period
-  }))), props.hasHotelAgeRanges && period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && __jsx(HotelAgeRangesTable["a" /* default */], {
+  }, "dal ", dateFrom.format('DD/MM'), " al ", dateTo.format('DD/MM')), __jsx(PriceTableWrap2["a" /* default */], props), props.hasHotelAgeRanges && period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && __jsx(HotelAgeRangesTable["a" /* default */], {
     hotelAgeRanges: period.hotelAgeRanges
   }) // <React.Fragment>
   //   <span>Supplementi e Riduzioni per età</span>
@@ -1731,12 +1861,14 @@ const PriceTable = props => {
   }, __jsx("div", {
     className: "prices-details"
   }, __jsx("span", null, title, " / prezzi p.p.")), props.priceTableLink && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
-        checkout: props.period.date_to
+        checkout: props.period.date_to,
+        treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null
       }
     }
   }, __jsx("a", {
@@ -1762,91 +1894,98 @@ const PriceTable = props => {
   }, "notti")), __jsx("th", null, "7 ", __jsx("span", {
     className: "no-smartphone"
   }, "notti")))), __jsx("tbody", null, __jsx("tr", null, __jsx("td", null, prices.n1 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=1`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 1
       }
     }
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n1, ",-")), !prices.n1 && `-`), __jsx("td", null, prices.n2 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=2`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 2
       }
     }
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n2, ",-")), !prices.n2 && `-`), __jsx("td", null, prices.n3 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=3`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 3
       }
     }
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n3, ",-")), !prices.n3 && `-`), __jsx("td", null, prices.n4 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=4`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 4
       }
     }
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n4, ",-")), !prices.n4 && `-`), __jsx("td", null, prices.n5 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=5`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 5
       }
     }
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n5, ",-")), !prices.n5 && `-`), __jsx("td", null, prices.n6 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=6`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 6
       }
     }
   }, __jsx("a", null, __jsx("span", {
     className: "no-smartphone"
   }, "\u20AC"), " ", prices.n6, ",-")), !prices.n6 && `-`), __jsx("td", null, prices.n7 && __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`,
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${props.room_type ? props.room_type.id : ''}&treatment=${props.treatment}&nights=7`,
     href: {
       pathname: `${"/strutture-ricettive"}/[accommodition]/booking/[id]`,
       query: {
         checkin: props.period.date_from,
         checkout: props.period.date_to,
         treatment: props.treatment,
+        room_type_id: props.room_type ? props.room_type.id : null,
         nights: 7
       }
     }

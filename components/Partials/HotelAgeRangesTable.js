@@ -7,7 +7,7 @@ const HotelAgeRangesTable = props => {
   return (
     <React.Fragment>
       {props.hotelAgeRanges && props.hotelAgeRanges.length > 0 && 
-        <div class="prices-box-details">
+        <div className="prices-box-details">
           <span>Supplementi e Riduzioni per età</span>
           <table className="prices-table">
             <tbody>

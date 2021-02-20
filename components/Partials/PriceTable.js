@@ -28,12 +28,14 @@ const PriceTable = props => {
         </div>
         {props.priceTableLink &&
           <Link 
-            as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}`} 
+            as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}`} 
             href={{
               pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
               query: {
                 checkin: props.period.date_from,
                 checkout: props.period.date_to,
+                treatment: props.treatment,
+                room_type_id: (props.room_type) ? props.room_type.id : null
               }
             }}
           >
@@ -75,13 +77,14 @@ const PriceTable = props => {
             <td>
               {prices.n1 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=1`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=1`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 1,
                   }
                 }}
@@ -96,13 +99,14 @@ const PriceTable = props => {
             <td>
               {prices.n2 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=2`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=2`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 2,
                   }
                 }}
@@ -117,13 +121,14 @@ const PriceTable = props => {
             <td>
               {prices.n3 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=3`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=3`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 3,
                   }
                 }}
@@ -138,13 +143,14 @@ const PriceTable = props => {
             <td>
               {prices.n4 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=4`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=4`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 4,
                   }
                 }}
@@ -159,13 +165,14 @@ const PriceTable = props => {
             <td>
               {prices.n5 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=5`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=5`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 5,
                   }
                 }}
@@ -180,13 +187,14 @@ const PriceTable = props => {
             <td>
               {prices.n6 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=6`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=6`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 6,
                   }
                 }}
@@ -201,13 +209,14 @@ const PriceTable = props => {
             <td>
               {prices.n7 && 
               <Link 
-                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&treatment=${props.treatment}&nights=7`} 
+                as={`${process.env.accommodations_path}/${props.hotel.slug.it}/booking/${props.period.id}?checkin=${props.period.date_from}&checkout=${props.period.date_to}&room_type_id=${(props.room_type) ? props.room_type.id : ''}&treatment=${props.treatment}&nights=7`} 
                 href={{
                   pathname: `${process.env.accommodations_path}/[accommodition]/booking/[id]`,
                   query: {
                     checkin: props.period.date_from,
                     checkout: props.period.date_to,
                     treatment: props.treatment,
+                    room_type_id: (props.room_type) ? props.room_type.id : null,
                     nights: 7,
                   }
                 }}

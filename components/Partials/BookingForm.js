@@ -10,6 +10,26 @@ import PracticeByGuestAction from '~/packages/TravelgoOne/actions/PracticeByGues
 import MyDateRangePicker from '../MyDateRangePicker'
 
 const BookingForm = props => {
+  const [treatments, setTreatments] = React.useState([]);
+
+  // let priceList = {}
+  // for (const [roomTypeName, roomTypeContent] of Object.entries(period.viewPeriodPrices)){
+  //   priceList[roomTypeName] = {};
+  //   if( roomTypeContent.prices ){
+  //     for (const [key, treatmentObj] of Object.entries(roomTypeContent.prices)) {
+  //       priceList[roomTypeName][key] = {
+  //         n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
+  //         n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
+  //         n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
+  //         n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
+  //         n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
+  //         n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
+  //         n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
+  //       };
+  //     }
+  //   }
+  // }
+
 
   /**
    * ComponentDidUpdate
@@ -24,7 +44,22 @@ const BookingForm = props => {
       checkin: props.query.checkin || null,
       checkout: props.query.checkout || null,
       treatment: props.query.treatment || null,
+      room_type_id: props.query.room_type_id || null,
     })
+
+    // calcolo i trattamenti della camera scelta
+    if( props.query.room_type_id != null && props.query.room_type_id > 0 ){
+      let treatments = [];
+      for (const [roomTypeName, roomTypeContent] of Object.entries(props.period.viewPeriodPrices)){
+        if( roomTypeContent.room_type.id == props.query.room_type_id ) {
+          for (const [treatmentKey, treatmentPrices] of Object.entries(roomTypeContent.prices)){
+            treatments.push(treatmentKey)
+          }
+        }
+      }
+      setTreatments(treatments)
+    }
+    
   }, [props.query])
 
   const [transfers, setTransfers] = React.useState([]);
@@ -39,7 +74,6 @@ const BookingForm = props => {
     })
     .then(response => {
       setTransfers(response)
-      console.log('transfers', response)
     })
   }, [])
 
@@ -47,6 +81,23 @@ const BookingForm = props => {
     e.persist();
     let newState = Object.assign({}, props.practice);
     switch( e.target.name ){
+      case 'room_type_id':
+        let _flag = false;
+        for (const [roomTypeName, roomTypeContent] of Object.entries(props.period.viewPeriodPrices)){
+          if( roomTypeContent.room_type.id == e.target.value ) {
+            let treatments = [];
+            for (const [treatmentKey, treatmentPrices] of Object.entries(roomTypeContent.prices)){
+              treatments.push(treatmentKey)
+            }
+            setTreatments(treatments)
+            newState.customer[e.target.name] = e.target.value;
+            _flag = true;
+            break;
+          }
+        }
+        if( !_flag )
+          setTreatments([])
+      break;
       case 'privacy': 
         newState[e.target.name] = (e.target.checked) ? 1 : 0;
       break;
@@ -134,6 +185,8 @@ const BookingForm = props => {
     props.createPractice(props.practice)
   }
 
+
+
   /**
    * Validate
    */
@@ -142,6 +195,7 @@ const BookingForm = props => {
       // checkin: props.checkin || "",
       // checkout: props.practice.checkout || "",
       treatment: props.practice.treatment || "",
+      room_type_id: props.practice.room_type_id || "",
       first_name: props.practice.customer.first_name || "",
       last_name: props.practice.customer.last_name || "",
       email: props.practice.customer.email || "",
@@ -152,6 +206,7 @@ const BookingForm = props => {
       // checkin: yup.string().required('Campo non valido'),
       // checkout: yup.string().required('Campo non valido'),
       treatment: yup.string().required('Campo non valido'),
+      room_type_id: yup.string().required('Campo non valido'),
       first_name: yup.string().required('Campo non valido'),
       last_name: yup.string().required('Campo non valido'),
       email: yup.string().required('Campo non valido'),
@@ -293,6 +348,7 @@ const BookingForm = props => {
         <div className="row">
           <div className="col-lg-3">
             <div className="form-group">
+              <label>Arrivo - Partenza</label>
               <MyDateRangePicker 
                 startDate={props.practice.checkin}
                 endDate={props.practice.checkout}
@@ -300,7 +356,7 @@ const BookingForm = props => {
                 />
             </div>
           </div>
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <div className="form-group">
               <select
                 className={"custom-select" + (formik.errors.treatment ? " is-invalid" : "")}
@@ -325,9 +381,71 @@ const BookingForm = props => {
                   </div>
                 }
             </div>
+          </div> */}
+          <div className="col-lg-3">
+            <div className="form-group">
+              <label>Camera</label>
+              <select
+                className={"custom-select" + (formik.errors.treatment ? " is-invalid" : "")}
+                name="room_type_id"
+                id="room_type_id"
+                // value={props.practice.treatment || ''}
+                // onChange={(e) => onChange(e)}
+                value={formik.values.room_type_id || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
+                >
+                <option value="">Camera</option>
+                {props.period.viewPeriodPrices && Object.entries(props.period.viewPeriodPrices).map( ([roomTypeKey, roomTypeContent], index) =>
+                  <option key={index} value={roomTypeContent.room_type.id}>{roomTypeContent.room_type.name}</option>
+                )}
+              </select>
+              {formik.errors.treatment && 
+                  <div className="invalid-feedback">
+                    {formik.errors.room_type_id}
+                  </div>
+                }
+            </div>
           </div>
           <div className="col-lg-3">
             <div className="form-group">
+              <label>Trattamento</label>
+              <select
+                className={"custom-select" + (formik.errors.treatment ? " is-invalid" : "")}
+                name="treatment"
+                id="treatment"
+                // value={props.practice.treatment || ''}
+                // onChange={(e) => onChange(e)}
+                value={formik.values.treatment || ''}
+                onChange={(e)=>{
+                  onChange(e)
+                  formik.handleChange(e)
+                }}
+                >
+                <option value="">Trattamento</option>
+                {treatments && treatments.map((key) => 
+                  <option key={key} value={key}>{key}</option>
+                )}
+                {/* {props.priceList && Object.entries(props.priceList).map( ([roomTypeKey, roomTypeContent], index) =>
+                  <React.Fragment key={index}>
+                  {roomTypeContent && Object.entries(roomTypeContent).map( ([key, prices], index1) =>
+                    <option key={index1} value={key}>{key}</option>
+                  )}
+                  </React.Fragment>
+                )} */}
+              </select>
+              {formik.errors.treatment && 
+                  <div className="invalid-feedback">
+                    {formik.errors.treatment}
+                  </div>
+                }
+            </div>
+          </div>
+          <div className="col-lg-3">
+            <div className="form-group">
+              <label>Transfer</label>
               <select
                 className="custom-select"
                 name="transfer_id"

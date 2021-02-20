@@ -40,7 +40,7 @@ module.exports = {
     },
     ga_tracking_id: process.env.REACT_GTAG_ID,
     pagination: {
-      paginate: 20
+      paginate: 30
     },
     socials: {
       'facebook': {

@@ -33,6 +33,7 @@ const HomeRecap = props => {
                 </div>
               </div>
             </div>
+            {props.busPage &&
             <div className="col-lg-4">
               <div className="home-primopiano-item">
                 <div className="title">{props.busPage.title.it}</div>
@@ -56,6 +57,7 @@ const HomeRecap = props => {
                 </div>
               </div>
             </div>
+            }
             <div className="col-lg-4">
               <div className="home-primopiano-item">
                 <div className="title">Offerte del mese</div>

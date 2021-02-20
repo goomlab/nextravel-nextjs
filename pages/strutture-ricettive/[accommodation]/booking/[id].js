@@ -17,6 +17,9 @@ import BookingForm from "~/components/Partials/BookingForm";
 import HotelAgeRangesTable from '~/components/Partials/HotelAgeRangesTable';
 import HotelExtraServicesTable from '~/components/Partials/HotelExtraServicesTable';
 import PriceTable from '~/components/Partials/PriceTable';
+import PriceTableWrap from '~/components/Partials/PriceTableWrap';
+import PriceTableWrap2 from '~/components/Partials/PriceTableWrap2';
+
 
 const BookingPage = props => {
   if (!props.hotel || props.hotel.length <= 0) {
@@ -39,18 +42,36 @@ const BookingPage = props => {
     stars.push(<i key={i} className="ico ico-star"></i>);
   }
 
-  let priceList = {};
-  for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
-    priceList[key] = {
-      n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
-      n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
-      n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
-      n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
-      n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
-      n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
-      n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
-    };
-  }
+  // let priceList = {};
+  // for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
+  //   priceList[key] = {
+  //     n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
+  //     n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
+  //     n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
+  //     n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
+  //     n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
+  //     n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
+  //     n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
+  //   };
+  // }
+
+  // let priceList = {}
+  // for (const [roomTypeName, roomTypeContent] of Object.entries(period.viewPeriodPrices)){
+  //   priceList[roomTypeName] = {};
+  //   if( roomTypeContent.prices ){
+  //     for (const [key, treatmentObj] of Object.entries(roomTypeContent.prices)) {
+  //       priceList[roomTypeName][key] = {
+  //         n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
+  //         n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
+  //         n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
+  //         n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
+  //         n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
+  //         n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
+  //         n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
+  //       };
+  //     }
+  //   }
+  // }
 
   React.useEffect(() => {
     swiperHotelThumbnail.current = new Swiper(`#swiperHotelThumbnail`, {
@@ -131,7 +152,7 @@ const BookingPage = props => {
             <div className="box1">
               <div className="row">
                 <div className="col-lg-6">
-                {priceList && Object.entries(priceList).map( ([treatment, prices], index) => 
+                {/* {priceList && Object.entries(priceList).map( ([treatment, prices], index) => 
                   <React.Fragment>
                     <div className="prices-box" key={index}>
                       <PriceTable 
@@ -144,7 +165,8 @@ const BookingPage = props => {
                         />
                     </div>
                   </React.Fragment>
-                )}
+                )} */}
+                <PriceTableWrap2 {...props} />
 
                 {period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && 
                   <HotelAgeRangesTable 
@@ -218,12 +240,12 @@ const BookingPage = props => {
                 </div>
               </div>
             </div>
-{/* {console.log('props query', props.query)} */}
+
             <BookingForm 
               rateplan={props.period.rateplan || null}
               hotel={props.period.rateplan.hotel || null}
               query={props.query} 
-              priceList={priceList} 
+              period={props.period} 
               />
           </div>
         </div>
@@ -300,6 +322,7 @@ BookingPage.getInitialProps = async params => {
     checkin: params.query.checkin || null,
     checkout: params.query.checkout || null,
     treatment: params.query.treatment || null,
+    room_type_id: params.query.room_type_id || null,
     nights: params.query.nights || null,
   }
 

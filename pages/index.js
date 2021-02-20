@@ -11,6 +11,7 @@ import HotelCategoryService from "~/packages/TravelgoOne/services/HotelCategoryS
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
 import HotelArchive from "~/components/Partials/HotelArchive";
+import HotelArchive2 from "~/components/Partials/HotelArchive2";
 import HomeRecap from "~/components/Partials/HomeRecap";
 import Newsletter from "~/components/Partials/Newsletter";
 
@@ -70,12 +71,14 @@ const Index = props => {
         </div>
       </section>
 
-      <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
+      {/* <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} /> */}
+      <HotelArchive2 hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
 
       {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) &&
       <section className="section-main">
         <div className="container text-center">
-          <Link href="/accomodations" as="/accommodations?page=2">
+          {/* <Link href="/accomodations" as="/accommodations?page=2"> */}
+          <Link href={`${process.env.accommodations_path}`} as={`${process.env.accommodations_path}?page=2`}>
             <a className="btn btn-more">Carica le altre offerte</a>
           </Link>
         </div>
@@ -113,7 +116,7 @@ Index.getInitialProps = async ctx => {
 
     let postService = new PostService();
     page = await postService.get(1);
-    busPage = await postService.get(3);
+    // busPage = await postService.get(3);
 
     let hotelService = new HotelService();
     hotels = await hotelService.query({

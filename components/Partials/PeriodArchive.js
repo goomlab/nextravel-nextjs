@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import HotelAgeRangesTable from '~/components/Partials/HotelAgeRangesTable';
 import PriceTable from './PriceTable';
+import PriceTableWrap from './PriceTableWrap';
+import PriceTableWrap2 from './PriceTableWrap2';
 import HotelExtraServicesTable from "./HotelExtraServicesTable";
 
 
@@ -12,18 +14,18 @@ const PeriodArchiveItem = props => {
   let dateFrom = moment(props.period.date_from, 'YYYY-MM-DD');
   let dateTo = moment(props.period.date_to, 'YYYY-MM-DD');
 
-  let priceList = {};
-  for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
-    priceList[key] = {
-      n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
-      n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
-      n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
-      n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
-      n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
-      n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
-      n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
-    };
-  }
+  // let priceList = {};
+  // for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
+  //   priceList[key] = {
+  //     n1: (treatmentObj.n1) ? treatmentObj.n1 : null,
+  //     n2: (treatmentObj.n2) ? treatmentObj.n2 : null,
+  //     n3: (treatmentObj.n3) ? treatmentObj.n3 : null,
+  //     n4: (treatmentObj.n4) ? treatmentObj.n4 : null,
+  //     n5: (treatmentObj.n5) ? treatmentObj.n5 : null,
+  //     n6: (treatmentObj.n6) ? treatmentObj.n6 : null,
+  //     n7: (treatmentObj.n7) ? treatmentObj.n7 : null,
+  //   };
+  // }
 
 
   return (
@@ -33,7 +35,7 @@ const PeriodArchiveItem = props => {
         dal {dateFrom.format('DD/MM')} al {dateTo.format('DD/MM')}
       </div>
 
-      {priceList && Object.entries(priceList).map( ([treatment, prices], index) => 
+      {/* {priceList && Object.entries(priceList).map( ([treatment, prices], index) => 
         <div className="prices-box" key={index}>
           <PriceTable 
             key={index}
@@ -44,7 +46,9 @@ const PeriodArchiveItem = props => {
             period={props.period}
             />
         </div>
-      )}
+      )} */}
+
+      <PriceTableWrap2 {...props} />
 
       {props.hasHotelAgeRanges && period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && 
         <HotelAgeRangesTable
