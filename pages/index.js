@@ -116,7 +116,7 @@ Index.getInitialProps = async ctx => {
 
     let postService = new PostService();
     page = await postService.get(1);
-    // busPage = await postService.get(3);
+    busPage = await postService.get(3);
 
     let hotelService = new HotelService();
     hotels = await hotelService.query({

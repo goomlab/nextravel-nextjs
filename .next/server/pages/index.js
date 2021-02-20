@@ -2204,8 +2204,8 @@ Index.getInitialProps = async ctx => {
     let menuService = new MenuService["a" /* default */]();
     menu = await menuService.get(1);
     let postService = new PostService["a" /* default */]();
-    page = await postService.get(1); // busPage = await postService.get(3);
-
+    page = await postService.get(1);
+    busPage = await postService.get(3);
     let hotelService = new HotelService["a" /* default */]();
     hotels = await hotelService.query({
       hasEmptyPeriods: true,
