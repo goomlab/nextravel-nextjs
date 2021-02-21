@@ -1149,6 +1149,14 @@ class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* defau
     super('/travelgo-one/practices');
   }
 
+  getClientIp() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/get-client-ip`, this.config).then(response => {
+      return Promise.resolve(response);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
   createByGuest(postData) {
     let config = {
       headers: {

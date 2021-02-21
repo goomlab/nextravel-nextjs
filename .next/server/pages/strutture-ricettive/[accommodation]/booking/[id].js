@@ -1384,6 +1384,7 @@ const BookingForm = props => {
   }, [props.query]);
   const [transfers, setTransfers] = external_react_default.a.useState([]);
   external_react_default.a.useEffect(() => {
+    // props.getClientIp();
     let service = new HotelServiceService_HotelServiceService();
     service.all({
       type: {
@@ -1611,7 +1612,7 @@ const BookingForm = props => {
           className: "col-lg-3"
         }, BookingForm_jsx("div", {
           className: "form-group"
-        }, BookingForm_jsx("select", {
+        }, BookingForm_jsx("label", null, "Et\xE0"), BookingForm_jsx("select", {
           className: "custom-select",
           name: "childrens_age[]",
           "data-name": "ageChildrens",
@@ -1644,7 +1645,7 @@ const BookingForm = props => {
         className: "col-lg-2"
       }, BookingForm_jsx("div", {
         className: "form-group"
-      }, BookingForm_jsx("select", {
+      }, BookingForm_jsx("label", null, "Adulti"), BookingForm_jsx("select", {
         className: "custom-select",
         id: `adults_${i}`,
         name: "adults[]",
@@ -1655,7 +1656,7 @@ const BookingForm = props => {
         className: "col-lg-2"
       }, BookingForm_jsx("div", {
         className: "form-group"
-      }, BookingForm_jsx("select", {
+      }, BookingForm_jsx("label", null, "Bambini"), BookingForm_jsx("select", {
         className: "custom-select",
         id: `childrens_${i}`,
         name: "childrens[]",
@@ -1890,6 +1891,9 @@ const mapDispatchToProps = dispatch => {
     },
     resetPractice: () => {
       dispatch(practiceByGuestAction.resetItem());
+    },
+    getClientIp: () => {
+      dispatch(practiceByGuestAction.getClientIp());
     },
     createPractice: data => {
       dispatch(practiceByGuestAction.create(data));
@@ -2935,6 +2939,14 @@ function getRouteRegex(normalizedRoute) {
 class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"] {
   constructor() {
     super('/travelgo-one/practices');
+  }
+
+  getClientIp() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/get-client-ip`, this.config).then(response => {
+      return Promise.resolve(response);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
   }
 
   createByGuest(postData) {
@@ -4783,6 +4795,7 @@ function makePublicRouterInstance(router) {
 const practiceByGuestConsts = {
   SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
   RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
   CREATE: 'PRACTICE_BY_GUEST_CREATE'
 };
 class PracticeByGuestAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"] {
@@ -4806,6 +4819,17 @@ class PracticeByGuestAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODUL
       dispatch({
         type: this.consts.RESET_ITEM
       });
+    };
+  }
+
+  getClientIp() {
+    return dispatch => {
+      this.service.getClientIp().then(response => {
+        dispatch({
+          type: this.consts.GET_CLIENT_IP,
+          clientIp: response.data.clientIp
+        });
+      }).catch(error => {});
     };
   }
 

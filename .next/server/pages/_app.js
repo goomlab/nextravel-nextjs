@@ -252,6 +252,11 @@ const PracticeByGuestReducer = (state = PracticeByGuestReducer_initialState, act
         item: action.item
       });
 
+    case PracticeByGuestAction["b" /* practiceByGuestConsts */].GET_CLIENT_IP:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        sub_ip: action.clientIp
+      });
+
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].CREATE:
       return _objectSpread(_objectSpread({}, state), {}, {
         item: action.item
@@ -768,6 +773,14 @@ class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* defau
     super('/travelgo-one/practices');
   }
 
+  getClientIp() {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`/get-client-ip`, this.config).then(response => {
+      return Promise.resolve(response);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
   createByGuest(postData) {
     let config = {
       headers: {
@@ -1157,6 +1170,7 @@ class NewsletterAction_NewsletterAction extends BaseAction["a" /* default */] {
 const practiceByGuestConsts = {
   SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
   RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
   CREATE: 'PRACTICE_BY_GUEST_CREATE'
 };
 class PracticeByGuestAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"] {
@@ -1180,6 +1194,17 @@ class PracticeByGuestAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODUL
       dispatch({
         type: this.consts.RESET_ITEM
       });
+    };
+  }
+
+  getClientIp() {
+    return dispatch => {
+      this.service.getClientIp().then(response => {
+        dispatch({
+          type: this.consts.GET_CLIENT_IP,
+          clientIp: response.data.clientIp
+        });
+      }).catch(error => {});
     };
   }
 

@@ -51,6 +51,11 @@ const PracticeByGuestReducer = (state = initialState, action) => {
         ...state,
         item: action.item
       }
+    case practiceByGuestConsts.GET_CLIENT_IP:
+      return {
+        ...state,
+        sub_ip: action.clientIp
+      }
     case practiceByGuestConsts.CREATE:
       return {
         ...state,

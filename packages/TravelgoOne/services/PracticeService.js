@@ -7,6 +7,16 @@ export default class PracticeService extends BaseService {
     super('/travelgo-one/practices');
   }
 
+  getClientIp() {
+    return axios.get(`/get-client-ip`, this.config)
+    .then(response => {
+      return Promise.resolve(response);
+    })
+    .catch(error => {
+      return Promise.reject(error);
+    });
+  }
+
   createByGuest(postData) {
     let config = {
       headers: {

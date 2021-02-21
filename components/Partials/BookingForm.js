@@ -64,6 +64,8 @@ const BookingForm = props => {
 
   const [transfers, setTransfers] = React.useState([]);
   React.useEffect(() => {
+    // props.getClientIp();
+
     let service = new HotelServiceService()
     service.all({
       type: {
@@ -258,6 +260,7 @@ const BookingForm = props => {
         _htmlChildrenAges.push(
           <div key={j} className="col-lg-3">
             <div className="form-group">
+              <label>Età</label>
               <select 
                 className="custom-select"
                 name="childrens_age[]"
@@ -303,6 +306,7 @@ const BookingForm = props => {
         </div>
         <div className="col-lg-2">
           <div className="form-group">
+            <label>Adulti</label>
             <select 
             className="custom-select" 
             id={`adults_${i}`} 
@@ -317,6 +321,7 @@ const BookingForm = props => {
         </div>
         <div className="col-lg-2">
           <div className="form-group">
+            <label>Bambini</label>
             <select 
               className="custom-select" 
               id={`childrens_${i}`} 
@@ -623,6 +628,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     resetPractice: () => {
       dispatch(practiceByGuestAction.resetItem())
+    },
+    getClientIp: () => {
+      dispatch(practiceByGuestAction.getClientIp())
     },
     createPractice: (data) => {
       dispatch(practiceByGuestAction.create(data))

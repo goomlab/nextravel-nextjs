@@ -6,6 +6,7 @@ import PracticeService from '../services/PracticeService'
 export const practiceByGuestConsts = {
   SET_ITEM: 'PRACTICE_BY_GUEST_SET_ITEM',
   RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
   CREATE: 'PRACTICE_BY_GUEST_CREATE',
 }
 
@@ -31,6 +32,21 @@ export default class PracticeByGuestAction extends BaseAction {
     return (dispatch) => {
       dispatch({
         type: this.consts.RESET_ITEM,
+      })
+    }
+  }
+
+  getClientIp() {
+    return (dispatch) => {
+      this.service.getClientIp()
+      .then(response => {
+        dispatch({
+          type: this.consts.GET_CLIENT_IP,
+          clientIp: response.data.clientIp,
+        })
+      })
+      .catch(error => {
+
       })
     }
   }
