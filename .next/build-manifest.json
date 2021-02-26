@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/RDE8NkSlkgShWMQsntTJn/_buildManifest.js",
-    "static/RDE8NkSlkgShWMQsntTJn/_ssgManifest.js"
+    "static/2rHsDeZVMIbq7bEMTGmvH/_buildManifest.js",
+    "static/2rHsDeZVMIbq7bEMTGmvH/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -123,7 +123,7 @@
       "static/chunks/6446cbebe960a337639e903d581cc2ca0c721e96.dd17bd0ab9f7f0fb7289.js",
       "static/chunks/10dba252b9340cc66684f2cd02ea47e225fadbb3.669d776f9f476b920588.js",
       "static/chunks/7d990f6e464e335cbeea06259d451b91878fba66.fb40d3746e528d31a532.js",
-      "static/chunks/pages/strutture-ricettive/[accommodation]/booking/[id]-4b4cd072bfeeb23910f3.js"
+      "static/chunks/pages/strutture-ricettive/[accommodation]/booking/[id]-0509fc51ae6d49036b62.js"
     ]
   },
   "ampFirstPages": []

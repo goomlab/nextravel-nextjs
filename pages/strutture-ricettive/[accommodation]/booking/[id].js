@@ -22,7 +22,6 @@ import HotelExtraServicesTable from '~/components/Partials/HotelExtraServicesTab
 import PriceTable from '~/components/Partials/PriceTable';
 import PriceTableWrap from '~/components/Partials/PriceTableWrap';
 import PriceTableWrap2 from '~/components/Partials/PriceTableWrap2';
-import JsonLdSchema from "../../../../components/JsonLdSchema";
 
 
 const BookingPage = props => {
