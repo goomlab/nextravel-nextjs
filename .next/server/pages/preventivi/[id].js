@@ -649,8 +649,12 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 var head_ = __webpack_require__("xnum");
 var head_default = /*#__PURE__*/__webpack_require__.n(head_);
 
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__("h74D");
+
 // CONCATENATED MODULE: ./components/Layouts/MainLayout/Head.js
 var __jsx = external_react_default.a.createElement;
+
 
 
 
@@ -659,6 +663,9 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("title", null, meta.title || '', " - ", "Nextravel"), __jsx("meta", {
   name: "description",
   content: meta.description || ''
+}), meta.canonical && meta.canonical != "" && __jsx("link", {
+  rel: "canonical",
+  href: meta.canonical
 }), __jsx("meta", {
   name: "viewport",
   content: "width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -721,6 +728,10 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
+}), meta.jsonlds && meta.jsonlds.map((obj, index) => {
+  __jsx(external_react_default.a.Fragment, {
+    key: index
+  }, obj);
 }));
 
 /* harmony default export */ var MainLayout_Head = (Head);
@@ -2573,6 +2584,13 @@ function getRouteMatcher(routeRegex) {
     return params;
   };
 }
+
+/***/ }),
+
+/***/ "h74D":
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ }),
 

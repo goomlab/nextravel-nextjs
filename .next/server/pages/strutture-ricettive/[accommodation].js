@@ -1058,6 +1058,68 @@ const HotelAgeRangesTable = props => {
 
 /***/ }),
 
+/***/ "Hw1s":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotelSchema; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+const makeHotelSchema = hotel => {
+  return {
+    "@context": "http://schema.org",
+    "@type": "Hotel",
+    "name": hotel.name,
+    "url": process.env.REACT_APP_URL,
+    "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
+    "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
+    "address": {
+      "@type": 'PostalAddress',
+      "addressLocality": hotel.details ? hotel.details.city : "",
+      "addressRegion": hotel.details ? hotel.details.state : "",
+      "postalcode": hotel.details ? hotel.details.zip_code : "",
+      "streetAddress": hotel.details ? hotel.details.address : "",
+      "addressRegion": hotel.details ? hotel.details.state : ""
+    },
+    "openingHours": ["Mo-Sa 00:00-24-00"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "",
+      "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "",
+      "priceRange": ""
+    }
+  };
+};
+
+const HotelSchema = hotel => {
+  return __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(makeHotelSchema(hotel))
+    }
+  });
+}; // {
+//   "@context":"http:\/\/www.schema.org",
+//   "@type":"Hotel",
+//   "name":"HotelIschia.org",
+//   "url":"https:\/\/www.hotelischia.org",
+//   "image":"https:\/\/www.hotelischia.org\/default.jpg",
+//   "logo":"https:\/\/www.hotelischia.org\/logo.png",
+//   "description":"HotelIschia ",
+//   "address":{"@type":"PostalAddress","streetAddress":"Via Tommaso Cigliano 109","addressLocality":"Forio","addressRegion":"Campania","postalCode":"80075","addressCountry":"Italia"},
+//   "geo":{"@type":"GeoCoordinates","latitude":"45.3725831","longitude":"12.3386239"},
+//   "hasMap":"https:\/\/www.google.it\/maps\/place\/Hotelischia.org\/@40.751108,13.869027,15z\/data=!4m12!1m6!3m5!1s0x0:0x1a2964fe6e65709a!2sHotelischia.org!8m2!3d40.751108!4d13.869027!3m4!1s0x0:0x1a2964fe6e65709a!8m2!3d40.751108!4d13.869027",
+//   "openingHours":"Mo, Tu, We, Th, Fr, Sa, Su 00:00-24:00",
+//   "contactPoint":{"@type":"ContactPoint","telephone":"tel:+3908118088050","email":"info@hotelischia.org","contactType":"reservations"},
+//   "priceRange":"da \u20ac 30,00","telephone":"tel:+3908118088050"},
+//   {"@context":"http:\/\/www.schema.org","@type":"WebSite","name":"HotelIschia.org","alternateName":"HotelIschia.org","url":"https:\/\/www.hotelischia.org\/"}
+
+/***/ }),
+
 /***/ "JHTH":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1071,8 +1133,12 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 var head_ = __webpack_require__("xnum");
 var head_default = /*#__PURE__*/__webpack_require__.n(head_);
 
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__("h74D");
+
 // CONCATENATED MODULE: ./components/Layouts/MainLayout/Head.js
 var __jsx = external_react_default.a.createElement;
+
 
 
 
@@ -1081,6 +1147,9 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("title", null, meta.title || '', " - ", "Nextravel"), __jsx("meta", {
   name: "description",
   content: meta.description || ''
+}), meta.canonical && meta.canonical != "" && __jsx("link", {
+  rel: "canonical",
+  href: meta.canonical
 }), __jsx("meta", {
   name: "viewport",
   content: "width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -1143,6 +1212,10 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
+}), meta.jsonlds && meta.jsonlds.map((obj, index) => {
+  __jsx(external_react_default.a.Fragment, {
+    key: index
+  }, obj);
 }));
 
 /* harmony default export */ var MainLayout_Head = (Head);
@@ -1466,6 +1539,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
+// EXTERNAL MODULE: ./components/JsonLdSchema.js
+var JsonLdSchema = __webpack_require__("Hw1s");
+
 // EXTERNAL MODULE: external "swiper"
 var external_swiper_ = __webpack_require__("1nAM");
 var external_swiper_default = /*#__PURE__*/__webpack_require__.n(external_swiper_);
@@ -1594,6 +1670,7 @@ var _accommodation_jsx = external_react_default.a.createElement;
 
 
 
+
 external_swiper_default.a.use([external_swiper_["Navigation"], external_swiper_["Pagination"], external_swiper_["Scrollbar"], external_swiper_["A11y"]]);
 
 
@@ -1649,8 +1726,11 @@ const HotelPage = props => {
       title: props.page.meta_title.it,
       description: props.page.meta_description.it,
       url: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.page.slug.it}`,
-      image: props.page.media && props.page.media.gallery && props.page.media.gallery[0] ? props.page.media.gallery[0].url : null // image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
-
+      image: props.page.media && props.page.media.gallery && props.page.media.gallery[0] ? props.page.media.gallery[0].url : null,
+      // image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null,
+      jsonlds: [_accommodation_jsx(JsonLdSchema["a" /* HotelSchema */], {
+        hotel: props.hotel
+      })]
     }
   }, _accommodation_jsx(BookingSearchBox["a" /* default */], null), _accommodation_jsx("section", {
     className: "single-hotel-section"
@@ -3556,6 +3636,13 @@ function getRouteMatcher(routeRegex) {
     return params;
   };
 }
+
+/***/ }),
+
+/***/ "h74D":
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ }),
 

@@ -2,6 +2,8 @@ import React from "react";
 import moment from "moment";
 import Link from "next/link";
 
+import { HotelSchema } from "~/components/JsonLdSchema"
+
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -19,10 +21,11 @@ import HotelExtraServicesTable from '~/components/Partials/HotelExtraServicesTab
 import PriceTable from '~/components/Partials/PriceTable';
 import PriceTableWrap from '~/components/Partials/PriceTableWrap';
 import PriceTableWrap2 from '~/components/Partials/PriceTableWrap2';
+import JsonLdSchema from "../../../../components/JsonLdSchema";
 
 
 const BookingPage = props => {
-  if (!props.hotel || props.hotel.length <= 0) {
+  if (!props.hotel) {
     return (
       <Layout settings={{ menu: props.menu }}>
         <div>Data not found</div>
@@ -94,8 +97,12 @@ const BookingPage = props => {
       meta={{
         title: `Booking ${props.hotel.meta_title.it}`,
         description: `Booking`,
+        canonical: `${process.env.meta.url}/accommodations/${props.hotel.slug.it}`,
         url: `${process.env.meta.url}/accommodations/${props.hotel.slug.it}/booking`,
-        image: (props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0]) ? props.hotel.media.gallery[0].url : null
+        image: (props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0]) ? props.hotel.media.gallery[0].url : null,
+        jsonlds:[
+          <HotelSchema hotel={props.hotel} />
+        ]
       }}
       >
       <BookingSearchBox />

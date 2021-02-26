@@ -1,11 +1,16 @@
 import React from 'react'
 import NextHead from 'next/head'
+import { ReactReduxContext } from 'react-redux'
 
 const Head = (meta) => (
   <NextHead>
     <meta charSet="UTF-8" />
     <title>{meta.title || ''} - {process.env.app_title}</title>
     <meta name="description" content={meta.description || ''} />
+    {meta.canonical && meta.canonical != "" &&
+      <link rel="canonical" href={meta.canonical} />
+    }
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossOrigin="anonymous" />
@@ -31,6 +36,12 @@ const Head = (meta) => (
     <meta name="twitter:title" content={`${process.env.meta.title} - ${(meta.title || '')}`} />
     <meta name="twitter:description" content={meta.description || ''} />
     <meta name="twitter:image" content={meta.image || process.env.meta.image} />
+
+    {meta.jsonlds && meta.jsonlds.map((obj, index) => {
+      <React.Fragment key={index}>
+        {obj}
+      </React.Fragment>
+    })}
   </NextHead>
 )
 
