@@ -1573,13 +1573,6 @@ function getRouteRegex(normalizedRoute) {
 
 /***/ }),
 
-/***/ "ZOYG":
-/***/ (function(module, exports) {
-
-module.exports = require("next/Head");
-
-/***/ }),
-
 /***/ "bpkj":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1589,8 +1582,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("YFqc");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_Head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("ZOYG");
-/* harmony import */ var next_Head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_Head__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("57t+");
 /* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("TvVg");
 /* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("6Brv");

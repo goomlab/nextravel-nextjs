@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Head from "next/Head";
+import NextHead from 'next/head'
 
 // import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
@@ -65,13 +65,13 @@ const HotelPage = props => {
         // ]
       }}
       >
-      {/* <Head>
+      {/* <NextHead>
         <script
           key={`jobJSON-${props.page.id}`}
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(props.page)) }}
         />
-      </Head> */}
+      </NextHead> */}
 
       <BookingSearchBox />
 

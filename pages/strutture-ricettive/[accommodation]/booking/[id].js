@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import Head from 'next/Head';
+import NextHead from 'next/head'
 
 // import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
 
@@ -105,13 +105,13 @@ const BookingPage = props => {
         // ]
       }}
       >
-        {/* <Head>
+        {/* <NextHead>
           <script
             key={`jobJSON-${hotel.id}`}
             type='application/ld+json'
             dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
           />
-        </Head> */}
+        </NextHead> */}
       <BookingSearchBox />
 
       <section className="single-hotel-section">

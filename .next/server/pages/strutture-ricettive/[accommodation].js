@@ -1473,8 +1473,8 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
-// EXTERNAL MODULE: external "next/Head"
-var Head_ = __webpack_require__("ZOYG");
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
 
 // EXTERNAL MODULE: external "swiper"
 var external_swiper_ = __webpack_require__("1nAM");
@@ -2170,13 +2170,6 @@ function getRouteRegex(normalizedRoute) {
     groups
   };
 }
-
-/***/ }),
-
-/***/ "ZOYG":
-/***/ (function(module, exports) {
-
-module.exports = require("next/Head");
 
 /***/ }),
 
