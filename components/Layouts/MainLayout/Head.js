@@ -36,9 +36,9 @@ const Head = (meta) => (
     <meta name="twitter:title" content={`${process.env.meta.title} - ${(meta.title || '')}`} />
     <meta name="twitter:description" content={meta.description || ''} />
     <meta name="twitter:image" content={meta.image || process.env.meta.image} />
-
-    {meta.jsonlds && meta.jsonlds.map((obj, index) => {
-      <React.Fragment key={index}>
+    {console.log('metajson', meta.jsonlds)}
+    {meta.jsonlds && Object.entries(meta.jsonlds).map(([key, obj], index) => {
+      <React.Fragment key={key}>
         {obj}
       </React.Fragment>
     })}

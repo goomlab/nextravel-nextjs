@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import Head from "next/Head";
 
-import { HotelSchema } from "~/components/JsonLdSchema"
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -59,11 +60,19 @@ const HotelPage = props => {
         url: `${process.env.meta.url}/accommodations/${props.page.slug.it}`,
         image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null,
         // image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null,
-        jsonlds:[
-          <HotelSchema hotel={props.hotel} />
-        ]
+        // jsonlds:[
+        //   <HotelSchema hotel={props.hotel} />
+        // ]
       }}
       >
+      <Head>
+        <script
+          key={`jobJSON-${props.page.id}`}
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(props.page)) }}
+        />
+      </Head>
+
       <BookingSearchBox />
 
       <section className="single-hotel-section">

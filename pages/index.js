@@ -1,5 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import Head from "next/Head";
+
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
 
 import BaseService from "~/packages/BaseService";
 import MenuService from "~/packages/Post/services/MenuService";
@@ -35,6 +38,17 @@ const Index = props => {
         image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
       }}
       >
+      <Head>
+        {props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) =>
+          <script
+            key={`jobJSON-${hotel.id}`}
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
+          />
+        )}
+      </Head>
+      
+
       <section className="section-main section-first home">
         <div className="container">
           <div className="row">

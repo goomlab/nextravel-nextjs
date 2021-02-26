@@ -848,295 +848,64 @@ module.exports = __webpack_require__("bpkj");
 
 /***/ }),
 
-/***/ "FxrF":
+/***/ "Hw1s":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vhO2");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("1nAM");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _PriceTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("V5Fq");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-
-
-
-
-swiper__WEBPACK_IMPORTED_MODULE_4___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_4__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_4__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_4__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_4__["A11y"]]);
-
-
-const NavTab = props => {
-  const index = props.index;
-  let dateFrom = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_from, 'YYYY-MM-DD');
-  let dateTo = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_to, 'YYYY-MM-DD');
-  return __jsx("div", {
-    key: index,
-    className: `swiper-slide swiper-slide-${props.hotel.id}`
-  }, __jsx("a", {
-    className: `nav-item nav-link ${index == props.activeTab ? 'active' : ''}`,
-    id: `nav-${props.hotel.id}-period-${index}-tab`,
-    "data-toggle": "tab",
-    href: `#nav-${props.hotel.id}-period-${index}`,
-    role: "tab",
-    "aria-controls": `nav-${props.hotel.id}-period-${index}`,
-    "aria-selected": "true",
-    onClick: () => props.onActivateTab(index)
-  }, __jsx("span", null, dateFrom.format('DD/MM'), __jsx("br", null), dateTo.format('DD/MM')), __jsx("i", {
-    className: "ico ico-arrow-curved"
-  })));
-};
-
-const NavContent = props => {
-  const index = props.index;
-  let priceList = {};
-
-  for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
-    priceList[key] = {
-      n1: treatmentObj.n1 ? treatmentObj.n1 : null,
-      n2: treatmentObj.n2 ? treatmentObj.n2 : null,
-      n3: treatmentObj.n3 ? treatmentObj.n3 : null,
-      n4: treatmentObj.n4 ? treatmentObj.n4 : null,
-      n5: treatmentObj.n5 ? treatmentObj.n5 : null,
-      n6: treatmentObj.n6 ? treatmentObj.n6 : null,
-      n7: treatmentObj.n7 ? treatmentObj.n7 : null
-    };
-  }
-
-  return __jsx("div", {
-    className: `tab-pane fade ${index == 0 ? 'show active' : ''}`,
-    id: `nav-${props.hotel.id}-period-${index}`,
-    role: "tabpanel",
-    "aria-labelledby": `nav-${props.hotel.id}-period-${index}-tab`
-  }, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx(_PriceTable__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
-    key: index,
-    index: index,
-    treatment: treatment,
-    prices: prices,
-    hotel: props.hotel,
-    period: props.period,
-    priceTableLink: true
-  })));
-};
-
-const HotelArchiveItem = props => {
-  const hotel = props.hotel;
-  const swiperPrices = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
-  let stars = [];
-
-  for (let i = 1; i <= parseInt(hotel.stars); i++) {
-    stars.push(__jsx("i", {
-      key: i,
-      className: "ico ico-star"
-    }));
-  }
-
-  const [activeTab, setActiveTab] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
-
-  const onActivateTab = index => {
-    setActiveTab(index);
+const makeHotelSchema = hotel => {
+  return {
+    "@context": "http://schema.org",
+    "@type": "Hotel",
+    "name": hotel.name,
+    "url": process.env.REACT_APP_URL,
+    "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
+    "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
+    "address": {
+      "@type": 'PostalAddress',
+      "addressLocality": hotel.details ? hotel.details.city : "",
+      "addressRegion": hotel.details ? hotel.details.state : "",
+      "postalcode": hotel.details ? hotel.details.zip_code : "",
+      "streetAddress": hotel.details ? hotel.details.address : "",
+      "addressRegion": hotel.details ? hotel.details.state : ""
+    },
+    "openingHours": ["Mo-Sa 00:00-24-00"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "",
+      "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "",
+      "priceRange": ""
+    }
   };
-
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    swiperPrices.current = new swiper__WEBPACK_IMPORTED_MODULE_4__["Swiper"](`#swiperPrices-${hotel.id}`, {
-      grubCursor: false,
-      simulateTouch: false,
-      direction: 'horizontal',
-      //speed: 600,
-      // slidesPerView: 4,
-      spaceBetween: 0,
-      breakpoints: {
-        1: {
-          slidesPerView: 1
-        },
-        320: {
-          slidesPerView: 4
-        },
-        768: {
-          slidesPerView: 2
-        },
-        992: {
-          slidesPerView: 3
-        },
-        1200: {
-          slidesPerView: 4
-        }
-      },
-      navigation: {
-        nextEl: `#swiperPrices-${hotel.id}-button-next`,
-        prevEl: `#swiperPrices-${hotel.id}-button-prev`
-      }
-    });
-  }, []); // React.useEffect(() => {
-  //   if( swiperPrices && swiperPrices.current )
-  //     swiperPrices.current.update()
-  // }, [activeTab])
-
-  return __jsx("div", {
-    className: "hotel-list-item"
-  }, __jsx("a", {
-    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
-    rel: "nofollow"
-  }, __jsx("div", {
-    className: "topline"
-  }, __jsx("div", {
-    className: "title mr-auto"
-  }, hotel.name), __jsx("div", {
-    className: "stars ml-auto"
-  }, stars))), __jsx("a", {
-    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
-    rel: "nofollow"
-  }, __jsx("figure", {
-    className: "img-bgas"
-  }, __jsx("img", {
-    src: hotel.media && hotel.media.gallery && hotel.media.gallery[0] ? hotel.media.gallery[0].url : 'default',
-    alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
-  }))), __jsx("div", {
-    className: "prices-box"
-  }, hotel.rateplanPeriods && hotel.rateplanPeriods.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("nav", {
-    style: {
-      width: "100% !important"
-    }
-  }, __jsx("div", {
-    className: "nav nav-tabs",
-    id: "nav-tab-1",
-    role: "tablist",
-    style: {
-      width: "100% !important"
-    }
-  }, __jsx("div", {
-    id: `swiperPrices-${hotel.id}`,
-    className: "swiper-container swiperPrices",
-    style: {
-      width: "100% !important"
-    }
-  }, __jsx("div", {
-    className: "swiper-wrapper",
-    style: {
-      width: "100% !important"
-    }
-  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavTab, {
-    key: index,
-    index: index,
-    period: period,
-    hotel: hotel,
-    activeTab: activeTab,
-    onActivateTab: () => onActivateTab(index)
-  })))), __jsx("div", {
-    id: `swiperPrices-${hotel.id}-button-prev`,
-    className: "swiper-button-prev"
-  }), __jsx("div", {
-    id: `swiperPrices-${hotel.id}-button-next`,
-    className: "swiper-button-next"
-  }))), __jsx("div", {
-    className: "tab-content",
-    id: "nav-tabContent-1"
-  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavContent, {
-    key: index,
-    index: index,
-    hotel: hotel,
-    period: period
-  })))), !hotel.rateplanPeriods || hotel.rateplanPeriods.length <= 0 && __jsx("div", {
-    style: {
-      height: 70
-    }
-  }), __jsx("div", {
-    className: "details"
-  }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-4"
-  }, __jsx("div", {
-    className: "description"
-  }, __jsx("span", {
-    className: "bold"
-  }, "POSIZIONE"), __jsx("br", null), hotel.details.address, __jsx("br", null), hotel.details.zip_code, " - ", hotel.details.city, __jsx("br", null), "\u2014", __jsx("br", null), __jsx("div", {
+};
+const HotelSchema = hotel => {
+  return __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
     dangerouslySetInnerHTML: {
-      __html: hotel.description_near.it
+      __html: JSON.stringify(makeHotelSchema(hotel))
     }
-  }))), __jsx("div", {
-    className: "col-8"
-  }, __jsx("ul", {
-    className: "hotel-service-list"
-  }, hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map((obj, index) => __jsx("li", {
-    key: index
-  }, __jsx("span", null, obj.name))))))), __jsx("div", {
-    className: "bottomline"
-  }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-8"
-  }, __jsx("div", {
-    className: "line"
-  })), __jsx("div", {
-    className: "col-4"
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
-    href: {
-      pathname: `${"/strutture-ricettive"}/[accommodition]`
-    }
-  }, __jsx("a", {
-    className: "goto"
-  }, "Visualizza la struttura")))))));
-};
-
-const HotelPagination = props => {
-  const [currPage, setCurrPage] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    if (props.meta) {
-      setCurrPage(parseInt(props.meta.current_page) - 1);
-    }
-  }, []);
-
-  const handlePageClick = e => {
-    props.filter.page = e.selected + 1;
-    let stringa = '?';
-
-    for (let i in props.filter) stringa += `${i}=${props.filter[i]}&`;
-
-    window.location.href = window.location.pathname + stringa;
-  };
-
-  if (props.meta) {
-    return __jsx(react_paginate__WEBPACK_IMPORTED_MODULE_3___default.a, {
-      forcePage: currPage,
-      previousLabel: "<",
-      nextLabel: ">",
-      breakLabel: "...",
-      breakClassName: "break-me",
-      pageCount: props.meta.last_page,
-      marginPagesDisplayed: 2,
-      pageRangeDisplayed: 5,
-      onPageChange: e => handlePageClick(e),
-      containerClassName: "pagination",
-      subContainerClassName: "pages pagination",
-      activeClassName: "active"
-    });
-  }
-
-  return '';
-};
-
-const HotelArchive = props => {
-  return __jsx("section", null, __jsx("div", {
-    className: "container"
-  }, props.hotels && props.hotels.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
-    className: "row"
-  }, props.hotels.map((hotel, index) => __jsx("div", {
-    key: index,
-    className: "col-md-6"
-  }, __jsx(HotelArchiveItem, {
-    hotel: hotel
-  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")));
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (HotelArchive);
+  });
+}; // {
+//   "@context":"http:\/\/www.schema.org",
+//   "@type":"Hotel",
+//   "name":"HotelIschia.org",
+//   "url":"https:\/\/www.hotelischia.org",
+//   "image":"https:\/\/www.hotelischia.org\/default.jpg",
+//   "logo":"https:\/\/www.hotelischia.org\/logo.png",
+//   "description":"HotelIschia ",
+//   "address":{"@type":"PostalAddress","streetAddress":"Via Tommaso Cigliano 109","addressLocality":"Forio","addressRegion":"Campania","postalCode":"80075","addressCountry":"Italia"},
+//   "geo":{"@type":"GeoCoordinates","latitude":"45.3725831","longitude":"12.3386239"},
+//   "hasMap":"https:\/\/www.google.it\/maps\/place\/Hotelischia.org\/@40.751108,13.869027,15z\/data=!4m12!1m6!3m5!1s0x0:0x1a2964fe6e65709a!2sHotelischia.org!8m2!3d40.751108!4d13.869027!3m4!1s0x0:0x1a2964fe6e65709a!8m2!3d40.751108!4d13.869027",
+//   "openingHours":"Mo, Tu, We, Th, Fr, Sa, Su 00:00-24:00",
+//   "contactPoint":{"@type":"ContactPoint","telephone":"tel:+3908118088050","email":"info@hotelischia.org","contactType":"reservations"},
+//   "priceRange":"da \u20ac 30,00","telephone":"tel:+3908118088050"},
+//   {"@context":"http:\/\/www.schema.org","@type":"WebSite","name":"HotelIschia.org","alternateName":"HotelIschia.org","url":"https:\/\/www.hotelischia.org\/"}
 
 /***/ }),
 
@@ -1232,9 +1001,9 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
-}), meta.jsonlds && meta.jsonlds.map((obj, index) => {
+}), console.log('metajson', meta.jsonlds), meta.jsonlds && Object.entries(meta.jsonlds).map(([key, obj], index) => {
   __jsx(external_react_default.a.Fragment, {
-    key: index
+    key: key
   }, obj);
 }));
 
@@ -1869,6 +1638,13 @@ function getRouteRegex(normalizedRoute) {
 
 /***/ }),
 
+/***/ "ZOYG":
+/***/ (function(module, exports) {
+
+module.exports = require("next/Head");
+
+/***/ }),
+
 /***/ "bpkj":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1878,13 +1654,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("YFqc");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("57t+");
-/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("TvVg");
-/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("6Brv");
-/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("JHTH");
-/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("8Mm2");
-/* harmony import */ var _components_Partials_HotelArchive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("FxrF");
+/* harmony import */ var next_Head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("ZOYG");
+/* harmony import */ var next_Head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_Head__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Hw1s");
+/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("57t+");
+/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("TvVg");
+/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("6Brv");
+/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("JHTH");
+/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("8Mm2");
+/* harmony import */ var _components_Partials_HotelArchive2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("hm/Q");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
 
 
 
@@ -1896,7 +1677,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const Index = props => {
   if (!props.page || props.page.length <= 0) {
-    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
+    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
       settings: {
         menu: props.menu
       }
@@ -1922,7 +1703,7 @@ const Index = props => {
   // }, [])
 
 
-  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
+  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
     settings: {
       template: "accommodation-page",
       menu: props.menu
@@ -1934,7 +1715,13 @@ const Index = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"], {
+  }, __jsx(next_Head__WEBPACK_IMPORTED_MODULE_2___default.a, null, props.hotels && props.hotels.data && props.hotels.data.length > 0 && Object.entries(props.hotels.data).map(([key, hotel]) => __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(Object(_components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__[/* makeHotelSchema */ "a"])(hotel))
+    }
+  }))), __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     query: props.query
   }), __jsx("section", {
     className: "section-main"
@@ -1944,8 +1731,8 @@ const Index = props => {
     className: "primary-title text-center"
   }, __jsx("h2", null, "Prenota la tua vacanza tra una vasta scelta di Hotel selezionati.")), __jsx("div", {
     className: "primary-description text-center"
-  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", __jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), __jsx(_components_Partials_HotelArchive__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
-    hotels: props.hotels.data,
+  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", __jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), __jsx(_components_Partials_HotelArchive2__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
+    hotels: props.hotels && props.hotels.data ? props.hotels.data : [],
     meta: props.hotels.meta,
     filter: props.hotels.filter
   }));
@@ -1972,11 +1759,11 @@ Index.getInitialProps = async ctx => {
 
   try {
     // initialProps = mainInitialProps();
-    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]();
+    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
     menu = await menuService.get(1);
-    let postService = new _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    let postService = new _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]();
     page = await postService.get(2);
-    let hotelService = new _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
+    let hotelService = new _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"]();
     hotels = await hotelService.query(filter);
     hotels.filter = filter;
   } catch (e) {}
@@ -3447,6 +3234,314 @@ function parseRelativeUrl(url, base) {
     href: href.slice(DUMMY_BASE.origin.length)
   };
 }
+
+/***/ }),
+
+/***/ "hm/Q":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vhO2");
+/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("1nAM");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _PriceTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("V5Fq");
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+
+swiper__WEBPACK_IMPORTED_MODULE_4___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_4__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_4__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_4__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_4__["A11y"]]);
+
+
+const NavTab = props => {
+  const index = props.index;
+  let dateFrom = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_from, 'YYYY-MM-DD');
+  let dateTo = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_to, 'YYYY-MM-DD');
+  return __jsx("div", {
+    key: index,
+    className: `swiper-slide swiper-slide-${props.hotel.id}`
+  }, __jsx("a", {
+    className: `nav-item nav-link ${index == props.activeTab ? 'active' : ''}`,
+    id: `nav-${props.hotel.id}-period-${index}-tab`,
+    "data-toggle": "tab",
+    href: `#nav-${props.hotel.id}-period-${index}`,
+    role: "tab",
+    "aria-controls": `nav-${props.hotel.id}-period-${index}`,
+    "aria-selected": "true",
+    onClick: () => props.onActivateTab(index)
+  }, __jsx("span", null, dateFrom.format('DD/MM'), __jsx("br", null), dateTo.format('DD/MM')), __jsx("i", {
+    className: "ico ico-arrow-curved"
+  })));
+};
+
+const NavContent = props => {
+  const index = props.index;
+  let priceList = {}; // if( !props.period.viewPeriodPrices || props.period.viewPeriodPrices.length <= 0)
+  //   return;
+
+  for (const [roomTypeName, roomTypeContent] of Object.entries(props.period.viewPeriodPrices)) {
+    priceList[roomTypeName] = {};
+
+    if (roomTypeContent.prices) {
+      for (const [key, treatmentObj] of Object.entries(roomTypeContent.prices)) {
+        priceList[roomTypeName][key] = {
+          n1: treatmentObj.n1 ? treatmentObj.n1 : null,
+          n2: treatmentObj.n2 ? treatmentObj.n2 : null,
+          n3: treatmentObj.n3 ? treatmentObj.n3 : null,
+          n4: treatmentObj.n4 ? treatmentObj.n4 : null,
+          n5: treatmentObj.n5 ? treatmentObj.n5 : null,
+          n6: treatmentObj.n6 ? treatmentObj.n6 : null,
+          n7: treatmentObj.n7 ? treatmentObj.n7 : null
+        };
+      }
+    }
+  }
+
+  return __jsx("div", {
+    className: `tab-pane fade ${index == 0 ? 'show active' : ''}`,
+    id: `nav-${props.hotel.id}-period-${index}`,
+    role: "tabpanel",
+    "aria-labelledby": `nav-${props.hotel.id}-period-${index}-tab`
+  }, props.period.viewPeriodPrices && Object.entries(props.period.viewPeriodPrices).map(([roomType, roomTypeContent], index) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    key: index
+  }, roomTypeContent.prices && Object.entries(roomTypeContent.prices).map(([treatment, prices], index2) => __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
+    key: index2
+  }, __jsx("div", null, __jsx("span", {
+    style: {
+      color: '#4fbaad'
+    }
+  }, roomTypeContent.room_type.name)), __jsx(_PriceTable__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"] // key={index2}
+  , {
+    index: index,
+    room_type: roomTypeContent.room_type,
+    treatment: treatment,
+    prices: prices,
+    hotel: props.hotel,
+    period: props.period,
+    priceTableLink: true
+  }))))));
+};
+
+const HotelArchiveItem = props => {
+  const hotel = props.hotel;
+  const swiperPrices = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
+  let stars = [];
+
+  for (let i = 1; i <= parseInt(hotel.stars); i++) {
+    stars.push(__jsx("i", {
+      key: i,
+      className: "ico ico-star"
+    }));
+  }
+
+  const [activeTab, setActiveTab] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+
+  const onActivateTab = index => {
+    setActiveTab(index);
+  };
+
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+    swiperPrices.current = new swiper__WEBPACK_IMPORTED_MODULE_4__["Swiper"](`#swiperPrices-${hotel.id}`, {
+      grubCursor: false,
+      simulateTouch: false,
+      direction: 'horizontal',
+      //speed: 600,
+      // slidesPerView: 4,
+      spaceBetween: 0,
+      breakpoints: {
+        1: {
+          slidesPerView: 1
+        },
+        320: {
+          slidesPerView: 4
+        },
+        768: {
+          slidesPerView: 2
+        },
+        992: {
+          slidesPerView: 3
+        },
+        1200: {
+          slidesPerView: 4
+        }
+      },
+      navigation: {
+        nextEl: `#swiperPrices-${hotel.id}-button-next`,
+        prevEl: `#swiperPrices-${hotel.id}-button-prev`
+      }
+    });
+  }, []); // React.useEffect(() => {
+  //   if( swiperPrices && swiperPrices.current )
+  //     swiperPrices.current.update()
+  // }, [activeTab])
+
+  return __jsx("div", {
+    className: "hotel-list-item"
+  }, __jsx("a", {
+    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    rel: "nofollow"
+  }, __jsx("div", {
+    className: "topline"
+  }, __jsx("div", {
+    className: "title mr-auto"
+  }, hotel.name), __jsx("div", {
+    className: "stars ml-auto"
+  }, stars))), __jsx("a", {
+    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    rel: "nofollow"
+  }, __jsx("figure", {
+    className: "img-bgas"
+  }, __jsx("img", {
+    src: hotel.media && hotel.media.gallery && hotel.media.gallery[0] ? hotel.media.gallery[0].url : 'default',
+    alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
+  }))), __jsx("div", {
+    className: "prices-box"
+  }, hotel.rateplanPeriods && hotel.rateplanPeriods.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("nav", {
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
+    className: "nav nav-tabs",
+    id: "nav-tab-1",
+    role: "tablist",
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
+    id: `swiperPrices-${hotel.id}`,
+    className: "swiper-container swiperPrices",
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
+    className: "swiper-wrapper",
+    style: {
+      width: "100% !important"
+    }
+  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavTab, {
+    key: index,
+    index: index,
+    period: period,
+    hotel: hotel,
+    activeTab: activeTab,
+    onActivateTab: () => onActivateTab(index)
+  })))), __jsx("div", {
+    id: `swiperPrices-${hotel.id}-button-prev`,
+    className: "swiper-button-prev"
+  }), __jsx("div", {
+    id: `swiperPrices-${hotel.id}-button-next`,
+    className: "swiper-button-next"
+  }))), __jsx("div", {
+    className: "tab-content",
+    id: "nav-tabContent-1"
+  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavContent, {
+    key: index,
+    index: index,
+    hotel: hotel,
+    period: period
+  })))), !hotel.rateplanPeriods || hotel.rateplanPeriods.length <= 0 && __jsx("div", {
+    style: {
+      height: 70
+    }
+  }), __jsx("div", {
+    className: "details"
+  }, __jsx("div", {
+    className: "row"
+  }, __jsx("div", {
+    className: "col-4"
+  }, __jsx("div", {
+    className: "description"
+  }, __jsx("span", {
+    className: "bold"
+  }, "POSIZIONE"), __jsx("br", null), hotel.details.address, __jsx("br", null), hotel.details.zip_code, " - ", hotel.details.city, __jsx("br", null), "\u2014", __jsx("br", null), __jsx("div", {
+    dangerouslySetInnerHTML: {
+      __html: hotel.description_near.it
+    }
+  }))), __jsx("div", {
+    className: "col-8"
+  }, __jsx("ul", {
+    className: "hotel-service-list"
+  }, hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map((obj, index) => __jsx("li", {
+    key: index
+  }, __jsx("span", null, obj.name))))))), __jsx("div", {
+    className: "bottomline"
+  }, __jsx("div", {
+    className: "row"
+  }, __jsx("div", {
+    className: "col-8"
+  }, __jsx("div", {
+    className: "line"
+  })), __jsx("div", {
+    className: "col-4"
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    href: {
+      pathname: `${"/strutture-ricettive"}/[accommodition]`
+    }
+  }, __jsx("a", {
+    className: "goto"
+  }, "Visualizza la struttura")))))));
+};
+
+const HotelPagination = props => {
+  const [currPage, setCurrPage] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
+    if (props.meta) {
+      setCurrPage(parseInt(props.meta.current_page) - 1);
+    }
+  }, []);
+
+  const handlePageClick = e => {
+    props.filter.page = e.selected + 1;
+    let stringa = '?';
+
+    for (let i in props.filter) stringa += `${i}=${props.filter[i]}&`;
+
+    window.location.href = window.location.pathname + stringa;
+  };
+
+  if (props.meta) {
+    return __jsx(react_paginate__WEBPACK_IMPORTED_MODULE_3___default.a, {
+      forcePage: currPage,
+      previousLabel: "<",
+      nextLabel: ">",
+      breakLabel: "...",
+      breakClassName: "break-me",
+      pageCount: props.meta.last_page,
+      marginPagesDisplayed: 2,
+      pageRangeDisplayed: 5,
+      onPageChange: e => handlePageClick(e),
+      containerClassName: "pagination",
+      subContainerClassName: "pages pagination",
+      activeClassName: "active"
+    });
+  }
+
+  return '';
+};
+
+const HotelArchive = props => {
+  return __jsx("section", null, __jsx("div", {
+    className: "container"
+  }, props.hotels && props.hotels.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
+    className: "row"
+  }, props.hotels.map((hotel, index) => __jsx("div", {
+    key: index,
+    className: "col-md-6"
+  }, __jsx(HotelArchiveItem, {
+    hotel: hotel
+  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (HotelArchive);
 
 /***/ }),
 

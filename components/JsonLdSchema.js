@@ -1,6 +1,6 @@
 import React from 'react'
 
-const makeHotelSchema = (hotel) => {
+export const makeHotelSchema = (hotel) => {
   return {
     "@context": "http://schema.org",
     "@type": "Hotel",

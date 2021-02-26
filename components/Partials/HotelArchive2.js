@@ -43,6 +43,8 @@ const NavContent = props => {
   const index = props.index;
 
   let priceList = {};
+  // if( !props.period.viewPeriodPrices || props.period.viewPeriodPrices.length <= 0)
+  //   return;
   for (const [roomTypeName, roomTypeContent] of Object.entries(props.period.viewPeriodPrices)){
     priceList[roomTypeName] = {};
 

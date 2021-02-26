@@ -1232,9 +1232,9 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
-}), meta.jsonlds && meta.jsonlds.map((obj, index) => {
+}), console.log('metajson', meta.jsonlds), meta.jsonlds && Object.entries(meta.jsonlds).map(([key, obj], index) => {
   __jsx(external_react_default.a.Fragment, {
-    key: index
+    key: key
   }, obj);
 }));
 

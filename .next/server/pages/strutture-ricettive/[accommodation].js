@@ -1062,11 +1062,11 @@ const HotelAgeRangesTable = props => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotelSchema; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
 
 const makeHotelSchema = hotel => {
   return {
@@ -1093,7 +1093,6 @@ const makeHotelSchema = hotel => {
     }
   };
 };
-
 const HotelSchema = hotel => {
   return __jsx("script", {
     key: `jobJSON-${hotel.id}`,
@@ -1212,9 +1211,9 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
-}), meta.jsonlds && meta.jsonlds.map((obj, index) => {
+}), console.log('metajson', meta.jsonlds), meta.jsonlds && Object.entries(meta.jsonlds).map(([key, obj], index) => {
   __jsx(external_react_default.a.Fragment, {
-    key: index
+    key: key
   }, obj);
 }));
 
@@ -1539,6 +1538,10 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
+// EXTERNAL MODULE: external "next/Head"
+var Head_ = __webpack_require__("ZOYG");
+var Head_default = /*#__PURE__*/__webpack_require__.n(Head_);
+
 // EXTERNAL MODULE: ./components/JsonLdSchema.js
 var JsonLdSchema = __webpack_require__("Hw1s");
 
@@ -1671,6 +1674,7 @@ var _accommodation_jsx = external_react_default.a.createElement;
 
 
 
+
 external_swiper_default.a.use([external_swiper_["Navigation"], external_swiper_["Pagination"], external_swiper_["Scrollbar"], external_swiper_["A11y"]]);
 
 
@@ -1726,13 +1730,19 @@ const HotelPage = props => {
       title: props.page.meta_title.it,
       description: props.page.meta_description.it,
       url: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.page.slug.it}`,
-      image: props.page.media && props.page.media.gallery && props.page.media.gallery[0] ? props.page.media.gallery[0].url : null,
-      // image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null,
-      jsonlds: [_accommodation_jsx(JsonLdSchema["a" /* HotelSchema */], {
-        hotel: props.hotel
-      })]
+      image: props.page.media && props.page.media.gallery && props.page.media.gallery[0] ? props.page.media.gallery[0].url : null // image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null,
+      // jsonlds:[
+      //   <HotelSchema hotel={props.hotel} />
+      // ]
+
     }
-  }, _accommodation_jsx(BookingSearchBox["a" /* default */], null), _accommodation_jsx("section", {
+  }, _accommodation_jsx(Head_default.a, null, _accommodation_jsx("script", {
+    key: `jobJSON-${props.page.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(Object(JsonLdSchema["a" /* makeHotelSchema */])(props.page))
+    }
+  })), _accommodation_jsx(BookingSearchBox["a" /* default */], null), _accommodation_jsx("section", {
     className: "single-hotel-section"
   }, _accommodation_jsx("div", {
     className: "container"
@@ -2235,6 +2245,13 @@ function getRouteRegex(normalizedRoute) {
     groups
   };
 }
+
+/***/ }),
+
+/***/ "ZOYG":
+/***/ (function(module, exports) {
+
+module.exports = require("next/Head");
 
 /***/ }),
 

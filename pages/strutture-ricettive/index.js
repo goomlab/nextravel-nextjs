@@ -1,11 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import Head from "next/Head";
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+
 import MenuService from "~/packages/Post/services/MenuService";
 import PostService from "~/packages/Post/services/PostService";
 import HotelService from "~/packages/TravelgoOne/services/HotelService";
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
-import HotelArchive from "~/components/Partials/HotelArchive";
+import HotelArchive2 from "~/components/Partials/HotelArchive2";
 
 const Index = props => {
   if (!props.page || props.page.length <= 0) {
@@ -49,6 +52,16 @@ const Index = props => {
         image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
       }}
       >
+      <Head>
+        {props.hotels && props.hotels.data  && props.hotels.data.length > 0 && Object.entries(props.hotels.data).map(([key, hotel]) =>
+          <script
+            key={`jobJSON-${hotel.id}`}
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
+          />
+        )}
+      </Head>
+
       <BookingSearchBox query={props.query} />
 
       <section className="section-main">
@@ -65,7 +78,7 @@ const Index = props => {
         </div>
       </section>
       
-      <HotelArchive hotels={props.hotels.data} meta={props.hotels.meta} filter={props.hotels.filter} />
+      <HotelArchive2 hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} meta={props.hotels.meta} filter={props.hotels.filter} />
 
     </Layout>
   );

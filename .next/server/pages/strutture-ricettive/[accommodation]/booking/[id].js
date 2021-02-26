@@ -335,29 +335,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Hw1s");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("1nAM");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _packages_BaseService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("jC1T");
-/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("57t+");
-/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("TvVg");
-/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("6Brv");
-/* harmony import */ var _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("N6Bt");
-/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("JHTH");
-/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("8Mm2");
-/* harmony import */ var _components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("8Otk");
-/* harmony import */ var _components_Partials_HotelAgeRangesTable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("Gmui");
-/* harmony import */ var _components_Partials_HotelExtraServicesTable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("+1oh");
-/* harmony import */ var _components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("V5Fq");
-/* harmony import */ var _components_Partials_PriceTableWrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("EIQ/");
-/* harmony import */ var _components_Partials_PriceTableWrap2__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("8ici");
+/* harmony import */ var next_Head__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ZOYG");
+/* harmony import */ var next_Head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_Head__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Hw1s");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("1nAM");
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _packages_BaseService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("jC1T");
+/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("57t+");
+/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("TvVg");
+/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("6Brv");
+/* harmony import */ var _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("N6Bt");
+/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("JHTH");
+/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("8Mm2");
+/* harmony import */ var _components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__("8Otk");
+/* harmony import */ var _components_Partials_HotelAgeRangesTable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__("Gmui");
+/* harmony import */ var _components_Partials_HotelExtraServicesTable__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__("+1oh");
+/* harmony import */ var _components_Partials_PriceTable__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__("V5Fq");
+/* harmony import */ var _components_Partials_PriceTableWrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__("EIQ/");
+/* harmony import */ var _components_Partials_PriceTableWrap2__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__("8ici");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
 
-swiper__WEBPACK_IMPORTED_MODULE_4___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_4__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_4__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_4__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_4__["A11y"]]);
+
+swiper__WEBPACK_IMPORTED_MODULE_5___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_5__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_5__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_5__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_5__["A11y"]]);
 
 
 
@@ -375,7 +378,7 @@ swiper__WEBPACK_IMPORTED_MODULE_4___default.a.use([swiper__WEBPACK_IMPORTED_MODU
 
 const BookingPage = props => {
   if (!props.hotel) {
-    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], {
+    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
       settings: {
         menu: props.menu
       }
@@ -426,7 +429,7 @@ const BookingPage = props => {
 
 
   react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    swiperHotelThumbnail.current = new swiper__WEBPACK_IMPORTED_MODULE_4__["Swiper"](`#swiperHotelThumbnail`, {
+    swiperHotelThumbnail.current = new swiper__WEBPACK_IMPORTED_MODULE_5__["Swiper"](`#swiperHotelThumbnail`, {
       grubCursor: false,
       simulateTouch: false,
       direction: 'horizontal',
@@ -439,7 +442,7 @@ const BookingPage = props => {
       }
     });
   }, []);
-  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"], {
+  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
     settings: {
       template: "booking-page",
       menu: props.menu
@@ -449,12 +452,18 @@ const BookingPage = props => {
       description: `Booking`,
       canonical: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.hotel.slug.it}`,
       url: `${{"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.url}/accommodations/${props.hotel.slug.it}/booking`,
-      image: props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0] ? props.hotel.media.gallery[0].url : null,
-      jsonlds: [__jsx(_components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__[/* HotelSchema */ "a"], {
-        hotel: props.hotel
-      })]
+      image: props.hotel.media && props.hotel.media.gallery && props.hotel.media.gallery[0] ? props.hotel.media.gallery[0].url : null // jsonlds:[
+      //   <HotelSchema hotel={props.hotel} />
+      // ]
+
     }
-  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], null), __jsx("section", {
+  }, __jsx(next_Head__WEBPACK_IMPORTED_MODULE_3___default.a, null, __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(Object(_components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_4__[/* makeHotelSchema */ "a"])(hotel))
+    }
+  })), __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], null), __jsx("section", {
     className: "single-hotel-section"
   }, __jsx("div", {
     className: "container"
@@ -506,7 +515,7 @@ const BookingPage = props => {
     className: "row"
   }, __jsx("div", {
     className: "col-lg-6"
-  }, __jsx(_components_Partials_PriceTableWrap2__WEBPACK_IMPORTED_MODULE_17__[/* default */ "a"], props), period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && __jsx(_components_Partials_HotelAgeRangesTable__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], {
+  }, __jsx(_components_Partials_PriceTableWrap2__WEBPACK_IMPORTED_MODULE_18__[/* default */ "a"], props), period.hotelAgeRanges && period.hotelAgeRanges.length > 0 && __jsx(_components_Partials_HotelAgeRangesTable__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"], {
     hotelAgeRanges: period.hotelAgeRanges
   }) // <React.Fragment>
   //   <span>Supplementi e Riduzioni per età</span>
@@ -527,7 +536,7 @@ const BookingPage = props => {
   //     </tbody>
   //   </table>
   // </React.Fragment>
-  , hotel.extraServices && hotel.extraServices.length > 0 && __jsx(_components_Partials_HotelExtraServicesTable__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"], {
+  , hotel.extraServices && hotel.extraServices.length > 0 && __jsx(_components_Partials_HotelExtraServicesTable__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"], {
     extraServices: hotel.extraServices
   }) // <React.Fragment>
   //   <span>Servizi aggiuntivi</span>
@@ -560,7 +569,7 @@ const BookingPage = props => {
     className: "col-lg-6"
   }, "dal ", dateFrom.format("DD/MM/YYYY"), __jsx("br", null), "al ", dateTo.format("DD/MM/YYYY"))), "per ulteriori informazioni contattaci a", __jsx("br", null), __jsx("span", {
     className: "bold"
-  }, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label))))), __jsx(_components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], {
+  }, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label))))), __jsx(_components_Partials_BookingForm__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], {
     rateplan: props.period.rateplan || null,
     hotel: props.period.rateplan.hotel || null,
     query: props.query,
@@ -630,13 +639,13 @@ BookingPage.getInitialProps = async params => {
   };
 
   try {
-    let baseService = new _packages_BaseService__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]();
+    let baseService = new _packages_BaseService__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"]();
     let init = await baseService.initApp();
     locs = init.locs || [];
     hotelCategories = init.hotelCategories || [];
-    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"]();
+    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"]();
     menu = await menuService.get(1);
-    let rateplanPeriodService = new _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"]();
+    let rateplanPeriodService = new _packages_TravelgoOne_services_RateplanPeriodService__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"]();
     period = await rateplanPeriodService.get(params.query.id);
 
     if (period && period.rateplan && period.rateplan.hotel) {
@@ -2095,11 +2104,11 @@ const HotelAgeRangesTable = props => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotelSchema; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
 
 const makeHotelSchema = hotel => {
   return {
@@ -2126,7 +2135,6 @@ const makeHotelSchema = hotel => {
     }
   };
 };
-
 const HotelSchema = hotel => {
   return __jsx("script", {
     key: `jobJSON-${hotel.id}`,
@@ -2245,9 +2253,9 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
-}), meta.jsonlds && meta.jsonlds.map((obj, index) => {
+}), console.log('metajson', meta.jsonlds), meta.jsonlds && Object.entries(meta.jsonlds).map(([key, obj], index) => {
   __jsx(external_react_default.a.Fragment, {
-    key: index
+    key: key
   }, obj);
 }));
 
@@ -3044,6 +3052,13 @@ class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* defau
   }
 
 }
+
+/***/ }),
+
+/***/ "ZOYG":
+/***/ (function(module, exports) {
+
+module.exports = require("next/Head");
 
 /***/ }),
 
