@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/Head";
-import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
 
 import MenuService from "~/packages/Post/services/MenuService";
 import PostService from "~/packages/Post/services/PostService";

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/Head";
 
-import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
+// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);

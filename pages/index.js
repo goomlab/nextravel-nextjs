@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/Head";
 
-import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
 
 import BaseService from "~/packages/BaseService";
 import MenuService from "~/packages/Post/services/MenuService";
@@ -13,7 +13,7 @@ import HotelCategoryService from "~/packages/TravelgoOne/services/HotelCategoryS
 
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
-import HotelArchive from "~/components/Partials/HotelArchive";
+// import HotelArchive from "~/components/Partials/HotelArchive";
 import HotelArchive2 from "~/components/Partials/HotelArchive2";
 import HomeRecap from "~/components/Partials/HomeRecap";
 import Newsletter from "~/components/Partials/Newsletter";

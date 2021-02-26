@@ -848,298 +848,6 @@ const BookingSearchBox = props => {
 
 /***/ }),
 
-/***/ "FxrF":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("wy2R");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YFqc");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("vhO2");
-/* harmony import */ var react_paginate__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_paginate__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("1nAM");
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(swiper__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _PriceTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("V5Fq");
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-
-
-swiper__WEBPACK_IMPORTED_MODULE_4___default.a.use([swiper__WEBPACK_IMPORTED_MODULE_4__["Navigation"], swiper__WEBPACK_IMPORTED_MODULE_4__["Pagination"], swiper__WEBPACK_IMPORTED_MODULE_4__["Scrollbar"], swiper__WEBPACK_IMPORTED_MODULE_4__["A11y"]]);
-
-
-const NavTab = props => {
-  const index = props.index;
-  let dateFrom = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_from, 'YYYY-MM-DD');
-  let dateTo = moment__WEBPACK_IMPORTED_MODULE_1___default()(props.period.date_to, 'YYYY-MM-DD');
-  return __jsx("div", {
-    key: index,
-    className: `swiper-slide swiper-slide-${props.hotel.id}`
-  }, __jsx("a", {
-    className: `nav-item nav-link ${index == props.activeTab ? 'active' : ''}`,
-    id: `nav-${props.hotel.id}-period-${index}-tab`,
-    "data-toggle": "tab",
-    href: `#nav-${props.hotel.id}-period-${index}`,
-    role: "tab",
-    "aria-controls": `nav-${props.hotel.id}-period-${index}`,
-    "aria-selected": "true",
-    onClick: () => props.onActivateTab(index)
-  }, __jsx("span", null, dateFrom.format('DD/MM'), __jsx("br", null), dateTo.format('DD/MM')), __jsx("i", {
-    className: "ico ico-arrow-curved"
-  })));
-};
-
-const NavContent = props => {
-  const index = props.index;
-  let priceList = {};
-
-  for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
-    priceList[key] = {
-      n1: treatmentObj.n1 ? treatmentObj.n1 : null,
-      n2: treatmentObj.n2 ? treatmentObj.n2 : null,
-      n3: treatmentObj.n3 ? treatmentObj.n3 : null,
-      n4: treatmentObj.n4 ? treatmentObj.n4 : null,
-      n5: treatmentObj.n5 ? treatmentObj.n5 : null,
-      n6: treatmentObj.n6 ? treatmentObj.n6 : null,
-      n7: treatmentObj.n7 ? treatmentObj.n7 : null
-    };
-  }
-
-  return __jsx("div", {
-    className: `tab-pane fade ${index == 0 ? 'show active' : ''}`,
-    id: `nav-${props.hotel.id}-period-${index}`,
-    role: "tabpanel",
-    "aria-labelledby": `nav-${props.hotel.id}-period-${index}-tab`
-  }, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx(_PriceTable__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
-    key: index,
-    index: index,
-    treatment: treatment,
-    prices: prices,
-    hotel: props.hotel,
-    period: props.period,
-    priceTableLink: true
-  })));
-};
-
-const HotelArchiveItem = props => {
-  const hotel = props.hotel;
-  const swiperPrices = react__WEBPACK_IMPORTED_MODULE_0___default.a.useRef(null);
-  let stars = [];
-
-  for (let i = 1; i <= parseInt(hotel.stars); i++) {
-    stars.push(__jsx("i", {
-      key: i,
-      className: "ico ico-star"
-    }));
-  }
-
-  const [activeTab, setActiveTab] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
-
-  const onActivateTab = index => {
-    setActiveTab(index);
-  };
-
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    swiperPrices.current = new swiper__WEBPACK_IMPORTED_MODULE_4__["Swiper"](`#swiperPrices-${hotel.id}`, {
-      grubCursor: false,
-      simulateTouch: false,
-      direction: 'horizontal',
-      //speed: 600,
-      // slidesPerView: 4,
-      spaceBetween: 0,
-      breakpoints: {
-        1: {
-          slidesPerView: 1
-        },
-        320: {
-          slidesPerView: 4
-        },
-        768: {
-          slidesPerView: 2
-        },
-        992: {
-          slidesPerView: 3
-        },
-        1200: {
-          slidesPerView: 4
-        }
-      },
-      navigation: {
-        nextEl: `#swiperPrices-${hotel.id}-button-next`,
-        prevEl: `#swiperPrices-${hotel.id}-button-prev`
-      }
-    });
-  }, []); // React.useEffect(() => {
-  //   if( swiperPrices && swiperPrices.current )
-  //     swiperPrices.current.update()
-  // }, [activeTab])
-
-  return __jsx("div", {
-    className: "hotel-list-item"
-  }, __jsx("a", {
-    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
-    rel: "nofollow"
-  }, __jsx("div", {
-    className: "topline"
-  }, __jsx("div", {
-    className: "title mr-auto"
-  }, hotel.name), __jsx("div", {
-    className: "stars ml-auto"
-  }, stars))), __jsx("a", {
-    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
-    rel: "nofollow"
-  }, __jsx("figure", {
-    className: "img-bgas"
-  }, __jsx("img", {
-    src: hotel.media && hotel.media.gallery && hotel.media.gallery[0] ? hotel.media.gallery[0].url : 'default',
-    alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
-  }))), __jsx("div", {
-    className: "prices-box"
-  }, hotel.rateplanPeriods && hotel.rateplanPeriods.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("nav", {
-    style: {
-      width: "100% !important"
-    }
-  }, __jsx("div", {
-    className: "nav nav-tabs",
-    id: "nav-tab-1",
-    role: "tablist",
-    style: {
-      width: "100% !important"
-    }
-  }, __jsx("div", {
-    id: `swiperPrices-${hotel.id}`,
-    className: "swiper-container swiperPrices",
-    style: {
-      width: "100% !important"
-    }
-  }, __jsx("div", {
-    className: "swiper-wrapper",
-    style: {
-      width: "100% !important"
-    }
-  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavTab, {
-    key: index,
-    index: index,
-    period: period,
-    hotel: hotel,
-    activeTab: activeTab,
-    onActivateTab: () => onActivateTab(index)
-  })))), __jsx("div", {
-    id: `swiperPrices-${hotel.id}-button-prev`,
-    className: "swiper-button-prev"
-  }), __jsx("div", {
-    id: `swiperPrices-${hotel.id}-button-next`,
-    className: "swiper-button-next"
-  }))), __jsx("div", {
-    className: "tab-content",
-    id: "nav-tabContent-1"
-  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavContent, {
-    key: index,
-    index: index,
-    hotel: hotel,
-    period: period
-  })))), !hotel.rateplanPeriods || hotel.rateplanPeriods.length <= 0 && __jsx("div", {
-    style: {
-      height: 70
-    }
-  }), __jsx("div", {
-    className: "details"
-  }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-4"
-  }, __jsx("div", {
-    className: "description"
-  }, __jsx("span", {
-    className: "bold"
-  }, "POSIZIONE"), __jsx("br", null), hotel.details.address, __jsx("br", null), hotel.details.zip_code, " - ", hotel.details.city, __jsx("br", null), "\u2014", __jsx("br", null), __jsx("div", {
-    dangerouslySetInnerHTML: {
-      __html: hotel.description_near.it
-    }
-  }))), __jsx("div", {
-    className: "col-8"
-  }, __jsx("ul", {
-    className: "hotel-service-list"
-  }, hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map((obj, index) => __jsx("li", {
-    key: index
-  }, __jsx("span", null, obj.name))))))), __jsx("div", {
-    className: "bottomline"
-  }, __jsx("div", {
-    className: "row"
-  }, __jsx("div", {
-    className: "col-8"
-  }, __jsx("div", {
-    className: "line"
-  })), __jsx("div", {
-    className: "col-4"
-  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
-    href: {
-      pathname: `${"/strutture-ricettive"}/[accommodition]`
-    }
-  }, __jsx("a", {
-    className: "goto"
-  }, "Visualizza la struttura")))))));
-};
-
-const HotelPagination = props => {
-  const [currPage, setCurrPage] = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(0);
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.useEffect(() => {
-    if (props.meta) {
-      setCurrPage(parseInt(props.meta.current_page) - 1);
-    }
-  }, []);
-
-  const handlePageClick = e => {
-    props.filter.page = e.selected + 1;
-    let stringa = '?';
-
-    for (let i in props.filter) stringa += `${i}=${props.filter[i]}&`;
-
-    window.location.href = window.location.pathname + stringa;
-  };
-
-  if (props.meta) {
-    return __jsx(react_paginate__WEBPACK_IMPORTED_MODULE_3___default.a, {
-      forcePage: currPage,
-      previousLabel: "<",
-      nextLabel: ">",
-      breakLabel: "...",
-      breakClassName: "break-me",
-      pageCount: props.meta.last_page,
-      marginPagesDisplayed: 2,
-      pageRangeDisplayed: 5,
-      onPageChange: e => handlePageClick(e),
-      containerClassName: "pagination",
-      subContainerClassName: "pages pagination",
-      activeClassName: "active"
-    });
-  }
-
-  return '';
-};
-
-const HotelArchive = props => {
-  return __jsx("section", null, __jsx("div", {
-    className: "container"
-  }, props.hotels && props.hotels.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
-    className: "row"
-  }, props.hotels.map((hotel, index) => __jsx("div", {
-    key: index,
-    className: "col-md-6"
-  }, __jsx(HotelArchiveItem, {
-    hotel: hotel
-  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")));
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (HotelArchive);
-
-/***/ }),
-
 /***/ "JHTH":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3522,6 +3230,7 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
 
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__("YFqc");
+var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
 // EXTERNAL MODULE: ./packages/BaseService.js
 var BaseService = __webpack_require__("jC1T");
@@ -3550,11 +3259,298 @@ var MainLayout = __webpack_require__("JHTH");
 // EXTERNAL MODULE: ./components/Partials/BookingSearchBox.js
 var BookingSearchBox = __webpack_require__("8Mm2");
 
-// EXTERNAL MODULE: ./components/Partials/HotelArchive.js
-var HotelArchive = __webpack_require__("FxrF");
+// EXTERNAL MODULE: external "moment"
+var external_moment_ = __webpack_require__("wy2R");
+var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
-// CONCATENATED MODULE: ./components/Templates/TemplateArchiveHotel.js
+// EXTERNAL MODULE: external "react-paginate"
+var external_react_paginate_ = __webpack_require__("vhO2");
+var external_react_paginate_default = /*#__PURE__*/__webpack_require__.n(external_react_paginate_);
+
+// EXTERNAL MODULE: external "swiper"
+var external_swiper_ = __webpack_require__("1nAM");
+var external_swiper_default = /*#__PURE__*/__webpack_require__.n(external_swiper_);
+
+// EXTERNAL MODULE: ./components/Partials/PriceTable.js
+var PriceTable = __webpack_require__("V5Fq");
+
+// CONCATENATED MODULE: ./components/Partials/HotelArchive.js
 var __jsx = external_react_default.a.createElement;
+
+
+
+
+
+external_swiper_default.a.use([external_swiper_["Navigation"], external_swiper_["Pagination"], external_swiper_["Scrollbar"], external_swiper_["A11y"]]);
+
+
+const NavTab = props => {
+  const index = props.index;
+  let dateFrom = external_moment_default()(props.period.date_from, 'YYYY-MM-DD');
+  let dateTo = external_moment_default()(props.period.date_to, 'YYYY-MM-DD');
+  return __jsx("div", {
+    key: index,
+    className: `swiper-slide swiper-slide-${props.hotel.id}`
+  }, __jsx("a", {
+    className: `nav-item nav-link ${index == props.activeTab ? 'active' : ''}`,
+    id: `nav-${props.hotel.id}-period-${index}-tab`,
+    "data-toggle": "tab",
+    href: `#nav-${props.hotel.id}-period-${index}`,
+    role: "tab",
+    "aria-controls": `nav-${props.hotel.id}-period-${index}`,
+    "aria-selected": "true",
+    onClick: () => props.onActivateTab(index)
+  }, __jsx("span", null, dateFrom.format('DD/MM'), __jsx("br", null), dateTo.format('DD/MM')), __jsx("i", {
+    className: "ico ico-arrow-curved"
+  })));
+};
+
+const NavContent = props => {
+  const index = props.index;
+  let priceList = {};
+
+  for (const [key, treatmentObj] of Object.entries(props.period.viewPrices)) {
+    priceList[key] = {
+      n1: treatmentObj.n1 ? treatmentObj.n1 : null,
+      n2: treatmentObj.n2 ? treatmentObj.n2 : null,
+      n3: treatmentObj.n3 ? treatmentObj.n3 : null,
+      n4: treatmentObj.n4 ? treatmentObj.n4 : null,
+      n5: treatmentObj.n5 ? treatmentObj.n5 : null,
+      n6: treatmentObj.n6 ? treatmentObj.n6 : null,
+      n7: treatmentObj.n7 ? treatmentObj.n7 : null
+    };
+  }
+
+  return __jsx("div", {
+    className: `tab-pane fade ${index == 0 ? 'show active' : ''}`,
+    id: `nav-${props.hotel.id}-period-${index}`,
+    role: "tabpanel",
+    "aria-labelledby": `nav-${props.hotel.id}-period-${index}-tab`
+  }, priceList && Object.entries(priceList).map(([treatment, prices], index) => __jsx(PriceTable["a" /* default */], {
+    key: index,
+    index: index,
+    treatment: treatment,
+    prices: prices,
+    hotel: props.hotel,
+    period: props.period,
+    priceTableLink: true
+  })));
+};
+
+const HotelArchiveItem = props => {
+  const hotel = props.hotel;
+  const swiperPrices = external_react_default.a.useRef(null);
+  let stars = [];
+
+  for (let i = 1; i <= parseInt(hotel.stars); i++) {
+    stars.push(__jsx("i", {
+      key: i,
+      className: "ico ico-star"
+    }));
+  }
+
+  const [activeTab, setActiveTab] = external_react_default.a.useState(0);
+
+  const onActivateTab = index => {
+    setActiveTab(index);
+  };
+
+  external_react_default.a.useEffect(() => {
+    swiperPrices.current = new external_swiper_["Swiper"](`#swiperPrices-${hotel.id}`, {
+      grubCursor: false,
+      simulateTouch: false,
+      direction: 'horizontal',
+      //speed: 600,
+      // slidesPerView: 4,
+      spaceBetween: 0,
+      breakpoints: {
+        1: {
+          slidesPerView: 1
+        },
+        320: {
+          slidesPerView: 4
+        },
+        768: {
+          slidesPerView: 2
+        },
+        992: {
+          slidesPerView: 3
+        },
+        1200: {
+          slidesPerView: 4
+        }
+      },
+      navigation: {
+        nextEl: `#swiperPrices-${hotel.id}-button-next`,
+        prevEl: `#swiperPrices-${hotel.id}-button-prev`
+      }
+    });
+  }, []); // React.useEffect(() => {
+  //   if( swiperPrices && swiperPrices.current )
+  //     swiperPrices.current.update()
+  // }, [activeTab])
+
+  return __jsx("div", {
+    className: "hotel-list-item"
+  }, __jsx("a", {
+    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    rel: "nofollow"
+  }, __jsx("div", {
+    className: "topline"
+  }, __jsx("div", {
+    className: "title mr-auto"
+  }, hotel.name), __jsx("div", {
+    className: "stars ml-auto"
+  }, stars))), __jsx("a", {
+    href: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    rel: "nofollow"
+  }, __jsx("figure", {
+    className: "img-bgas"
+  }, __jsx("img", {
+    src: hotel.media && hotel.media.gallery && hotel.media.gallery[0] ? hotel.media.gallery[0].url : 'default',
+    alt: hotel.media && hotel.media.gallery && hotel.media.gallery[0] && hotel.media.gallery[0].name
+  }))), __jsx("div", {
+    className: "prices-box"
+  }, hotel.rateplanPeriods && hotel.rateplanPeriods.length > 0 && __jsx(external_react_default.a.Fragment, null, __jsx("nav", {
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
+    className: "nav nav-tabs",
+    id: "nav-tab-1",
+    role: "tablist",
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
+    id: `swiperPrices-${hotel.id}`,
+    className: "swiper-container swiperPrices",
+    style: {
+      width: "100% !important"
+    }
+  }, __jsx("div", {
+    className: "swiper-wrapper",
+    style: {
+      width: "100% !important"
+    }
+  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavTab, {
+    key: index,
+    index: index,
+    period: period,
+    hotel: hotel,
+    activeTab: activeTab,
+    onActivateTab: () => onActivateTab(index)
+  })))), __jsx("div", {
+    id: `swiperPrices-${hotel.id}-button-prev`,
+    className: "swiper-button-prev"
+  }), __jsx("div", {
+    id: `swiperPrices-${hotel.id}-button-next`,
+    className: "swiper-button-next"
+  }))), __jsx("div", {
+    className: "tab-content",
+    id: "nav-tabContent-1"
+  }, hotel.rateplanPeriods.map((period, index) => __jsx(NavContent, {
+    key: index,
+    index: index,
+    hotel: hotel,
+    period: period
+  })))), !hotel.rateplanPeriods || hotel.rateplanPeriods.length <= 0 && __jsx("div", {
+    style: {
+      height: 70
+    }
+  }), __jsx("div", {
+    className: "details"
+  }, __jsx("div", {
+    className: "row"
+  }, __jsx("div", {
+    className: "col-4"
+  }, __jsx("div", {
+    className: "description"
+  }, __jsx("span", {
+    className: "bold"
+  }, "POSIZIONE"), __jsx("br", null), hotel.details.address, __jsx("br", null), hotel.details.zip_code, " - ", hotel.details.city, __jsx("br", null), "\u2014", __jsx("br", null), __jsx("div", {
+    dangerouslySetInnerHTML: {
+      __html: hotel.description_near.it
+    }
+  }))), __jsx("div", {
+    className: "col-8"
+  }, __jsx("ul", {
+    className: "hotel-service-list"
+  }, hotel.incServices && hotel.incServices.length > 0 && hotel.incServices.map((obj, index) => __jsx("li", {
+    key: index
+  }, __jsx("span", null, obj.name))))))), __jsx("div", {
+    className: "bottomline"
+  }, __jsx("div", {
+    className: "row"
+  }, __jsx("div", {
+    className: "col-8"
+  }, __jsx("div", {
+    className: "line"
+  })), __jsx("div", {
+    className: "col-4"
+  }, __jsx(link_default.a, {
+    as: `${"/strutture-ricettive"}/${props.hotel.slug.it}`,
+    href: {
+      pathname: `${"/strutture-ricettive"}/[accommodition]`
+    }
+  }, __jsx("a", {
+    className: "goto"
+  }, "Visualizza la struttura")))))));
+};
+
+const HotelPagination = props => {
+  const [currPage, setCurrPage] = external_react_default.a.useState(0);
+  external_react_default.a.useEffect(() => {
+    if (props.meta) {
+      setCurrPage(parseInt(props.meta.current_page) - 1);
+    }
+  }, []);
+
+  const handlePageClick = e => {
+    props.filter.page = e.selected + 1;
+    let stringa = '?';
+
+    for (let i in props.filter) stringa += `${i}=${props.filter[i]}&`;
+
+    window.location.href = window.location.pathname + stringa;
+  };
+
+  if (props.meta) {
+    return __jsx(external_react_paginate_default.a, {
+      forcePage: currPage,
+      previousLabel: "<",
+      nextLabel: ">",
+      breakLabel: "...",
+      breakClassName: "break-me",
+      pageCount: props.meta.last_page,
+      marginPagesDisplayed: 2,
+      pageRangeDisplayed: 5,
+      onPageChange: e => handlePageClick(e),
+      containerClassName: "pagination",
+      subContainerClassName: "pages pagination",
+      activeClassName: "active"
+    });
+  }
+
+  return '';
+};
+
+const HotelArchive = props => {
+  return __jsx("section", null, __jsx("div", {
+    className: "container"
+  }, props.hotels && props.hotels.length > 0 && __jsx(external_react_default.a.Fragment, null, __jsx("div", {
+    className: "row"
+  }, props.hotels.map((hotel, index) => __jsx("div", {
+    key: index,
+    className: "col-md-6"
+  }, __jsx(HotelArchiveItem, {
+    hotel: hotel
+  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")));
+};
+
+/* harmony default export */ var Partials_HotelArchive = (HotelArchive);
+// CONCATENATED MODULE: ./components/Templates/TemplateArchiveHotel.js
+var TemplateArchiveHotel_jsx = external_react_default.a.createElement;
 
 
 
@@ -3565,14 +3561,14 @@ const TemplateArchiveHotel = props => {
   console.log('props TemplateArchiveHotel', props);
 
   if (!props.page || props.page.length <= 0) {
-    return __jsx(MainLayout["a" /* default */], {
+    return TemplateArchiveHotel_jsx(MainLayout["a" /* default */], {
       settings: {
         menu: props.menu
       }
-    }, __jsx("div", null, "Data not found"));
+    }, TemplateArchiveHotel_jsx("div", null, "Data not found"));
   }
 
-  return __jsx(MainLayout["a" /* default */], {
+  return TemplateArchiveHotel_jsx(MainLayout["a" /* default */], {
     settings: {
       template: "accommodation-page",
       menu: props.menu
@@ -3584,27 +3580,27 @@ const TemplateArchiveHotel = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, __jsx(BookingSearchBox["a" /* default */], {
+  }, TemplateArchiveHotel_jsx(BookingSearchBox["a" /* default */], {
     searchParams: props.searchParams // locs={props.locs || []}
     // hotelCategories={props.hotelCategories || []}
 
-  }), __jsx("section", {
+  }), TemplateArchiveHotel_jsx("section", {
     className: "section-main"
-  }, __jsx("div", {
+  }, TemplateArchiveHotel_jsx("div", {
     className: "container"
-  }, __jsx("div", {
+  }, TemplateArchiveHotel_jsx("div", {
     className: "primary-title text-center"
-  }, __jsx("h1", null, props.page.title.it)), __jsx("div", {
+  }, TemplateArchiveHotel_jsx("h1", null, props.page.title.it)), TemplateArchiveHotel_jsx("div", {
     className: "primary-description text-center"
-  }, props.page.content && __jsx("div", {
+  }, props.page.content && TemplateArchiveHotel_jsx("div", {
     dangerouslySetInnerHTML: {
       __html: props.page.content.it
     }
-  }), props.page.description && __jsx("div", {
+  }), props.page.description && TemplateArchiveHotel_jsx("div", {
     dangerouslySetInnerHTML: {
       __html: props.page.description.it
     }
-  })))), __jsx(HotelArchive["a" /* default */], {
+  })))), TemplateArchiveHotel_jsx(Partials_HotelArchive, {
     hotels: props.hotels && props.hotels.data ? props.hotels.data : []
   }));
 };
