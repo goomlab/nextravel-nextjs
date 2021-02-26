@@ -457,13 +457,7 @@ const BookingPage = props => {
       // ]
 
     }
-  }, __jsx(next_Head__WEBPACK_IMPORTED_MODULE_3___default.a, null, __jsx("script", {
-    key: `jobJSON-${hotel.id}`,
-    type: "application/ld+json",
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(Object(_components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_4__[/* makeHotelSchema */ "a"])(hotel))
-    }
-  })), __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], null), __jsx("section", {
+  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], null), __jsx("section", {
     className: "single-hotel-section"
   }, __jsx("div", {
     className: "container"
@@ -2104,7 +2098,7 @@ const HotelAgeRangesTable = props => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export makeHotelSchema */
 /* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);

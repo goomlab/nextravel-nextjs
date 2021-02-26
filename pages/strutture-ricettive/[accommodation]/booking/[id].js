@@ -106,14 +106,13 @@ const BookingPage = props => {
         // ]
       }}
       >
-        <Head>
-          {/* <HotelSchema hotel={props.hotel} /> */}
+        {/* <Head>
           <script
             key={`jobJSON-${hotel.id}`}
             type='application/ld+json'
             dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
           />
-        </Head>
+        </Head> */}
       <BookingSearchBox />
 
       <section className="single-hotel-section">

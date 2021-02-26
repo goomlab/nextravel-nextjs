@@ -1151,7 +1151,7 @@ const HotelArchive = props => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export makeHotelSchema */
 /* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -1567,7 +1567,6 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
 // EXTERNAL MODULE: external "next/Head"
 var Head_ = __webpack_require__("ZOYG");
-var Head_default = /*#__PURE__*/__webpack_require__.n(Head_);
 
 // EXTERNAL MODULE: ./components/JsonLdSchema.js
 var JsonLdSchema = __webpack_require__("Hw1s");
@@ -1918,13 +1917,7 @@ const Index = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, pages_jsx(Head_default.a, null, props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) => pages_jsx("script", {
-    key: `jobJSON-${hotel.id}`,
-    type: "application/ld+json",
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(Object(JsonLdSchema["a" /* makeHotelSchema */])(hotel))
-    }
-  }))), pages_jsx("section", {
+  }, pages_jsx("section", {
     className: "section-main section-first home"
   }, pages_jsx("div", {
     className: "container"

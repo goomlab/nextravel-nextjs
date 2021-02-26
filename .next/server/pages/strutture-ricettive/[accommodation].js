@@ -1062,7 +1062,7 @@ const HotelAgeRangesTable = props => {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export makeHotelSchema */
 /* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -1540,7 +1540,6 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
 // EXTERNAL MODULE: external "next/Head"
 var Head_ = __webpack_require__("ZOYG");
-var Head_default = /*#__PURE__*/__webpack_require__.n(Head_);
 
 // EXTERNAL MODULE: ./components/JsonLdSchema.js
 var JsonLdSchema = __webpack_require__("Hw1s");
@@ -1736,13 +1735,7 @@ const HotelPage = props => {
       // ]
 
     }
-  }, _accommodation_jsx(Head_default.a, null, _accommodation_jsx("script", {
-    key: `jobJSON-${props.page.id}`,
-    type: "application/ld+json",
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(Object(JsonLdSchema["a" /* makeHotelSchema */])(props.page))
-    }
-  })), _accommodation_jsx(BookingSearchBox["a" /* default */], null), _accommodation_jsx("section", {
+  }, _accommodation_jsx(BookingSearchBox["a" /* default */], null), _accommodation_jsx("section", {
     className: "single-hotel-section"
   }, _accommodation_jsx("div", {
     className: "container"

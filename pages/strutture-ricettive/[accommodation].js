@@ -65,13 +65,13 @@ const HotelPage = props => {
         // ]
       }}
       >
-      <Head>
+      {/* <Head>
         <script
           key={`jobJSON-${props.page.id}`}
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(props.page)) }}
         />
-      </Head>
+      </Head> */}
 
       <BookingSearchBox />
 

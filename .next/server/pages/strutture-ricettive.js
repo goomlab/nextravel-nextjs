@@ -852,7 +852,7 @@ module.exports = __webpack_require__("bpkj");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export makeHotelSchema */
 /* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -1715,13 +1715,7 @@ const Index = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, __jsx(next_Head__WEBPACK_IMPORTED_MODULE_2___default.a, null, props.hotels && props.hotels.data && props.hotels.data.length > 0 && Object.entries(props.hotels.data).map(([key, hotel]) => __jsx("script", {
-    key: `jobJSON-${hotel.id}`,
-    type: "application/ld+json",
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(Object(_components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__[/* makeHotelSchema */ "a"])(hotel))
-    }
-  }))), __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     query: props.query
   }), __jsx("section", {
     className: "section-main"

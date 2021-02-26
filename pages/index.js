@@ -38,7 +38,7 @@ const Index = props => {
         image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
       }}
       >
-      <Head>
+      {/* <Head>
         {props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) =>
           <script
             key={`jobJSON-${hotel.id}`}
@@ -46,7 +46,7 @@ const Index = props => {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
           />
         )}
-      </Head>
+      </Head> */}
       
 
       <section className="section-main section-first home">
