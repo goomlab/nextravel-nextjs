@@ -728,10 +728,6 @@ const Head = meta => __jsx(head_default.a, null, __jsx("meta", {
 }), __jsx("meta", {
   name: "twitter:image",
   content: meta.image || {"title":"Nextravel","url":"https://www.nextravel.it","image":"https://www.nextravel.it/default.jpg"}.image
-}), console.log('metajson', meta.jsonlds), meta.jsonlds && Object.entries(meta.jsonlds).map(([key, obj], index) => {
-  __jsx(external_react_default.a.Fragment, {
-    key: key
-  }, obj);
 }));
 
 /* harmony default export */ var MainLayout_Head = (Head);
