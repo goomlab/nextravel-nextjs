@@ -1210,7 +1210,59 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
 // EXTERNAL MODULE: external "next/head"
 var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
 
+// CONCATENATED MODULE: ./components/JsonLdSchema.js
+var __jsx = external_react_default.a.createElement;
+
+const makeHotelSchema = hotel => {
+  return {
+    "@context": "http://schema.org",
+    "@type": "Hotel",
+    "name": hotel.name,
+    "url": process.env.REACT_APP_URL,
+    "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
+    "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
+    "address": {
+      "@type": 'PostalAddress',
+      "addressLocality": hotel.details ? hotel.details.city : "",
+      "addressRegion": hotel.details ? hotel.details.state : "",
+      "postalcode": hotel.details ? hotel.details.zip_code : "",
+      "streetAddress": hotel.details ? hotel.details.address : "",
+      "addressRegion": hotel.details ? hotel.details.state : ""
+    },
+    "openingHours": ["Mo-Sa 00:00-24-00"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "",
+      "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "",
+      "priceRange": ""
+    }
+  };
+};
+const HotelSchema = hotel => {
+  return __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(makeHotelSchema(hotel))
+    }
+  });
+}; // {
+//   "@context":"http:\/\/www.schema.org",
+//   "@type":"Hotel",
+//   "name":"HotelIschia.org",
+//   "url":"https:\/\/www.hotelischia.org",
+//   "image":"https:\/\/www.hotelischia.org\/default.jpg",
+//   "logo":"https:\/\/www.hotelischia.org\/logo.png",
+//   "description":"HotelIschia ",
+//   "address":{"@type":"PostalAddress","streetAddress":"Via Tommaso Cigliano 109","addressLocality":"Forio","addressRegion":"Campania","postalCode":"80075","addressCountry":"Italia"},
+//   "geo":{"@type":"GeoCoordinates","latitude":"45.3725831","longitude":"12.3386239"},
+//   "hasMap":"https:\/\/www.google.it\/maps\/place\/Hotelischia.org\/@40.751108,13.869027,15z\/data=!4m12!1m6!3m5!1s0x0:0x1a2964fe6e65709a!2sHotelischia.org!8m2!3d40.751108!4d13.869027!3m4!1s0x0:0x1a2964fe6e65709a!8m2!3d40.751108!4d13.869027",
+//   "openingHours":"Mo, Tu, We, Th, Fr, Sa, Su 00:00-24:00",
+//   "contactPoint":{"@type":"ContactPoint","telephone":"tel:+3908118088050","email":"info@hotelischia.org","contactType":"reservations"},
+//   "priceRange":"da \u20ac 30,00","telephone":"tel:+3908118088050"},
+//   {"@context":"http:\/\/www.schema.org","@type":"WebSite","name":"HotelIschia.org","alternateName":"HotelIschia.org","url":"https:\/\/www.hotelischia.org\/"}
 // EXTERNAL MODULE: ./packages/BaseService.js
 var BaseService = __webpack_require__("jC1T");
 
@@ -1258,7 +1310,7 @@ var external_moment_ = __webpack_require__("wy2R");
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
 // CONCATENATED MODULE: ./components/Partials/HomeRecap.js
-var __jsx = external_react_default.a.createElement;
+var HomeRecap_jsx = external_react_default.a.createElement;
 
 
 
@@ -1266,79 +1318,79 @@ var __jsx = external_react_default.a.createElement;
 const HomeRecap = props => {
   external_moment_default.a.locale('it');
   var now = external_moment_default()();
-  return __jsx("section", {
+  return HomeRecap_jsx("section", {
     className: "section-main section-home-primopiano"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "container"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "box-home-primopiano"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "row"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "col-lg-4"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "home-primopiano-item"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "title"
-  }, "Transfer traghetto"), __jsx("div", {
+  }, "Transfer traghetto"), HomeRecap_jsx("div", {
     className: "description"
-  }, "Prenota l\u2019Hotel con noi ed avrai il Traghetto per Ischia a soli \u20AC136 \u20AC70 A/R Auto+Conducente*"), __jsx("div", {
+  }, "Prenota l\u2019Hotel con noi ed avrai il Traghetto per Ischia a soli \u20AC136 \u20AC70 A/R Auto+Conducente*"), HomeRecap_jsx("div", {
     className: "note"
-  }, "*offerta non valida dal 26-Dic e dal 03-Gen"), __jsx("div", {
+  }, "*offerta non valida dal 26-Dic e dal 03-Gen"), HomeRecap_jsx("div", {
     className: "row"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "col-sm-6"
-  }, __jsx("a", {
+  }, HomeRecap_jsx("a", {
     href: "#",
     className: "btn btn-transparent"
-  }, "scopri")), __jsx("div", {
+  }, "scopri")), HomeRecap_jsx("div", {
     className: "col-sm-6"
-  }, __jsx("i", {
+  }, HomeRecap_jsx("i", {
     className: "ico ico-nave"
-  }))))), props.busPage && __jsx("div", {
+  }))))), props.busPage && HomeRecap_jsx("div", {
     className: "col-lg-4"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "home-primopiano-item"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "title"
-  }, props.busPage.title.it), __jsx("div", {
+  }, props.busPage.title.it), HomeRecap_jsx("div", {
     className: "description"
-  }, __jsx("span", {
+  }, HomeRecap_jsx("span", {
     dangerouslySetInnerHTML: {
       __html: props.busPage.content_short.it
     }
-  })), __jsx("div", {
+  })), HomeRecap_jsx("div", {
     className: "row"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "col-sm-6"
-  }, __jsx(link_default.a, {
+  }, HomeRecap_jsx(link_default.a, {
     href: props.busPage.page_path.it
-  }, __jsx("a", {
+  }, HomeRecap_jsx("a", {
     className: "btn btn-transparent"
-  }, "scopri"))), __jsx("div", {
+  }, "scopri"))), HomeRecap_jsx("div", {
     className: "col-sm-6"
-  }, __jsx("i", {
+  }, HomeRecap_jsx("i", {
     className: "ico ico-orologio"
-  }))))), __jsx("div", {
+  }))))), HomeRecap_jsx("div", {
     className: "col-lg-4"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "home-primopiano-item"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "title"
-  }, "Offerte del mese"), __jsx("div", {
+  }, "Offerte del mese"), HomeRecap_jsx("div", {
     className: "description"
-  }, __jsx("p", null, "Tutte le offerte di ", __jsx("strong", null, now.format('MMMM'), " ", now.format('YYYY')), " a portata di click. Non perdere l'occasione.")), __jsx("div", {
+  }, HomeRecap_jsx("p", null, "Tutte le offerte di ", HomeRecap_jsx("strong", null, now.format('MMMM'), " ", now.format('YYYY')), " a portata di click. Non perdere l'occasione.")), HomeRecap_jsx("div", {
     className: "row"
-  }, __jsx("div", {
+  }, HomeRecap_jsx("div", {
     className: "col-sm-6"
-  }, __jsx(link_default.a, {
+  }, HomeRecap_jsx(link_default.a, {
     href: `${"/offerte"}/[slug]`,
     as: `${"/offerte"}/${now.format('MMMM').toLowerCase()}`
-  }, __jsx("a", {
+  }, HomeRecap_jsx("a", {
     className: "btn btn-transparent"
-  }, "scopri"))), __jsx("div", {
+  }, "scopri"))), HomeRecap_jsx("div", {
     className: "col-sm-6"
-  }, __jsx("i", {
+  }, HomeRecap_jsx("i", {
     className: "ico ico-cal"
   })))))))));
 };
@@ -1518,7 +1570,7 @@ const mapDispatchToProps = dispatch => {
 var pages_jsx = external_react_default.a.createElement;
 
 
- // import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+
 
 
 
@@ -1554,7 +1606,13 @@ const Index = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, pages_jsx("section", {
+  }, pages_jsx(head_default.a, null, props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) => pages_jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(makeHotelSchema(hotel))
+    }
+  }))), pages_jsx("section", {
     className: "section-main section-first home"
   }, pages_jsx("div", {
     className: "container"

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import NextHead from 'next/head'
 
-// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
 import BaseService from "~/packages/BaseService";
 import MenuService from "~/packages/Post/services/MenuService";
@@ -38,7 +38,7 @@ const Index = props => {
         image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
       }}
       >
-      {/* <NextHead>
+      <NextHead>
         {props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) =>
           <script
             key={`jobJSON-${hotel.id}`}
@@ -46,7 +46,7 @@ const Index = props => {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
           />
         )}
-      </NextHead> */}
+      </NextHead>
       
 
       <section className="section-main section-first home">
