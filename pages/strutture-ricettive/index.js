@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import NextHead from 'next/head'
-// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+import NextHead from 'next/head';
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
 import MenuService from "~/packages/Post/services/MenuService";
 import PostService from "~/packages/Post/services/PostService";
@@ -52,7 +52,7 @@ const Index = props => {
         image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
       }}
       >
-      {/* <NextHead>
+      <NextHead>
         {props.hotels && props.hotels.data  && props.hotels.data.length > 0 && Object.entries(props.hotels.data).map(([key, hotel]) =>
           <script
             key={`jobJSON-${hotel.id}`}
@@ -60,7 +60,7 @@ const Index = props => {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
           />
         )}
-      </NextHead> */}
+      </NextHead>
 
       <BookingSearchBox query={props.query} />
 

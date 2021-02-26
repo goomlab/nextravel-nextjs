@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import NextHead from 'next/head'
+import NextHead from 'next/head';
 
-// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -65,13 +65,13 @@ const HotelPage = props => {
         // ]
       }}
       >
-      {/* <NextHead>
+      <NextHead>
         <script
           key={`jobJSON-${props.page.id}`}
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(props.page)) }}
         />
-      </NextHead> */}
+      </NextHead>
 
       <BookingSearchBox />
 

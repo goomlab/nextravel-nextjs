@@ -1,9 +1,9 @@
 import React from "react";
 import moment from "moment";
 import Link from "next/link";
-import NextHead from 'next/head'
+import NextHead from 'next/head';
 
-// import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema";
 
 import SwiperCore, { Swiper, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -105,13 +105,13 @@ const BookingPage = props => {
         // ]
       }}
       >
-        {/* <NextHead>
+        <NextHead>
           <script
-            key={`jobJSON-${hotel.id}`}
+            key={`jobJSON-${props.hotel.id}`}
             type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(hotel)) }}
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(makeHotelSchema(props.hotel)) }}
           />
-        </NextHead> */}
+        </NextHead>
       <BookingSearchBox />
 
       <section className="single-hotel-section">

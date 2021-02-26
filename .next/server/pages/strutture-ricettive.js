@@ -848,6 +848,67 @@ module.exports = __webpack_require__("bpkj");
 
 /***/ }),
 
+/***/ "Hw1s":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
+/* unused harmony export HotelSchema */
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+const makeHotelSchema = hotel => {
+  return {
+    "@context": "http://schema.org",
+    "@type": "Hotel",
+    "name": hotel.name,
+    "url": process.env.REACT_APP_URL,
+    "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
+    "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
+    "address": {
+      "@type": 'PostalAddress',
+      "addressLocality": hotel.details ? hotel.details.city : "",
+      "addressRegion": hotel.details ? hotel.details.state : "",
+      "postalcode": hotel.details ? hotel.details.zip_code : "",
+      "streetAddress": hotel.details ? hotel.details.address : "",
+      "addressRegion": hotel.details ? hotel.details.state : ""
+    },
+    "openingHours": ["Mo-Sa 00:00-24-00"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "",
+      "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "",
+      "priceRange": ""
+    }
+  };
+};
+const HotelSchema = hotel => {
+  return __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(makeHotelSchema(hotel))
+    }
+  });
+}; // {
+//   "@context":"http:\/\/www.schema.org",
+//   "@type":"Hotel",
+//   "name":"HotelIschia.org",
+//   "url":"https:\/\/www.hotelischia.org",
+//   "image":"https:\/\/www.hotelischia.org\/default.jpg",
+//   "logo":"https:\/\/www.hotelischia.org\/logo.png",
+//   "description":"HotelIschia ",
+//   "address":{"@type":"PostalAddress","streetAddress":"Via Tommaso Cigliano 109","addressLocality":"Forio","addressRegion":"Campania","postalCode":"80075","addressCountry":"Italia"},
+//   "geo":{"@type":"GeoCoordinates","latitude":"45.3725831","longitude":"12.3386239"},
+//   "hasMap":"https:\/\/www.google.it\/maps\/place\/Hotelischia.org\/@40.751108,13.869027,15z\/data=!4m12!1m6!3m5!1s0x0:0x1a2964fe6e65709a!2sHotelischia.org!8m2!3d40.751108!4d13.869027!3m4!1s0x0:0x1a2964fe6e65709a!8m2!3d40.751108!4d13.869027",
+//   "openingHours":"Mo, Tu, We, Th, Fr, Sa, Su 00:00-24:00",
+//   "contactPoint":{"@type":"ContactPoint","telephone":"tel:+3908118088050","email":"info@hotelischia.org","contactType":"reservations"},
+//   "priceRange":"da \u20ac 30,00","telephone":"tel:+3908118088050"},
+//   {"@context":"http:\/\/www.schema.org","@type":"WebSite","name":"HotelIschia.org","alternateName":"HotelIschia.org","url":"https:\/\/www.hotelischia.org\/"}
+
+/***/ }),
+
 /***/ "JHTH":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1584,16 +1645,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("xnum");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("57t+");
-/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("TvVg");
-/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("6Brv");
-/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("JHTH");
-/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("8Mm2");
-/* harmony import */ var _components_Partials_HotelArchive2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("hm/Q");
+/* harmony import */ var _components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("Hw1s");
+/* harmony import */ var _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("57t+");
+/* harmony import */ var _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("TvVg");
+/* harmony import */ var _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("6Brv");
+/* harmony import */ var _components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("JHTH");
+/* harmony import */ var _components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("8Mm2");
+/* harmony import */ var _components_Partials_HotelArchive2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("hm/Q");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
- // import { HotelSchema, makeHotelSchema } from "~/components/JsonLdSchema"
+
 
 
 
@@ -1604,7 +1666,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 const Index = props => {
   if (!props.page || props.page.length <= 0) {
-    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"], {
+    return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
       settings: {
         menu: props.menu
       }
@@ -1630,7 +1692,7 @@ const Index = props => {
   // }, [])
 
 
-  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"], {
+  return __jsx(_components_Layouts_MainLayout_MainLayout__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
     settings: {
       template: "accommodation-page",
       menu: props.menu
@@ -1642,7 +1704,13 @@ const Index = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {
+  }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, null, props.hotels && props.hotels.data && props.hotels.data.length > 0 && Object.entries(props.hotels.data).map(([key, hotel]) => __jsx("script", {
+    key: `jobJSON-${hotel.id}`,
+    type: "application/ld+json",
+    dangerouslySetInnerHTML: {
+      __html: JSON.stringify(Object(_components_JsonLdSchema__WEBPACK_IMPORTED_MODULE_3__[/* makeHotelSchema */ "a"])(hotel))
+    }
+  }))), __jsx(_components_Partials_BookingSearchBox__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
     query: props.query
   }), __jsx("section", {
     className: "section-main"
@@ -1652,7 +1720,7 @@ const Index = props => {
     className: "primary-title text-center"
   }, __jsx("h2", null, "Prenota la tua vacanza tra una vasta scelta di Hotel selezionati.")), __jsx("div", {
     className: "primary-description text-center"
-  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", __jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), __jsx(_components_Partials_HotelArchive2__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"], {
+  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", __jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), __jsx(_components_Partials_HotelArchive2__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
     hotels: props.hotels && props.hotels.data ? props.hotels.data : [],
     meta: props.hotels.meta,
     filter: props.hotels.filter
@@ -1680,11 +1748,11 @@ Index.getInitialProps = async ctx => {
 
   try {
     // initialProps = mainInitialProps();
-    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    let menuService = new _packages_Post_services_MenuService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
     menu = await menuService.get(1);
-    let postService = new _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"]();
+    let postService = new _packages_Post_services_PostService__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]();
     page = await postService.get(2);
-    let hotelService = new _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"]();
+    let hotelService = new _packages_TravelgoOne_services_HotelService__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"]();
     hotels = await hotelService.query(filter);
     hotels.filter = filter;
   } catch (e) {}
