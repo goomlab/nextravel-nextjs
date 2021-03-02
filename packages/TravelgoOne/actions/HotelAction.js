@@ -44,7 +44,8 @@ export default class HotelAction extends BaseAction {
         })
         dispatch(PageLoaderAction.hide())
         // if( response.data.length > 0 )
-        if(parseInt(response.meta.last_page) > 1)
+        // console.log('response', response.meta.current_page, response.meta.per_page, (parseInt(response.meta.current_page) * parseInt(response.meta.per_page)))
+        if((parseInt(response.meta.current_page) * parseInt(response.meta.per_page)) <= parseInt(response.meta.total))
           dispatch(this.loading(0))
         else
           dispatch(this.loading(1))

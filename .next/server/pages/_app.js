@@ -940,8 +940,9 @@ class HotelAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* d
           meta: response.meta
         });
         dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide()); // if( response.data.length > 0 )
+        // console.log('response', response.meta.current_page, response.meta.per_page, (parseInt(response.meta.current_page) * parseInt(response.meta.per_page)))
 
-        if (parseInt(response.meta.last_page) > 1) dispatch(this.loading(0));else dispatch(this.loading(1));
+        if (parseInt(response.meta.current_page) * parseInt(response.meta.per_page) <= parseInt(response.meta.total)) dispatch(this.loading(0));else dispatch(this.loading(1));
       }).catch(error => {
         dispatch({
           type: this.consts.RESET_ITEMS,

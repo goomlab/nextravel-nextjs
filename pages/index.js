@@ -41,15 +41,25 @@ const Index = props => {
     })
   },[])
 
+  // React.useEffect(() => {
+  //   setHotelLoading(props.hotelLoading)
+  // },[props])
+  
+  // const [hotelLoading, setHotelLoading] = React.useState(props.hotelLoading);
 
-  const [hotelLoading, setHotelLoading] = React.useState(props.hotelLoading);
+  const [hotelBoxEnd, setHotelBoxEnd] = React.useState(0);
 
   function logit() {
     let scrollY = window.pageYOffset;
-    let hotelBoxEnd = document.getElementById('hotel-archive-end').offsetTop;
+    let old_hotelBoxEnd = hotelBoxEnd;
+    let new_hotelBoxEnd = document.getElementById('hotel-archive-end').offsetTop;
+    setHotelBoxEnd(new_hotelBoxEnd);
 
+    
     if( props.hotelLoading == 0 && scrollY > (hotelBoxEnd - window.innerHeight) ){ 
-      setHotelLoading(1)
+      // console.log('scroll', scrollY, hotelBoxEnd, props.hotelLoading)
+      // setHotelLoading(1)
+      props.loading(1)
 
       props.query({
         hasEmptyPeriods: true,
@@ -58,6 +68,11 @@ const Index = props => {
         page: props.hotelSeatchParams.page,
         paginate: 4//process.env.pagination.paginate
       })
+
+      window.scrollTo({
+        top: old_hotelBoxEnd,
+        behavior: 'smooth'
+      });
     }
   }
 

@@ -1621,15 +1621,23 @@ const Index = props => {
       paginate: 4 //process.env.pagination.paginate
 
     });
-  }, []);
-  const [hotelLoading, setHotelLoading] = external_react_default.a.useState(props.hotelLoading);
+  }, []); // React.useEffect(() => {
+  //   setHotelLoading(props.hotelLoading)
+  // },[props])
+  // const [hotelLoading, setHotelLoading] = React.useState(props.hotelLoading);
+
+  const [hotelBoxEnd, setHotelBoxEnd] = external_react_default.a.useState(0);
 
   function logit() {
     let scrollY = window.pageYOffset;
-    let hotelBoxEnd = document.getElementById('hotel-archive-end').offsetTop;
+    let old_hotelBoxEnd = hotelBoxEnd;
+    let new_hotelBoxEnd = document.getElementById('hotel-archive-end').offsetTop;
+    setHotelBoxEnd(new_hotelBoxEnd);
 
     if (props.hotelLoading == 0 && scrollY > hotelBoxEnd - window.innerHeight) {
-      setHotelLoading(1);
+      // console.log('scroll', scrollY, hotelBoxEnd, props.hotelLoading)
+      // setHotelLoading(1)
+      props.loading(1);
       props.query({
         hasEmptyPeriods: true,
         orderBy: 'order_seq',
@@ -1637,6 +1645,10 @@ const Index = props => {
         page: props.hotelSeatchParams.page,
         paginate: 4 //process.env.pagination.paginate
 
+      });
+      window.scrollTo({
+        top: old_hotelBoxEnd,
+        behavior: 'smooth'
       });
     }
   }
@@ -2320,8 +2332,9 @@ class HotelAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* d
           meta: response.meta
         });
         dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide()); // if( response.data.length > 0 )
+        // console.log('response', response.meta.current_page, response.meta.per_page, (parseInt(response.meta.current_page) * parseInt(response.meta.per_page)))
 
-        if (parseInt(response.meta.last_page) > 1) dispatch(this.loading(0));else dispatch(this.loading(1));
+        if (parseInt(response.meta.current_page) * parseInt(response.meta.per_page) <= parseInt(response.meta.total)) dispatch(this.loading(0));else dispatch(this.loading(1));
       }).catch(error => {
         dispatch({
           type: this.consts.RESET_ITEMS,
