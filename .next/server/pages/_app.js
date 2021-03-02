@@ -193,15 +193,46 @@ const PageLoaderReducer = (state = {
 };
 
 /* harmony default export */ var reducers_PageLoaderReducer = (PageLoaderReducer);
-// EXTERNAL MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js
-var PracticeByGuestAction = __webpack_require__("p54a");
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/HotelAction.js
+var HotelAction = __webpack_require__("bxpL");
 
-// CONCATENATED MODULE: ./packages/TravelgoOne/reducers/PracticeByGuestReducer.js
+// CONCATENATED MODULE: ./packages/TravelgoOne/reducers/HotelReducer.js
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+const HotelReducer_initialState = {
+  items: []
+};
+
+const HotelReducer = (state = HotelReducer_initialState, action) => {
+  switch (action.type) {
+    case HotelAction["b" /* hotelConsts */].RESET_ITEMS:
+      return HotelReducer_initialState;
+
+    case HotelAction["b" /* hotelConsts */].ITEMS:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        items: action.items
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ var reducers_HotelReducer = (HotelReducer);
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/PracticeByGuestAction.js
+var PracticeByGuestAction = __webpack_require__("p54a");
+
+// CONCATENATED MODULE: ./packages/TravelgoOne/reducers/PracticeByGuestReducer.js
+function PracticeByGuestReducer_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function PracticeByGuestReducer_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { PracticeByGuestReducer_ownKeys(Object(source), true).forEach(function (key) { PracticeByGuestReducer_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { PracticeByGuestReducer_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function PracticeByGuestReducer_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 const initialCustomer = {
@@ -233,8 +264,8 @@ const PracticeByGuestReducer_initialState = {
 const PracticeByGuestReducer = (state = PracticeByGuestReducer_initialState, action) => {
   switch (action.type) {
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].RESET_ITEM:
-      let newState = _objectSpread(_objectSpread({}, state), {}, {
-        item: _objectSpread(_objectSpread({}, state.item), {}, {
+      let newState = PracticeByGuestReducer_objectSpread(PracticeByGuestReducer_objectSpread({}, state), {}, {
+        item: PracticeByGuestReducer_objectSpread(PracticeByGuestReducer_objectSpread({}, state.item), {}, {
           customer: {
             first_name: "",
             last_name: "",
@@ -248,17 +279,17 @@ const PracticeByGuestReducer = (state = PracticeByGuestReducer_initialState, act
       return newState;
 
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].SET_ITEM:
-      return _objectSpread(_objectSpread({}, state), {}, {
+      return PracticeByGuestReducer_objectSpread(PracticeByGuestReducer_objectSpread({}, state), {}, {
         item: action.item
       });
 
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].GET_CLIENT_IP:
-      return _objectSpread(_objectSpread({}, state), {}, {
+      return PracticeByGuestReducer_objectSpread(PracticeByGuestReducer_objectSpread({}, state), {}, {
         sub_ip: action.clientIp
       });
 
     case PracticeByGuestAction["b" /* practiceByGuestConsts */].CREATE:
-      return _objectSpread(_objectSpread({}, state), {}, {
+      return PracticeByGuestReducer_objectSpread(PracticeByGuestReducer_objectSpread({}, state), {}, {
         item: action.item
       });
 
@@ -318,11 +349,13 @@ const NewsletterReducer = (state = NewsletterReducer_initialState, action) => {
 
 
 
+
  // create a makeStore function
 
 const makeStore = context => Object(external_redux_["createStore"])(Object(external_redux_["combineReducers"])({
   alertMessage: reducers_AlertMessageReducer,
   pageLoader: reducers_PageLoaderReducer,
+  hotel: reducers_HotelReducer,
   practiceByGuest: reducers_PracticeByGuestReducer,
   newsletter: reducers_NewsletterReducer
 }), {}, Object(external_redux_devtools_extension_["composeWithDevTools"])(Object(external_redux_["applyMiddleware"])(external_redux_thunk_default.a))); // export an assembled wrapper
@@ -514,6 +547,44 @@ class _app_MyApp extends app_default.a {
 }
 
 /* harmony default export */ var _app = __webpack_exports__["default"] = (wrapper.withRedux(_app_MyApp));
+
+/***/ }),
+
+/***/ "6Brv":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotelService; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("jC1T");
+
+
+class HotelService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"] {
+  constructor() {
+    super('/travelgo-one/hotels');
+  }
+
+  query(params) {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(`${this.url}/query`, {
+      params
+    }, this.config).then(response => {
+      return Promise.resolve(response.data);
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  } // queryLastminutes(id, params) {
+  //   return axios.get(`${this.url}/${id}/query-lastminutes`, { params }, this.config)
+  //   .then(response => {
+  //     return Promise.resolve(response.data.data);
+  //   })
+  //   .catch(error => {
+  //     return Promise.reject(error);
+  //   });
+  // }
+
+
+}
 
 /***/ }),
 
@@ -803,6 +874,58 @@ class PracticeService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* defau
 /***/ (function(module, exports) {
 
 module.exports = require("redux-thunk");
+
+/***/ }),
+
+/***/ "bxpL":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return hotelConsts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotelAction; });
+/* harmony import */ var _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("sYsk");
+/* harmony import */ var _packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("XvPD");
+/* harmony import */ var _packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YRjj");
+/* harmony import */ var _services_HotelService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("6Brv");
+
+
+
+
+const hotelConsts = {
+  ITEMS: 'HOTEL_LIST_ITEMS',
+  RESET_ITEMS: 'HOTEL_LIST_RESET_ITEMS' // RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  // GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
+  // CREATE: 'PRACTICE_BY_GUEST_CREATE',
+
+};
+class HotelAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"] {
+  constructor() {
+    super();
+    this.service = new _services_HotelService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    this.consts = hotelConsts;
+  }
+
+  query(params) {
+    return dispatch => {
+      dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].show());
+      this.service.query(params).then(response => {
+        console.log('response data', response.data);
+        dispatch({
+          type: this.consts.ITEMS,
+          items: response.data
+        });
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      }).catch(error => {
+        dispatch({
+          type: this.consts.RESET_ITEMS,
+          items: []
+        });
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      });
+    };
+  }
+
+}
 
 /***/ }),
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux';
 import Link from "next/link";
 import NextHead from 'next/head'
 
@@ -10,6 +11,8 @@ import PostService from "~/packages/Post/services/PostService";
 import HotelService from "~/packages/TravelgoOne/services/HotelService";
 import LocService from "~/packages/TravelgoOne/services/LocService";
 import HotelCategoryService from "~/packages/TravelgoOne/services/HotelCategoryService";
+
+import HotelAction from "~/packages/TravelgoOne/actions/HotelAction";
 
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
@@ -27,6 +30,16 @@ const Index = props => {
     );
   }
 
+
+  React.useEffect(() => {
+    props.query({
+      hasEmptyPeriods: true,
+      orderBy: 'order_seq',
+      orderHow: 'asc',
+      paginate: process.env.pagination.paginate
+    })
+  },[])
+
   return (
     <Layout 
       settings={{template:"front-page", menu: props.menu}}
@@ -38,8 +51,9 @@ const Index = props => {
         image: (props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0]) ? props.page.media.thumbnails[0].url : null
       }}
       >
+      {props.hotels && props.hotels &&
       <NextHead>
-        {props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) =>
+        {props.hotels && props.hotels && Object.entries(props.hotels).map(([key, hotel]) =>
           <script
             key={`jobJSON-${hotel.id}`}
             type='application/ld+json'
@@ -47,6 +61,7 @@ const Index = props => {
           />
         )}
       </NextHead>
+      }
       
 
       <section className="section-main section-first home">
@@ -86,7 +101,9 @@ const Index = props => {
       </section>
 
       {/* <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} /> */}
-      <HotelArchive2 hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
+      {/* <HotelArchive2 hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} /> */}
+      {console.log('props hotels', props.hotels)}
+      <HotelArchive2 hotels={(props.hotels) ? props.hotels : []} />
 
       {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) &&
       <section className="section-main">
@@ -132,13 +149,13 @@ Index.getInitialProps = async ctx => {
     page = await postService.get(1);
     busPage = await postService.get(3);
 
-    let hotelService = new HotelService();
-    hotels = await hotelService.query({
-      hasEmptyPeriods: true,
-      orderBy: 'order_seq',
-      orderHow: 'asc',
-      paginate: process.env.pagination.paginate
-    });
+    // let hotelService = new HotelService();
+    // hotels = await hotelService.query({
+    //   hasEmptyPeriods: true,
+    //   orderBy: 'order_seq',
+    //   orderHow: 'asc',
+    //   paginate: process.env.pagination.paginate
+    // });
   } catch (e) {
     console.log('error', e)
   }
@@ -152,8 +169,27 @@ Index.getInitialProps = async ctx => {
     // hotelCategories,
     page,
     busPage,
-    hotels
+    // hotels
   };
 };
 
-export default Index;
+// export default Index;
+
+
+const mapStateToProps = (state) => {
+	return {
+		hotels: state.hotel.items,
+	}
+}
+const mapDispatchToProps = (dispatch) => {
+  let hotelAction = new HotelAction()
+  return {
+    query: (data) => {
+      dispatch(hotelAction.query(data))
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
+
+

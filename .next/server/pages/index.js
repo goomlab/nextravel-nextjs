@@ -1265,6 +1265,9 @@ __webpack_require__.r(__webpack_exports__);
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
+// EXTERNAL MODULE: external "react-redux"
+var external_react_redux_ = __webpack_require__("h74D");
+
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__("YFqc");
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
@@ -1309,6 +1312,9 @@ class HotelCategoryService_HotelCategoryService extends BaseService["a" /* defau
   }
 
 }
+// EXTERNAL MODULE: ./packages/TravelgoOne/actions/HotelAction.js
+var HotelAction = __webpack_require__("bxpL");
+
 // EXTERNAL MODULE: ./components/Layouts/MainLayout/MainLayout.js + 4 modules
 var MainLayout = __webpack_require__("JHTH");
 
@@ -1409,9 +1415,6 @@ const HomeRecap = props => {
 };
 
 /* harmony default export */ var Partials_HomeRecap = (HomeRecap);
-// EXTERNAL MODULE: external "react-redux"
-var external_react_redux_ = __webpack_require__("h74D");
-
 // EXTERNAL MODULE: external "yup"
 var external_yup_ = __webpack_require__("C8TP");
 
@@ -1592,6 +1595,8 @@ var pages_jsx = external_react_default.a.createElement;
 
 
 
+
+
  // import HotelArchive from "~/components/Partials/HotelArchive";
 
 
@@ -1607,6 +1612,14 @@ const Index = props => {
     }, pages_jsx("div", null, "Data not found"));
   }
 
+  external_react_default.a.useEffect(() => {
+    props.query({
+      hasEmptyPeriods: true,
+      orderBy: 'order_seq',
+      orderHow: 'asc',
+      paginate: {"paginate":30}.paginate
+    });
+  }, []);
   return pages_jsx(MainLayout["a" /* default */], {
     settings: {
       template: "front-page",
@@ -1619,7 +1632,7 @@ const Index = props => {
       // image: (props.page.media && props.page.media.gallery && props.page.media.gallery[0]) ? props.page.media.gallery[0].url : null
       image: props.page.media && props.page.media.thumbnails && props.page.media.thumbnails[0] ? props.page.media.thumbnails[0].url : null
     }
-  }, pages_jsx(head_default.a, null, props.hotels && props.hotels.data && Object.entries(props.hotels.data).map(([key, hotel]) => pages_jsx("script", {
+  }, props.hotels && props.hotels && pages_jsx(head_default.a, null, props.hotels && props.hotels && Object.entries(props.hotels).map(([key, hotel]) => pages_jsx("script", {
     key: `jobJSON-${hotel.id}`,
     type: "application/ld+json",
     dangerouslySetInnerHTML: {
@@ -1659,8 +1672,8 @@ const Index = props => {
     className: "primary-title text-center"
   }, pages_jsx("h2", null, "Prenota la tua vacanza tra una vasta scelta di Hotel selezionati.")), pages_jsx("div", {
     className: "primary-description text-center"
-  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", pages_jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), pages_jsx(HotelArchive2["a" /* default */], {
-    hotels: props.hotels && props.hotels.data ? props.hotels.data : []
+  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", pages_jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), console.log('props hotels', props.hotels), pages_jsx(HotelArchive2["a" /* default */], {
+    hotels: props.hotels ? props.hotels : []
   }), props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) && pages_jsx("section", {
     className: "section-main"
   }, pages_jsx("div", {
@@ -1695,14 +1708,13 @@ Index.getInitialProps = async ctx => {
     menu = await menuService.get(1);
     let postService = new PostService["a" /* default */]();
     page = await postService.get(1);
-    busPage = await postService.get(3);
-    let hotelService = new HotelService["a" /* default */]();
-    hotels = await hotelService.query({
-      hasEmptyPeriods: true,
-      orderBy: 'order_seq',
-      orderHow: 'asc',
-      paginate: {"paginate":30}.paginate
-    });
+    busPage = await postService.get(3); // let hotelService = new HotelService();
+    // hotels = await hotelService.query({
+    //   hasEmptyPeriods: true,
+    //   orderBy: 'order_seq',
+    //   orderHow: 'asc',
+    //   paginate: process.env.pagination.paginate
+    // });
   } catch (e) {
     console.log('error', e);
   }
@@ -1715,12 +1727,28 @@ Index.getInitialProps = async ctx => {
     // locs,
     // hotelCategories,
     page,
-    busPage,
-    hotels
+    busPage // hotels
+
+  };
+}; // export default Index;
+
+
+const pages_mapStateToProps = state => {
+  return {
+    hotels: state.hotel.items
   };
 };
 
-/* harmony default export */ var pages = __webpack_exports__["default"] = (Index);
+const pages_mapDispatchToProps = dispatch => {
+  let hotelAction = new HotelAction["a" /* default */]();
+  return {
+    query: data => {
+      dispatch(hotelAction.query(data));
+    }
+  };
+};
+
+/* harmony default export */ var pages = __webpack_exports__["default"] = (Object(external_react_redux_["connect"])(pages_mapStateToProps, pages_mapDispatchToProps)(Index));
 
 /***/ }),
 
@@ -2202,6 +2230,58 @@ function getRouteRegex(normalizedRoute) {
     re: new RegExp(`^${parameterizedRoute}(?:/)?$`),
     groups
   };
+}
+
+/***/ }),
+
+/***/ "bxpL":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return hotelConsts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HotelAction; });
+/* harmony import */ var _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("sYsk");
+/* harmony import */ var _packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("XvPD");
+/* harmony import */ var _packages_Base_actions_AlertMessageAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("YRjj");
+/* harmony import */ var _services_HotelService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("6Brv");
+
+
+
+
+const hotelConsts = {
+  ITEMS: 'HOTEL_LIST_ITEMS',
+  RESET_ITEMS: 'HOTEL_LIST_RESET_ITEMS' // RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
+  // GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
+  // CREATE: 'PRACTICE_BY_GUEST_CREATE',
+
+};
+class HotelAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"] {
+  constructor() {
+    super();
+    this.service = new _services_HotelService__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]();
+    this.consts = hotelConsts;
+  }
+
+  query(params) {
+    return dispatch => {
+      dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].show());
+      this.service.query(params).then(response => {
+        console.log('response data', response.data);
+        dispatch({
+          type: this.consts.ITEMS,
+          items: response.data
+        });
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      }).catch(error => {
+        dispatch({
+          type: this.consts.RESET_ITEMS,
+          items: []
+        });
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+      });
+    };
+  }
+
 }
 
 /***/ }),

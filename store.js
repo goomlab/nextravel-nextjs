@@ -5,6 +5,7 @@ import {MakeStore, createWrapper, Context, HYDRATE} from 'next-redux-wrapper';
 
 import alertMessage from './packages/Base/reducers/AlertMessageReducer'
 import pageLoader from './packages/Base/reducers/PageLoaderReducer'
+import hotel from './packages/TravelgoOne/reducers/HotelReducer'
 import practiceByGuest from './packages/TravelgoOne/reducers/PracticeByGuestReducer'
 import newsletter from './packages/TravelgoOne/reducers/NewsletterReducer'
 
@@ -13,6 +14,7 @@ export const makeStore = context => createStore(
     combineReducers({
     alertMessage: alertMessage,
     pageLoader: pageLoader,
+    hotel: hotel,
     practiceByGuest: practiceByGuest,
     newsletter: newsletter,
   }),
