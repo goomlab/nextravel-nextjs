@@ -1,5 +1,16 @@
 import React from 'react'
 
+export const getThumbnail = (item) => {
+  if(item.media && item.media.thumbnail && item.media.thumbnail[0]){
+    return item.media.thumbnail[0].url
+  }
+
+  if(item.media && item.media.gallery && item.media.gallery[0]){
+    return item.media.gallery[0].url
+  }
+
+  return '';
+}
 
 export const makeHotelSchema = (hotel) => {
   return {
@@ -7,9 +18,12 @@ export const makeHotelSchema = (hotel) => {
     "@type": "Hotel",
     
     "name": hotel.name,
+    "description": hotel.description.it,
     "url": process.env.REACT_APP_URL,
     "email": process.env.contacts.email.label,
     "telephone": process.env.contacts.phone.label,
+    "image": getThumbnail(hotel),
+    "logo": process.env.REACT_APP_URL + '/images/logo.png',
     "address": {
       "@type": 'PostalAddress',
       "addressLocality": (hotel.details) ? hotel.details.city : "",
@@ -21,11 +35,25 @@ export const makeHotelSchema = (hotel) => {
     "openingHours": [
       "Mo-Sa 00:00-24-00"
     ],
+    "hasMap": (hotel.details) ? hotel.details.gmap : "",
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": (hotel.details) ? hotel.details.lat : "",
+        "longitude": (hotel.details) ? hotel.details.lng : "",
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": process.env.contacts.phone.label,
+        "email": process.env.contacts.email.label,
+        "contactType": "reservations"
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": (hotel.rating_details) ? hotel.rating_details.ratingValue : "",
-      "reviewCount": (hotel.rating_details) ? hotel.rating_details.reviewCount : "",
-      "priceRange": "",
+      "bestRating": (hotel.rating_details) ? hotel.rating_details.bestRating : "0",
+      "ratingCount": (hotel.rating_details) ? hotel.rating_details.ratingCount : "0",
+      "ratingValue": (hotel.rating_details) ? hotel.rating_details.ratingValue : "0",
+      "reviewCount": (hotel.rating_details) ? hotel.rating_details.reviewCount : "0",
+      "priceRange": "€ 30.00 - € 110.00",
     }
   }
 }

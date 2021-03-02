@@ -859,20 +859,35 @@ module.exports = require("yup");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* unused harmony export getThumbnail */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return makeHotelSchema; });
 /* unused harmony export HotelSchema */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+const getThumbnail = item => {
+  if (item.media && item.media.thumbnail && item.media.thumbnail[0]) {
+    return item.media.thumbnail[0].url;
+  }
+
+  if (item.media && item.media.gallery && item.media.gallery[0]) {
+    return item.media.gallery[0].url;
+  }
+
+  return '';
+};
 const makeHotelSchema = hotel => {
   return {
     "@context": "http://schema.org",
     "@type": "Hotel",
     "name": hotel.name,
+    "description": hotel.description.it,
     "url": process.env.REACT_APP_URL,
     "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
     "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
+    "image": getThumbnail(hotel),
+    "logo": process.env.REACT_APP_URL + '/images/logo.png',
     "address": {
       "@type": 'PostalAddress',
       "addressLocality": hotel.details ? hotel.details.city : "",
@@ -882,11 +897,25 @@ const makeHotelSchema = hotel => {
       "addressRegion": hotel.details ? hotel.details.state : ""
     },
     "openingHours": ["Mo-Sa 00:00-24-00"],
+    "hasMap": hotel.details ? hotel.details.gmap : "",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": hotel.details ? hotel.details.lat : "",
+      "longitude": hotel.details ? hotel.details.lng : ""
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
+      "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
+      "contactType": "reservations"
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "",
-      "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "",
-      "priceRange": ""
+      "bestRating": hotel.rating_details ? hotel.rating_details.bestRating : "0",
+      "ratingCount": hotel.rating_details ? hotel.rating_details.ratingCount : "0",
+      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "0",
+      "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "0",
+      "priceRange": "€ 30.00 - € 110.00"
     }
   };
 };
