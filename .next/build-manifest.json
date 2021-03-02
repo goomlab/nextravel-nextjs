@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/cTTbJoQbmOsd3j9jHBmhS/_buildManifest.js",
-    "static/cTTbJoQbmOsd3j9jHBmhS/_ssgManifest.js"
+    "static/prCJbalFDFaClvLNAn3AJ/_buildManifest.js",
+    "static/prCJbalFDFaClvLNAn3AJ/_ssgManifest.js"
   ],
   "pages": {
     "/": [
@@ -21,7 +21,7 @@
       "static/chunks/6446cbebe960a337639e903d581cc2ca0c721e96.dd17bd0ab9f7f0fb7289.js",
       "static/chunks/10dba252b9340cc66684f2cd02ea47e225fadbb3.669d776f9f476b920588.js",
       "static/chunks/d80d9e3888b644db1cf7128a2830ce4721e0da5e.c8c1340c8d562647fbaa.js",
-      "static/chunks/pages/index-c7f1afcf050a43db6b92.js"
+      "static/chunks/pages/index-b7ab35633fc4a8d957c8.js"
     ],
     "/[page]": [
       "static/chunks/main-599e9dfce06806e741e9.js",
@@ -84,7 +84,7 @@
       "static/chunks/89f069275d8bc0f4ed8298df246b99e816cb275d.51ec586e90be196189c5.js",
       "static/chunks/6446cbebe960a337639e903d581cc2ca0c721e96.dd17bd0ab9f7f0fb7289.js",
       "static/chunks/d80d9e3888b644db1cf7128a2830ce4721e0da5e.c8c1340c8d562647fbaa.js",
-      "static/chunks/pages/strutture-ricettive-7efcf345161663e10962.js"
+      "static/chunks/pages/strutture-ricettive-a0dd086d3312b1608758.js"
     ],
     "/strutture-ricettive/[accommodation]": [
       "static/chunks/main-599e9dfce06806e741e9.js",
@@ -96,7 +96,7 @@
       "static/chunks/ede05147be19149d8cebfb71ed33ffe26d48783d.73da97466df551238a6b.js",
       "static/chunks/89f069275d8bc0f4ed8298df246b99e816cb275d.51ec586e90be196189c5.js",
       "static/chunks/6446cbebe960a337639e903d581cc2ca0c721e96.dd17bd0ab9f7f0fb7289.js",
-      "static/chunks/pages/strutture-ricettive/[accommodation]-2f39c13b093906a9bb7d.js"
+      "static/chunks/pages/strutture-ricettive/[accommodation]-e737ece822f809c6e235.js"
     ],
     "/strutture-ricettive/[accommodation]/[lastminute]": [
       "static/chunks/main-599e9dfce06806e741e9.js",
@@ -124,7 +124,7 @@
       "static/chunks/6446cbebe960a337639e903d581cc2ca0c721e96.dd17bd0ab9f7f0fb7289.js",
       "static/chunks/10dba252b9340cc66684f2cd02ea47e225fadbb3.669d776f9f476b920588.js",
       "static/chunks/7d990f6e464e335cbeea06259d451b91878fba66.663d8442e9bc4ae81a3e.js",
-      "static/chunks/pages/strutture-ricettive/[accommodation]/booking/[id]-61cb8ec5a47b4b526ab9.js"
+      "static/chunks/pages/strutture-ricettive/[accommodation]/booking/[id]-192b55d8c643bdc42557.js"
     ]
   },
   "ampFirstPages": []

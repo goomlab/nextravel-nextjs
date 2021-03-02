@@ -2153,14 +2153,19 @@ const makeHotelSchema = hotel => {
       "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
       "contactType": "reservations"
     },
+    "starRating": {
+      "@type": "Rating",
+      "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "0"
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
       "bestRating": hotel.rating_details ? hotel.rating_details.bestRating : "0",
       "ratingCount": hotel.rating_details ? hotel.rating_details.ratingCount : "0",
       "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "0",
       "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "0",
-      "priceRange": "€30-€110"
-    }
+      "priceRange": "€30 - €110"
+    },
+    "priceRange": "€30 - €110"
   };
 };
 const HotelSchema = hotel => {
