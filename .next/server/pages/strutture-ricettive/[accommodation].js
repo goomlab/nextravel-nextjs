@@ -1118,7 +1118,7 @@ const makeHotelSchema = hotel => {
       "ratingCount": hotel.rating_details ? hotel.rating_details.ratingCount : "0",
       "ratingValue": hotel.rating_details ? hotel.rating_details.ratingValue : "0",
       "reviewCount": hotel.rating_details ? hotel.rating_details.reviewCount : "0",
-      "priceRange": "€ 30.00 - € 110.00"
+      "priceRange": "€30-€110"
     }
   };
 };
