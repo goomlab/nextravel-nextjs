@@ -1617,8 +1617,8 @@ const Index = props => {
       hasEmptyPeriods: true,
       orderBy: 'order_seq',
       orderHow: 'asc',
-      // paginate: process.env.pagination.paginate
-      paginate: 12
+      paginate: {"paginate":30}.paginate // paginate: 12
+
     });
   }, []);
   return pages_jsx(MainLayout["a" /* default */], {
