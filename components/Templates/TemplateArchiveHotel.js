@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import Layout from "~/components/Layouts/MainLayout/MainLayout";
 import BookingSearchBox from "~/components/Partials/BookingSearchBox";
-import HotelArchive from "~/components/Partials/HotelArchive";
+import HotelArchive2 from "~/components/Partials/HotelArchive2";
 
 const TemplateArchiveHotel = props => {console.log('props TemplateArchiveHotel',props)
 
@@ -52,7 +52,7 @@ const TemplateArchiveHotel = props => {console.log('props TemplateArchiveHotel',
       </section>
       
       {/* <HotelArchive hotels={props.hotels} /> */}
-      <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
+      <HotelArchive2 hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} />
 
     </Layout>
   )
