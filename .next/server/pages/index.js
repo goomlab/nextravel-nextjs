@@ -1617,10 +1617,40 @@ const Index = props => {
       hasEmptyPeriods: true,
       orderBy: 'order_seq',
       orderHow: 'asc',
-      paginate: {"paginate":30}.paginate // paginate: 12
+      page: props.hotelSeatchParams.page,
+      paginate: 4 //process.env.pagination.paginate
 
     });
   }, []);
+  const [hotelLoading, setHotelLoading] = external_react_default.a.useState(props.hotelLoading);
+
+  function logit() {
+    let scrollY = window.pageYOffset;
+    let hotelBoxEnd = document.getElementById('hotel-archive-end').offsetTop;
+
+    if (props.hotelLoading == 0 && scrollY > hotelBoxEnd - window.innerHeight) {
+      setHotelLoading(1);
+      props.query({
+        hasEmptyPeriods: true,
+        orderBy: 'order_seq',
+        orderHow: 'asc',
+        page: props.hotelSeatchParams.page,
+        paginate: 4 //process.env.pagination.paginate
+
+      });
+    }
+  }
+
+  external_react_default.a.useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", logit);
+    }
+
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", logit);
+    };
+  });
   return pages_jsx(MainLayout["a" /* default */], {
     settings: {
       template: "front-page",
@@ -1673,7 +1703,7 @@ const Index = props => {
     className: "primary-title text-center"
   }, pages_jsx("h2", null, "Prenota la tua vacanza tra una vasta scelta di Hotel selezionati.")), pages_jsx("div", {
     className: "primary-description text-center"
-  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", pages_jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), console.log('props hotels', props.hotels), pages_jsx(HotelArchive2["a" /* default */], {
+  }, "Per qualsiasi informazione non esitare a contattarci allo", " ", pages_jsx("strong", null, {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label)))), pages_jsx(HotelArchive2["a" /* default */], {
     hotels: props.hotels ? props.hotels : []
   }), props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) && pages_jsx("section", {
     className: "section-main"
@@ -1736,13 +1766,19 @@ Index.getInitialProps = async ctx => {
 
 const pages_mapStateToProps = state => {
   return {
-    hotels: state.hotel.items
+    hotelLoading: state.hotel.loading,
+    hotelSeatchParams: state.hotel.params,
+    hotels: state.hotel.items,
+    hotelMeta: state.hotel.meta
   };
 };
 
 const pages_mapDispatchToProps = dispatch => {
   let hotelAction = new HotelAction["a" /* default */]();
   return {
+    loading: state => {
+      dispatch(hotelAction.loading(state));
+    },
     query: data => {
       dispatch(hotelAction.query(data));
     }
@@ -2250,6 +2286,7 @@ function getRouteRegex(normalizedRoute) {
 
 
 const hotelConsts = {
+  LOADING: 'HOTEL_LIST_LOADING',
   ITEMS: 'HOTEL_LIST_ITEMS',
   RESET_ITEMS: 'HOTEL_LIST_RESET_ITEMS' // RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
   // GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
@@ -2263,22 +2300,36 @@ class HotelAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* d
     this.consts = hotelConsts;
   }
 
+  loading(state) {
+    return dispatch => {
+      dispatch({
+        type: this.consts.LOADING,
+        loading: state
+      });
+    };
+  }
+
   query(params) {
     return dispatch => {
       dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].show());
+      dispatch(this.loading(1));
       this.service.query(params).then(response => {
-        console.log('response data', response.data);
         dispatch({
           type: this.consts.ITEMS,
-          items: response.data
+          items: response.data,
+          meta: response.meta
         });
-        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide()); // if( response.data.length > 0 )
+
+        if (parseInt(response.meta.last_page) > 1) dispatch(this.loading(0));else dispatch(this.loading(1));
       }).catch(error => {
         dispatch({
           type: this.consts.RESET_ITEMS,
-          items: []
+          items: [],
+          meta: null
         });
         dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+        dispatch(this.loading(0));
       });
     };
   }
@@ -4035,7 +4086,9 @@ const HotelPagination = props => {
 };
 
 const HotelArchive = props => {
-  return __jsx("section", null, __jsx("div", {
+  return __jsx("section", {
+    id: "hotel-archive"
+  }, __jsx("div", {
     className: "container"
   }, props.hotels && props.hotels.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
     className: "row"
@@ -4044,7 +4097,9 @@ const HotelArchive = props => {
     className: "col-md-6"
   }, __jsx(HotelArchiveItem, {
     hotel: hotel
-  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")));
+  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")), __jsx("div", {
+    id: "hotel-archive-end"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (HotelArchive);

@@ -36,10 +36,41 @@ const Index = props => {
       hasEmptyPeriods: true,
       orderBy: 'order_seq',
       orderHow: 'asc',
-      paginate: process.env.pagination.paginate
-      // paginate: 12
+      page: props.hotelSeatchParams.page,
+      paginate: 4//process.env.pagination.paginate
     })
   },[])
+
+
+  const [hotelLoading, setHotelLoading] = React.useState(props.hotelLoading);
+
+  function logit() {
+    let scrollY = window.pageYOffset;
+    let hotelBoxEnd = document.getElementById('hotel-archive-end').offsetTop;
+
+    if( props.hotelLoading == 0 && scrollY > (hotelBoxEnd - window.innerHeight) ){ 
+      setHotelLoading(1)
+
+      props.query({
+        hasEmptyPeriods: true,
+        orderBy: 'order_seq',
+        orderHow: 'asc',
+        page: props.hotelSeatchParams.page,
+        paginate: 4//process.env.pagination.paginate
+      })
+    }
+  }
+
+  React.useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", logit);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", logit);
+    };
+  });
+
 
   return (
     <Layout 
@@ -103,7 +134,6 @@ const Index = props => {
 
       {/* <HotelArchive hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} /> */}
       {/* <HotelArchive2 hotels={(props.hotels && props.hotels.data) ? props.hotels.data : []} /> */}
-      {console.log('props hotels', props.hotels)}
       <HotelArchive2 hotels={(props.hotels) ? props.hotels : []} />
 
       {props.hotels && props.hotels.meta && parseInt(props.hotels.meta.to) < parseInt(props.hotels.meta.last_page) &&
@@ -179,12 +209,18 @@ Index.getInitialProps = async ctx => {
 
 const mapStateToProps = (state) => {
 	return {
+    hotelLoading: state.hotel.loading,
+    hotelSeatchParams: state.hotel.params,
 		hotels: state.hotel.items,
+    hotelMeta: state.hotel.meta,
 	}
 }
 const mapDispatchToProps = (dispatch) => {
   let hotelAction = new HotelAction()
   return {
+    loading: (state) => {
+      dispatch(hotelAction.loading(state))
+    },
     query: (data) => {
       dispatch(hotelAction.query(data))
     },

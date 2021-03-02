@@ -323,7 +323,7 @@ const HotelPagination = props => {
 
 const HotelArchive = props => {
   return (
-    <section>
+    <section id="hotel-archive">
       <div className="container">
         {props.hotels && props.hotels.length > 0 &&
           <>
@@ -341,6 +341,7 @@ const HotelArchive = props => {
           <div>Nessun risultato</div>
         }
       </div>
+      <div id="hotel-archive-end"></div>
     </section>
   );
 };

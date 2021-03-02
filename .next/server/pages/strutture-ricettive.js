@@ -3518,7 +3518,9 @@ const HotelPagination = props => {
 };
 
 const HotelArchive = props => {
-  return __jsx("section", null, __jsx("div", {
+  return __jsx("section", {
+    id: "hotel-archive"
+  }, __jsx("div", {
     className: "container"
   }, props.hotels && props.hotels.length > 0 && __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx("div", {
     className: "row"
@@ -3527,7 +3529,9 @@ const HotelArchive = props => {
     className: "col-md-6"
   }, __jsx(HotelArchiveItem, {
     hotel: hotel
-  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")));
+  })))), __jsx(HotelPagination, props)), !props.hotels || props.hotels.length <= 0 && __jsx("div", null, "Nessun risultato")), __jsx("div", {
+    id: "hotel-archive-end"
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (HotelArchive);

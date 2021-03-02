@@ -205,7 +205,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 const HotelReducer_initialState = {
-  items: []
+  loading: 0,
+  params: {
+    page: 1
+  },
+  items: [],
+  meta: null
 };
 
 const HotelReducer = (state = HotelReducer_initialState, action) => {
@@ -213,9 +218,18 @@ const HotelReducer = (state = HotelReducer_initialState, action) => {
     case HotelAction["b" /* hotelConsts */].RESET_ITEMS:
       return HotelReducer_initialState;
 
+    case HotelAction["b" /* hotelConsts */].LOADING:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        loading: action.loading
+      });
+
     case HotelAction["b" /* hotelConsts */].ITEMS:
       return _objectSpread(_objectSpread({}, state), {}, {
-        items: action.items
+        items: [...state.items, ...action.items],
+        meta: action.meta,
+        params: _objectSpread(_objectSpread({}, state.params), {}, {
+          page: parseInt(state.params.page) + 1
+        })
       });
 
     default:
@@ -892,6 +906,7 @@ module.exports = require("redux-thunk");
 
 
 const hotelConsts = {
+  LOADING: 'HOTEL_LIST_LOADING',
   ITEMS: 'HOTEL_LIST_ITEMS',
   RESET_ITEMS: 'HOTEL_LIST_RESET_ITEMS' // RESET_ITEM: 'PRACTICE_BY_GUEST_RESET_ITEM',
   // GET_CLIENT_IP: 'PRACTICE_BY_GUEST_GET_CLIENT_IP',
@@ -905,22 +920,36 @@ class HotelAction extends _packages_BaseAction__WEBPACK_IMPORTED_MODULE_0__[/* d
     this.consts = hotelConsts;
   }
 
+  loading(state) {
+    return dispatch => {
+      dispatch({
+        type: this.consts.LOADING,
+        loading: state
+      });
+    };
+  }
+
   query(params) {
     return dispatch => {
       dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].show());
+      dispatch(this.loading(1));
       this.service.query(params).then(response => {
-        console.log('response data', response.data);
         dispatch({
           type: this.consts.ITEMS,
-          items: response.data
+          items: response.data,
+          meta: response.meta
         });
-        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+        dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide()); // if( response.data.length > 0 )
+
+        if (parseInt(response.meta.last_page) > 1) dispatch(this.loading(0));else dispatch(this.loading(1));
       }).catch(error => {
         dispatch({
           type: this.consts.RESET_ITEMS,
-          items: []
+          items: [],
+          meta: null
         });
         dispatch(_packages_Base_actions_PageLoaderAction__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].hide());
+        dispatch(this.loading(0));
       });
     };
   }
