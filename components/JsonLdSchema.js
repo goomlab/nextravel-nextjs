@@ -49,15 +49,14 @@ export const makeHotelSchema = (hotel) => {
     },
     "starRating" : { 
       "@type" : "Rating",
-      "ratingValue": (hotel.rating_details) ? hotel.rating_details.ratingValue : "0",
+      "ratingValue": (hotel.rating_details) ? hotel.rating_details.ratingValue : "3",
     },
     "aggregateRating": {
       "@type": "AggregateRating",
       "bestRating": (hotel.rating_details) ? hotel.rating_details.bestRating : "0",
       "ratingCount": (hotel.rating_details) ? hotel.rating_details.ratingCount : "0",
-      "ratingValue": (hotel.rating_details) ? hotel.rating_details.ratingValue : "0",
+      "ratingValue": (hotel.rating_details) ? hotel.rating_details.ratingValue : "3",
       "reviewCount": (hotel.rating_details) ? hotel.rating_details.reviewCount : "0",
-      "priceRange": "€30 - €110",
     },
     "priceRange": "€30 - €110",
   }
