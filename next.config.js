@@ -19,6 +19,7 @@ module.exports = {
   },
   env: {
     app_title: process.env.REACT_APP_NAME,
+    app_url: process.env.REACT_APP_URL,
     api_url: process.env.REACT_APP_API_URL,
     public_path: process.env.REACT_PUBLIC_PATH,
     accommodations_path: process.env.REACT_ACCOMMODATIONS_PATH,

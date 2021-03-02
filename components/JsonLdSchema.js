@@ -19,11 +19,11 @@ export const makeHotelSchema = (hotel) => {
     
     "name": hotel.name,
     "description": hotel.description.it,
-    "url": process.env.REACT_APP_URL,
+    "url": process.env.app_url + '/strutture-ricettive/' + hotel.slug.it,
     "email": process.env.contacts.email.label,
     "telephone": process.env.contacts.phone.label,
     "image": getThumbnail(hotel),
-    "logo": process.env.REACT_APP_URL + '/images/logo.png',
+    "logo": process.env.app_url + '/images/logo.png',
     "address": {
       "@type": 'PostalAddress',
       "addressLocality": (hotel.details) ? hotel.details.city : "",

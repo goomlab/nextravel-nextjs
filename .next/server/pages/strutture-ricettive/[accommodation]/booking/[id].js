@@ -2127,11 +2127,11 @@ const makeHotelSchema = hotel => {
     "@type": "Hotel",
     "name": hotel.name,
     "description": hotel.description.it,
-    "url": process.env.REACT_APP_URL,
+    "url": "https://www.nextravel.it" + '/strutture-ricettive/' + hotel.slug.it,
     "email": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.email.label,
     "telephone": {"email":{"prelabel":"","label":"info@nextravel.it","url":"mailto:info@nextravel.it","ico":"<i class=\"ico ico-mail\"></i>"},"phone":{"prelabel":"","label":"347 512 3030","url":"tel:393475123030","ico":"<i class=\"fas fa-phone-alt\"></i>"}}.phone.label,
     "image": getThumbnail(hotel),
-    "logo": process.env.REACT_APP_URL + '/images/logo.png',
+    "logo": "https://www.nextravel.it" + '/images/logo.png',
     "address": {
       "@type": 'PostalAddress',
       "addressLocality": hotel.details ? hotel.details.city : "",
