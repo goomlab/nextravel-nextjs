@@ -36,7 +36,8 @@ const Index = props => {
       hasEmptyPeriods: true,
       orderBy: 'order_seq',
       orderHow: 'asc',
-      paginate: process.env.pagination.paginate
+      // paginate: process.env.pagination.paginate
+      paginate: 12
     })
   },[])
 
