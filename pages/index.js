@@ -56,8 +56,8 @@ const Index = props => {
     setHotelBoxEnd(new_hotelBoxEnd);
 
     
-    if( props.hotelLoading == 0 && scrollY > (hotelBoxEnd - window.innerHeight) ){ 
-      // console.log('scroll', scrollY, hotelBoxEnd, props.hotelLoading)
+    if( props.hotelLoading == 0 && scrollY > (new_hotelBoxEnd - window.innerHeight) ){ 
+      // console.log('scroll', scrollY, hotelBoxEnd, new_hotelBoxEnd, props.hotelLoading)
       // setHotelLoading(1)
       props.loading(1)
 

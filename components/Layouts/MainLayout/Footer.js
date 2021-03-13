@@ -1,6 +1,7 @@
 import React from 'react';
+import Link from "next/link";
 
-const Footer = () => {
+const Footer = props => {
   return (
     <footer>
       <div className="container">
@@ -17,7 +18,36 @@ const Footer = () => {
             P.IVA {process.env.address[0].piva}
           </div>
           <div className="col-md-7">
-              
+            <div className="row">
+              {props.settings.menu && props.settings.menu.items.length > 0 && props.settings.menu.items.map((menuitem, index) => 
+                <React.Fragment key={index}>
+                {!menuitem.children || menuitem.children.length <= 0 && 
+                  <div className="col-lg-4 footer-menu-col">
+                    <Link href={menuitem.translations.url.it}>
+                      <a>{menuitem.translations.title.it}</a>
+                    </Link>
+                  </div>
+                }
+                {menuitem.children && menuitem.children.length > 0 && menuitem.children.map((children, indexChildren) => 
+                  <div key={indexChildren} className="col-lg-4 footer-menu-col">
+                    <Link key={indexChildren} href={children.translations.url.it}>
+                      <a key={indexChildren}>{children.translations.title.it}</a>
+                    </Link>
+                  </div>
+                )}
+                </React.Fragment>
+              )}
+              <div className="col-lg-4 footer-menu-col">
+                <Link href="/sitemaphtml">
+                  <a>Sitemap</a>
+                </Link>
+              </div>
+              <div className="col-lg-4 footer-menu-col">
+                <Link href="/privacy-policy">
+                  <a>Privacy Policy</a>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         <div className="row">

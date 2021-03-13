@@ -1068,7 +1068,8 @@ const Header = props => {
 var Footer_jsx = external_react_default.a.createElement;
 
 
-const Footer = () => {
+
+const Footer = props => {
   return Footer_jsx("footer", null, Footer_jsx("div", {
     className: "container"
   }, Footer_jsx("div", {
@@ -1083,7 +1084,31 @@ const Footer = () => {
     }
   }), Footer_jsx("br", null), Footer_jsx("br", null), Footer_jsx("br", null), "P.IVA ", [{"company":"Nextravel","label":"via Giovan Battista Vico 183<br/>80077 Ischia (Na)","url":"javascript:void(0)","ico":"<i class=\"map-marker\"></i>","piva":"IT09640631215"}][0].piva), Footer_jsx("div", {
     className: "col-md-7"
-  })), Footer_jsx("div", {
+  }, Footer_jsx("div", {
+    className: "row"
+  }, props.settings.menu && props.settings.menu.items.length > 0 && props.settings.menu.items.map((menuitem, index) => Footer_jsx(external_react_default.a.Fragment, {
+    key: index
+  }, !menuitem.children || menuitem.children.length <= 0 && Footer_jsx("div", {
+    className: "col-lg-4 footer-menu-col"
+  }, Footer_jsx(link_default.a, {
+    href: menuitem.translations.url.it
+  }, Footer_jsx("a", null, menuitem.translations.title.it))), menuitem.children && menuitem.children.length > 0 && menuitem.children.map((children, indexChildren) => Footer_jsx("div", {
+    key: indexChildren,
+    className: "col-lg-4 footer-menu-col"
+  }, Footer_jsx(link_default.a, {
+    key: indexChildren,
+    href: children.translations.url.it
+  }, Footer_jsx("a", {
+    key: indexChildren
+  }, children.translations.title.it)))))), Footer_jsx("div", {
+    className: "col-lg-4 footer-menu-col"
+  }, Footer_jsx(link_default.a, {
+    href: "/sitemaphtml"
+  }, Footer_jsx("a", null, "Sitemap"))), Footer_jsx("div", {
+    className: "col-lg-4 footer-menu-col"
+  }, Footer_jsx(link_default.a, {
+    href: "/privacy-policy"
+  }, Footer_jsx("a", null, "Privacy Policy")))))), Footer_jsx("div", {
     className: "row"
   }, Footer_jsx("div", {
     className: "col-md-5"
@@ -1158,7 +1183,9 @@ const MainLayout = ({
     className: `page` + (settings.template ? ` ${settings.template}` : '')
   }, MainLayout_jsx(MainLayout_Header, {
     settings: settings
-  }), MainLayout_jsx("main", null, children)), MainLayout_jsx(MainLayout_Footer, null), MainLayout_jsx(MainLayout_Scripts, null));
+  }), MainLayout_jsx("main", null, children)), MainLayout_jsx(MainLayout_Footer, {
+    settings: settings
+  }), MainLayout_jsx(MainLayout_Scripts, null));
 };
 
 /* harmony default export */ var MainLayout_MainLayout = __webpack_exports__["a"] = (MainLayout);
@@ -3545,18 +3572,9 @@ var BaseService = __webpack_require__("jC1T");
 // EXTERNAL MODULE: ./packages/Post/services/MenuService.js
 var MenuService = __webpack_require__("57t+");
 
-// EXTERNAL MODULE: external "axios"
-var external_axios_ = __webpack_require__("zr5I");
+// EXTERNAL MODULE: ./packages/TravelgoOne/services/PageFilterService.js
+var PageFilterService = __webpack_require__("t3yc");
 
-// CONCATENATED MODULE: ./packages/TravelgoOne/services/PageFilterService.js
-
-
-class PageFilterService_PageFilterService extends BaseService["a" /* default */] {
-  constructor() {
-    super('/travelgo-one/filterpages');
-  }
-
-}
 // EXTERNAL MODULE: ./packages/TravelgoOne/services/HotelService.js
 var HotelService = __webpack_require__("6Brv");
 
@@ -3669,7 +3687,7 @@ Index.getInitialProps = async params => {
     hotelCategories = init.hotelCategories || [];
     let menuService = new MenuService["a" /* default */]();
     menu = await menuService.get(1);
-    let pageFilterService = new PageFilterService_PageFilterService();
+    let pageFilterService = new PageFilterService["a" /* default */]();
     page = await pageFilterService.getBySlug(params.query.slug);
 
     if (page) {
@@ -3865,6 +3883,25 @@ function makePublicRouterInstance(router) {
     };
   });
   return instance;
+}
+
+/***/ }),
+
+/***/ "t3yc":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageFilterService; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("jC1T");
+
+
+class PageFilterService extends _BaseService__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"] {
+  constructor() {
+    super('/travelgo-one/filterpages');
+  }
+
 }
 
 /***/ }),

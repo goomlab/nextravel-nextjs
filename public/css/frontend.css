@@ -872,6 +872,15 @@ textarea::placeholder {
   padding-right: 15px;
 }
 
+.hotel-service-list li a, .hotel-service-list li a:visited, .hotel-service-list li a:hover {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.hotel-service-list li a:hover {
+  opacity: 0.9;
+}
+
 .hotel-service-list li > span {
   display: flex;
   flex-direction: row;
@@ -1531,6 +1540,18 @@ table a:hover,
   border-radius: unset;
 }
 
+.footer-menu-col > a {
+  color: #4fbaad !important;
+  text-decoration: none;
+  display: block;
+  padding: 8px 0;
+  border-bottom: solid 1px #4fbaad;
+}
+
+.footer-menu-col > a:hover {
+  opacity: 0.9;
+}
+
 footer {
   background-color: #384044;
   color: #FFF;
@@ -1551,6 +1572,15 @@ footer .logo {
 
 footer .logo img {
   width: 250px;
+}
+
+footer .hotel-service-list {
+  display: flex;
+  flex-direction: column;
+}
+
+footer .footer-menu-col > a {
+  color: #FFF !important;
 }
 
 footer .menu-social {

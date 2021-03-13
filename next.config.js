@@ -17,6 +17,7 @@ module.exports = {
     config.resolve.alias['~'] = path.resolve(__dirname);
     return config;
   },
+  // trailingSlash: true,
   env: {
     app_title: process.env.REACT_APP_NAME,
     app_url: process.env.REACT_APP_URL,

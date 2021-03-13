@@ -14,7 +14,7 @@ const MainLayout = ({children, settings = {}, meta = {}}) => {
           {children}
         </main>
       </div>
-      <Footer />
+      <Footer settings={settings} />
       <Scripts />
     </React.Fragment>
   )
